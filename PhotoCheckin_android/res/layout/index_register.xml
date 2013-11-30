@@ -126,7 +126,7 @@
             android:orientation="vertical" >
 
             <EditText
-                android:id="@+id/EditText01"
+                android:id="@+id/login_password_texf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/textfield_bg"
@@ -144,7 +144,7 @@
             android:orientation="vertical">
             
             <Button
-                android:id="@+id/button1"
+                android:id="@+id/loginform_btn"
                 android:layout_width="match_parent"
                 android:layout_height="33dp"
                 android:background="@drawable/blue_btn"

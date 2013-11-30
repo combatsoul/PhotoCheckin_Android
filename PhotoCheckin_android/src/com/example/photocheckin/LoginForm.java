@@ -19,6 +19,7 @@ public class LoginForm extends Activity implements View.OnClickListener {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.index_loginform);
+		
 	}
 
 	@Override
