@@ -143,15 +143,16 @@
             android:layout_marginTop="10dp"
             android:orientation="vertical">
             
-            <Button
-                android:id="@+id/loginform_btn"
+              <Button
+                android:id="@+id/register_btn"
                 android:layout_width="match_parent"
-                android:layout_height="33dp"
-                android:background="@drawable/blue_btn"
-                android:paddingTop="5dp"
-                android:text="Register"
-                android:textColor="@color/white"
-                android:textSize="14dp" />
+                android:layout_height="34dp"
+                android:text="Login" 
+                android:background="@drawable/white_bg_btn"
+                android:textSize="15dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:textColor="@color/grey"/>
 
         </LinearLayout>
 
