@@ -59,7 +59,16 @@
                 android:hint="Name Lastname"
                 android:inputType="textPersonName" 
                 android:textSize="14dp"
-                android:paddingLeft="10dp"/>
+                android:paddingLeft="10dp">
+                <requestFocus />
+            </EditText>
+                
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
         </LinearLayout>
 
         <LinearLayout
@@ -74,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/textfield_bg"
                 android:ems="10"
-                android:hint="Name Lastname"
+                android:hint="Username"
                 android:inputType="textPersonName"
                 android:paddingLeft="10dp"
                 android:textSize="14dp" />
@@ -97,7 +106,6 @@
                 android:paddingLeft="10dp"
                 android:textSize="14dp" >
 
-                <requestFocus />
             </EditText>
         </LinearLayout>
 
@@ -114,6 +122,7 @@
                 android:background="@drawable/textfield_bg"
                 android:ems="10"
                 android:hint="Confirm-Password"
+                android:inputType="text|textPassword|textPersonName"
                 android:paddingLeft="10dp"
                 android:textSize="14dp" />
 
@@ -126,7 +135,7 @@
             android:orientation="vertical" >
 
             <EditText
-                android:id="@+id/login_password_texf"
+                android:id="@+id/email_texf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/textfield_bg"
@@ -147,7 +156,7 @@
                 android:id="@+id/register_btn"
                 android:layout_width="match_parent"
                 android:layout_height="34dp"
-                android:text="Login" 
+                android:text="Register" 
                 android:background="@drawable/white_bg_btn"
                 android:textSize="15dp"
                 android:paddingTop="2dp"
