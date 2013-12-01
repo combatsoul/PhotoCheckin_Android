@@ -50,7 +50,7 @@ import android.widget.Button;
 	                        startActivity(call_loginbtn);                        
 	                        break;        
 	                case R.id.wallpage_btn:
-                        Intent call_wallpagebtn = new Intent(this, WallPage.class);
+                        Intent call_wallpagebtn = new Intent(this, LoginForm.class);
                         startActivity(call_wallpagebtn);                        
                         break;    
                         
