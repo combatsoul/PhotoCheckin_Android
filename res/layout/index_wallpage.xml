@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blueskywhite"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" 
+        android:background="@drawable/topbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <QuickContactBadge
+                android:id="@+id/quickContactBadge1"
+                android:layout_width="34dp"
+                android:layout_height="34dp" 
+                android:layout_margin="5dp"/>
+
+            <EditText
+                android:id="@+id/editText1"
+                android:layout_width="157dp"
+                android:layout_height="wrap_content"
+                android:ems="10" 
+                android:background="@drawable/textfield_bg"
+                android:layout_marginTop="10dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" 
+        android:background="@color/white">
+    </LinearLayout>
+
+</LinearLayout>
