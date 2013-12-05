@@ -59,8 +59,7 @@
                 android:hint="Name Lastname"
                 android:inputType="textPersonName" 
                 android:textSize="14dp"
-                android:paddingLeft="10dp"
-                android:padding="6dp">
+                android:paddingLeft="10dp">
                 <requestFocus />
             </EditText>
                 
@@ -87,7 +86,6 @@
                 android:hint="Username"
                 android:inputType="textPersonName"
                 android:paddingLeft="10dp"
-                android:padding="6dp"
                 android:textSize="14dp" />
         </LinearLayout>
 
@@ -106,7 +104,6 @@
                 android:hint="Password"
                 android:inputType="text|textPassword|textPersonName"
                 android:paddingLeft="10dp"
-                android:padding="6dp"
                 android:textSize="14dp" >
 
             </EditText>
@@ -127,8 +124,7 @@
                 android:hint="Confirm-Password"
                 android:inputType="text|textPassword|textPersonName"
                 android:paddingLeft="10dp"
-                android:padding="6dp"
-                android:textSize="14dp"/>
+                android:textSize="14dp" />
 
         </LinearLayout>
 
@@ -146,8 +142,7 @@
                 android:ems="10"
                 android:hint="Email"
                 android:paddingLeft="10dp"
-                android:padding="6dp"
-                android:textSize="14dp"/>
+                android:textSize="14dp" />
 
         </LinearLayout>
 
