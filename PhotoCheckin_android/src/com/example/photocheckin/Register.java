@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -30,9 +31,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Register extends Activity implements View.OnClickListener{
-
-	String NAME;
-	String USERNAME;
+	
 	// value for register
 	private EditText name;
 	private EditText username;
@@ -51,6 +50,7 @@ public class Register extends Activity implements View.OnClickListener{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.index_register);
 
@@ -61,16 +61,6 @@ public class Register extends Activity implements View.OnClickListener{
 		email = (EditText) findViewById(R.id.email_texf);
 		confirmpass = (EditText) findViewById(R.id.confirm_password_texf);
 
-		
-//		// submit
-//		Button submit = (Button) findViewById(R.id.register_btn);
-//		submit.setOnClickListener(new View.OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				new register().execute();
-//			}
-//		});
-		
 		
 		// call btn login into onClick()
 		Button call_regis = (Button) findViewById(R.id.register_btn);
@@ -113,24 +103,18 @@ public class Register extends Activity implements View.OnClickListener{
 
 			try {
 				// Add your data
-				List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(
-						2);
-				nameValuePairs.add(new BasicNameValuePair("R_name", name
-						.getText().toString()));
-				nameValuePairs.add(new BasicNameValuePair("R_username",
-						username.getText().toString()));
-				nameValuePairs.add(new BasicNameValuePair("R_password", pass
-						.getText().toString()));
+				List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+				nameValuePairs.add(new BasicNameValuePair("R_name", name.getText().toString()));
+				nameValuePairs.add(new BasicNameValuePair("R_username",username.getText().toString()));
+				nameValuePairs.add(new BasicNameValuePair("R_password", pass.getText().toString()));
 				nameValuePairs.add(new BasicNameValuePair("R_usertype", "2"));
-				nameValuePairs.add(new BasicNameValuePair("R_email", email
-						.getText().toString()));
+				nameValuePairs.add(new BasicNameValuePair("R_email", email.getText().toString()));
 				httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
 				// Execute HTTP Post Request
 				HttpResponse execute = httpclient.execute(httppost);
 				InputStream content = execute.getEntity().getContent();
-				BufferedReader buffer = new BufferedReader(
-						new InputStreamReader(content));
+				BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
 				String s = "";
 				while ((s = buffer.readLine()) != null) {
 					response += s;
@@ -213,9 +197,6 @@ public class Register extends Activity implements View.OnClickListener{
 				//Get value converted to a string
 				strPass = pass.getText().toString().trim();
 				strConfirmPass = confirmpass.getText().toString().trim();
-					
-
-			
 			    	//Check that Password And Confirm password is equal or not
 			        Matcher matcherObj = Pattern.compile(strPass).matcher(strConfirmPass);
 			        
@@ -274,7 +255,7 @@ public class Register extends Activity implements View.OnClickListener{
 		case R.id.register_btn:
 			if(btnValidateName(v) && btnValidateUserName(v) && btnValidatePassAndConfirmPass(v) && btnValidateEmail(v)){
 				new register().execute();
-				Intent call_index_wallpage = new Intent(this, LoginForm.class);
+				Intent call_index_wallpage = new Intent(this, chkRegister.class);
 				startActivity(call_index_wallpage);
 			}
 			break;
