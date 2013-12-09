@@ -1,15 +1,40 @@
 package com.example.photocheckin;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.StatusLine;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -20,12 +45,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class LoginForm extends Activity implements View.OnClickListener {
-
+	
+	//1. defile edittext
 	String strUsername = "";
 	String strPassword = "";
 	EditText input_username;
 	EditText input_password;
 
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -44,7 +71,25 @@ public class LoginForm extends Activity implements View.OnClickListener {
 		ImageButton goto_register = (ImageButton) findViewById(R.id.register_btnimg);
 		goto_register.setOnClickListener(this);
 
+	
 	}
+	//strat1:
+		
+
+	//end
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	// validate --
 	
@@ -86,30 +131,30 @@ public class LoginForm extends Activity implements View.OnClickListener {
 	
 	
 	
-	//check login --
-	public void checkLogin(View v){
-	       
-			//create androind	
-			String URL ="http://checkinphoto.com/index.php?option=com_users&view=login";
-			// Create http cliient object to send request to server
-            HttpClient Client = new DefaultHttpClient();
-			
-		try {
-			String SetServerString = "";
-
-			// Create Request to server and get response
-			HttpGet httpget = new HttpGet(URL);
-			ResponseHandler<String> responseHandler = new BasicResponseHandler();
-			SetServerString = Client.execute(httpget, responseHandler);
-
-			// Show response on activity
-
-			input_username.setText(SetServerString);
-		} catch (Exception ex) {
-			input_username.setText("Fail!");
-		}
-	}   	 
-		
+//	//check login --
+//	public void checkLogin(View v){
+//	       
+//			//create androind	
+//			String URL ="http://checkinphoto.com/index.php?option=com_users&view=login";
+//			// Create http cliient object to send request to server
+//            HttpClient Client = new DefaultHttpClient();
+//			
+//		try {
+//			String SetServerString = "";
+//
+//			// Create Request to server and get response
+//			HttpGet httpget = new HttpGet(URL);
+//			ResponseHandler<String> responseHandler = new BasicResponseHandler();
+//			SetServerString = Client.execute(httpget, responseHandler);
+//
+//			// Show response on activity
+//
+//			input_username.setText(SetServerString);
+//		} catch (Exception ex) {
+//			input_username.setText("Fail!");
+//		}
+//	}   	 
+//		
 	
 	
 	
@@ -124,7 +169,7 @@ public class LoginForm extends Activity implements View.OnClickListener {
 	
 	
 	
-	// check link to page ---
+	// check beform go to page ---
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {

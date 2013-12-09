@@ -38,12 +38,14 @@ public class Register extends Activity implements View.OnClickListener{
 	private EditText pass;
 	private EditText email;
 	private EditText confirmpass;
+	//private EditText registerdate;
 	
 	String strName;
 	String strUsername;
 	String strPass;
 	String strConfirmPass;
 	String strEmail;
+	//String srrRegisterdate;
 	
 	//Set E-mail syntax  
 	private String checkE = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
@@ -60,6 +62,7 @@ public class Register extends Activity implements View.OnClickListener{
 		pass = (EditText) findViewById(R.id.password_texf);
 		email = (EditText) findViewById(R.id.email_texf);
 		confirmpass = (EditText) findViewById(R.id.confirm_password_texf);
+		//registerdate = (EditText) findViewById(R.id.registerdate);
 
 		
 		// call btn login into onClick()
@@ -68,6 +71,7 @@ public class Register extends Activity implements View.OnClickListener{
 
 	}
 
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -98,8 +102,7 @@ public class Register extends Activity implements View.OnClickListener{
 		protected String doInBackground(String... args) {
 			// Building Parameters
 			HttpClient httpclient = new DefaultHttpClient();
-			HttpPost httppost = new HttpPost(
-					"http://www.checkinphoto.com/android/register/chkRegister.php");
+			HttpPost httppost = new HttpPost("http://www.checkinphoto.com/android/register/chkRegister.php");
 
 			try {
 				// Add your data
@@ -107,7 +110,7 @@ public class Register extends Activity implements View.OnClickListener{
 				nameValuePairs.add(new BasicNameValuePair("R_name", name.getText().toString()));
 				nameValuePairs.add(new BasicNameValuePair("R_username",username.getText().toString()));
 				nameValuePairs.add(new BasicNameValuePair("R_password", pass.getText().toString()));
-				nameValuePairs.add(new BasicNameValuePair("R_usertype", "2"));
+			//	nameValuePairs.add(new BasicNameValuePair("R_registerDate", registerdate.getText().toString()));
 				nameValuePairs.add(new BasicNameValuePair("R_email", email.getText().toString()));
 				httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
@@ -259,11 +262,6 @@ public class Register extends Activity implements View.OnClickListener{
 				startActivity(call_index_wallpage);
 			}
 			break;
-//		case R.id.imgbtn_register:
-//			Intent call_registerbtn = new Intent(this, Register.class);
-//			startActivity(call_registerbtn);
-//			break;
-
 		}
 
 	}

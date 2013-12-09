@@ -2,4 +2,7 @@
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="android.widget.Button"/>
 <fullyQualifiedTypeName name="android.view.Window"/>
+<fullyQualifiedTypeName name="android.content.Intent"/>
+<fullyQualifiedTypeName name="com.example.photocheckin.LoginForm"/>
+<fullyQualifiedTypeName name="com.example.photocheckin.chkRegister"/>
 </qualifiedTypeNameHistroy>
