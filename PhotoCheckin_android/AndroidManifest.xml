@@ -40,5 +40,11 @@
           <!--  chk register done -->
          <activity  android:name="com.example.photocheckin.chkRegister"/>
          
+          <!--  Forget Password -->
+         <activity  android:name="com.example.photocheckin.ForgetPassword"/>
+         
+          <!--  Result Forget Password -->
+         <activity  android:name="com.example.photocheckin.resultForgetPassword"/>
+         
     </application>
 </manifest>
