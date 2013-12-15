@@ -46,5 +46,8 @@
           <!--  Result Forget Password -->
          <activity  android:name="com.example.photocheckin.resultForgetPassword"/>
          
+         <!--  Result Forget Password -->
+         <activity  android:name="com.example.photocheckin.resultInvalidForgetPassword"/>
+         
     </application>
 </manifest>

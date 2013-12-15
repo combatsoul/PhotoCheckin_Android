@@ -94,7 +94,7 @@ public class LoginForm extends Activity implements View.OnClickListener {
 			// Building Parameters
 			HttpClient httpclient = new DefaultHttpClient();
 			HttpPost httppost = new HttpPost(
-					"http://www.checkinphoto.com/android/logintestvalue/checkvalue.php");
+					"http://www.checkinphoto.com/android/login/chkLogin.php");
 
 			try {
 				// Add your data
@@ -111,9 +111,26 @@ public class LoginForm extends Activity implements View.OnClickListener {
 				while ((s = buffer.readLine()) != null) {
 					response += s;
 				}
-				Log.d("response", response);
-				String count = response.substring(response.length()-1);
-				Log.d("count ", count);
+				String value = response.substring(response.length()-1);
+				Log.d("value : ", value);
+				if(value.equals("0")){	
+					// dismiss the dialog after getting all albums
+					pDialog.dismiss();
+					// updating UI from Background Thread
+					runOnUiThread(new Runnable() {
+						public void run() {
+							// name.setText(response);
+							Toast.makeText(LoginForm.this, "Login fail, please try again",
+									Toast.LENGTH_SHORT).show();
+						}
+					});
+						
+					Intent call_index_wallpage = new Intent(LoginForm.this, LoginForm.class);
+					startActivity(call_index_wallpage);
+				}else{
+					Intent call_index_wallpage = new Intent(LoginForm.this, WallPage.class);
+					startActivity(call_index_wallpage);
+				}
 			} catch (ClientProtocolException e) {
 				// TODO Auto-generated catch block
 			} catch (IOException e) {
@@ -125,30 +142,22 @@ public class LoginForm extends Activity implements View.OnClickListener {
 		/**
 		 * After completing background task Dismiss the progress dialog
 		 * **/
-		protected void onPostExecute(String file_url) {
-			// dismiss the dialog after getting all albums
-			pDialog.dismiss();
-			// updating UI from Background Thread
-			runOnUiThread(new Runnable() {
-				public void run() {
-
-					// name.setText(response);
-					Toast.makeText(LoginForm.this, "Login Complete",
-							Toast.LENGTH_SHORT).show();
-				}
-			});
-
-		}
+//		protected void onPostExecute(String file_url) {
+//			// dismiss the dialog after getting all albums
+//			pDialog.dismiss();
+//			// updating UI from Background Thread
+//			runOnUiThread(new Runnable() {
+//				public void run() {
+//
+//					// name.setText(response);
+//					Toast.makeText(LoginForm.this, "Login Complete",
+//							Toast.LENGTH_SHORT).show();
+//				}
+//			});
+//
+//		}
 
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	//check username
 	public boolean btnValidateUsername(View v) {
@@ -183,37 +192,7 @@ public class LoginForm extends Activity implements View.OnClickListener {
 			ex.printStackTrace();
 		}
 		return value;
-	}
-
-	
-	
-	
-//	//check login --
-//	public void checkLogin(View v){
-//	       
-//			//create androind	
-//			String URL ="http://checkinphoto.com/index.php?option=com_users&view=login";
-//			// Create http cliient object to send request to server
-//            HttpClient Client = new DefaultHttpClient();
-//			
-//            String SetServerString = "";
-//		try {
-//
-//			// Create Request to server and get response
-//			HttpGet httpget = new HttpGet(URL);
-//			ResponseHandler<String> responseHandler = new BasicResponseHandler();
-//			SetServerString = Client.execute(httpget, responseHandler);
-//
-//			// Show response on activity
-//
-//			input_username.setText(SetServerString);
-//		} catch (Exception ex) {
-//			input_username.setText("Fail!");
-//		}
-//	}   	 
-		
-
-	
+	} 
 	
 	// check link to page ---
 	@Override
@@ -223,9 +202,8 @@ public class LoginForm extends Activity implements View.OnClickListener {
 			if (btnValidateUsername(v) && btnValidatePassword(v)) {
 //				checkLogin(v);
 				new login().execute();
-
-				Intent call_index_wallpage = new Intent(this, WallPage.class);
-				startActivity(call_index_wallpage);
+//				Intent call_index_wallpage = new Intent(this, WallPage.class);
+//				startActivity(call_index_wallpage);
 			}
 			break;
 		case R.id.register_btnimg:

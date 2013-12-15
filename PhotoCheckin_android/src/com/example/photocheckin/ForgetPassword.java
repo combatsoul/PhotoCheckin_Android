@@ -1,10 +1,31 @@
 package com.example.photocheckin;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+
+import com.example.photocheckin.Register.register;
+
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -14,9 +35,7 @@ import android.widget.Toast;
 public class ForgetPassword extends Activity implements View.OnClickListener {
 	
 	private EditText email;
-	private EditText address, subject, emailbody, et_email;
 	private String strEmail;
-	
 	//Set E-mail syntax  
 	private String checkE = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 	
@@ -34,6 +53,64 @@ public class ForgetPassword extends Activity implements View.OnClickListener {
 
 
 	}
+	
+	private ProgressDialog pDialog;
+	String response = "";
+	
+	class forgetpass extends AsyncTask<String, String, String> {
+		/**
+		 * Before starting background thread Show Progress Dialog
+		 * */
+		
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			pDialog = new ProgressDialog(ForgetPassword.this);
+			pDialog.setMessage("Loading ...");
+			pDialog.setIndeterminate(false);
+			pDialog.setCancelable(false);
+			pDialog.show();
+		}
+
+		/**
+		 * getting Albums JSON
+		 * */
+		protected String doInBackground(String... args) {
+			// Building Parameters
+			HttpClient httpclient = new DefaultHttpClient();
+			HttpPost httppost = new HttpPost("http://www.checkinphoto.com/android/forgetpass/chkForget.php");
+			try {
+				// Add your data
+				List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+				nameValuePairs.add(new BasicNameValuePair("textEmail", email.getText().toString()));
+				httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+				// Execute HTTP Post Request
+				HttpResponse execute = httpclient.execute(httppost);
+				InputStream content = execute.getEntity().getContent();
+				BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
+				String s = "";
+				while ((s = buffer.readLine()) != null) {
+					response += s;
+				}
+				String value = response.substring(response.length()-1);
+				if(value.equals("0")){
+					Intent call_index_wallpage = new Intent(ForgetPassword.this, resultInvalidForgetPassword.class);
+					startActivity(call_index_wallpage);
+				}else{
+					Intent call_index_wallpage = new Intent(ForgetPassword.this, resultForgetPassword.class);
+					startActivity(call_index_wallpage);
+				}
+			} catch (ClientProtocolException e) {
+				// TODO Auto-generated catch block
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+			}
+			return null;
+		}
+
+	}
+	
 	
 	//Check validate of Email
 	public boolean btnValidateEmail(View v){
@@ -69,25 +146,10 @@ public class ForgetPassword extends Activity implements View.OnClickListener {
 		switch (v.getId()) {
 		case R.id.ok_btn:
 			if (btnValidateEmail(v)) {
-//				checkLogin(v);
-				
-				Intent call_index_wallpage = new Intent(this, resultForgetPassword.class);
-				startActivity(call_index_wallpage);
+				new forgetpass().execute();
 			}
 			break;
 
 		}
 	}
-	
-    public void sendEmail(){
-
-
-        final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
-        emailIntent.setType("plain/text");
-        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"testmail@testmail.com"});
-        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject.getText());
-        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, emailbody.getText());
-        ForgetPassword.this.startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-
-}
 }

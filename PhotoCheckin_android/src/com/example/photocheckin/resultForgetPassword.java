@@ -15,9 +15,9 @@ public class resultForgetPassword extends Activity implements View.OnClickListen
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.result_forgetpassword);
 		
-		// call btn 'Login'
-		Button call_login = (Button) findViewById(R.id.login_btn);
-		call_login.setOnClickListener(this);
+		//call btn forgetpassword
+		Button call_forget = (Button) findViewById(R.id.login_btn);
+        call_forget.setOnClickListener(this); 
 
 	}
 
