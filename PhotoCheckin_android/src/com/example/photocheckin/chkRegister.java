@@ -32,7 +32,7 @@ import android.widget.Toast;
 					Intent goMain = new Intent(getApplicationContext(),LoginForm.class);
 					startActivity(goMain);
 				}
-			}, 2000);
+			}, 3000);
 			
 		}
 
