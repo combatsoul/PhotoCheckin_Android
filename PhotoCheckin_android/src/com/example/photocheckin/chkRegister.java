@@ -14,29 +14,28 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 
-	public class chkRegister extends Activity {
+        public class chkRegister extends Activity {
 
-		@Override
-		protected void onCreate(Bundle savedInstanceState) {
-			super.onCreate(savedInstanceState);
-			setContentView(R.layout.result_register);
-			
-			//splash windows
-			Handler myHandler = new Handler();
-			myHandler.postDelayed(new Runnable() {
+                @Override
+                protected void onCreate(Bundle savedInstanceState) {
+                        super.onCreate(savedInstanceState);
+                        setContentView(R.layout.result_register);
+                        
+                        //splash windows
+                        Handler myHandler = new Handler();
+                        myHandler.postDelayed(new Runnable() {
 
-				@Override
-				public void run() {
-			
-					finish();
-					Intent goMain = new Intent(getApplicationContext(),LoginForm.class);
-					startActivity(goMain);
-				}
-			}, 3000);
-			
-		}
+                                @Override
+                                public void run() {
+                        
+                                        finish();
+                                        Intent goMain = new Intent(getApplicationContext(),LoginForm.class);
+                                        startActivity(goMain);
+                                }
+                        }, 3000);
+                        
+                }
 
-	}
+        }
 
-	
-
+        

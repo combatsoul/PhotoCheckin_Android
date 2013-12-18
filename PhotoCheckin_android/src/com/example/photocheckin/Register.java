@@ -1,8 +1,10 @@
 package com.example.photocheckin;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.StrictMode;
 import android.app.Activity;
 import android.content.Intent;
@@ -71,7 +73,6 @@ public class Register extends Activity implements View.OnClickListener {
 					.permitAll().build();
 			StrictMode.setThreadPolicy(policy);
 		}
-
 		// edit text for register
 		name = (EditText) findViewById(R.id.name_texf);
 		username = (EditText) findViewById(R.id.username_texf);
@@ -91,13 +92,13 @@ public class Register extends Activity implements View.OnClickListener {
 		return true;
 	}
 
-
 	class register extends AsyncTask<String, String, String> {
 
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
 			pDialog = new ProgressDialog(Register.this);
+			pDialog.setTitle("Connect to Server..");
 			pDialog.setMessage("Loading ...");
 			pDialog.setIndeterminate(false);
 			pDialog.setCancelable(false);
@@ -138,15 +139,29 @@ public class Register extends Activity implements View.OnClickListener {
 		 
 		protected void onPostExecute(String file_url) {
 			// dismiss the dialog after getting all albums
-			pDialog.dismiss();
+			// pDialog.dismiss();
 			// updating UI from Background Thread
-			runOnUiThread(new Runnable() {
+			// runOnUiThread(new Runnable() {
+			// public void run() {
+			// // name.setText(response);
+			// Toast.makeText(Register.this, "register complete",
+			// Toast.LENGTH_SHORT).show();
+			//
+			// }
+				
+			Handler myHandler = new Handler();
+			myHandler.postDelayed(new Runnable() {
+				@Override
 				public void run() {
-					// name.setText(response);
+					finish();
+					Intent goMain = new Intent(getApplicationContext(),
+							chkRegister.class);
+					startActivity(goMain);
 					Toast.makeText(Register.this, "register complete",
 							Toast.LENGTH_SHORT).show();
 				}
-			});
+			}, 1000);
+
 		}
 	}
 
@@ -163,7 +178,6 @@ public class Register extends Activity implements View.OnClickListener {
 				value = false;
 			}
 		}
-
 		catch (NullPointerException ex) {
 			ex.printStackTrace();
 		}
@@ -177,8 +191,6 @@ public class Register extends Activity implements View.OnClickListener {
 		try {
 			// Get value converted to a string
 			strUsername = username.getText().toString().trim();
-			
-			 
 			if (strUsername.isEmpty()) {
 				Toast.makeText(v.getContext(), "Your Username must not empty",Toast.LENGTH_SHORT).show();
 				value = false;
@@ -191,7 +203,6 @@ public class Register extends Activity implements View.OnClickListener {
 				Toast.makeText(v.getContext(), "Your Username  is Invalid",Toast.LENGTH_SHORT).show();
 				value = false;
 			}
-			
 		}
 
 		catch (NullPointerException ex) {
@@ -229,9 +240,7 @@ public class Register extends Activity implements View.OnClickListener {
 				Toast.makeText(v.getContext(), "Password is InValid",
 						Toast.LENGTH_SHORT).show();
 				value = false;
-			}
-			
-		}
+			}}
 
 		catch (NullPointerException ex) {
 			ex.printStackTrace();
@@ -263,7 +272,6 @@ public class Register extends Activity implements View.OnClickListener {
 						.show();
 				value = false;
 			}
-
 		}
 
 		catch (NullPointerException ex) {
@@ -317,13 +325,15 @@ public class Register extends Activity implements View.OnClickListener {
 	}
 
 	// end
-
-	// -----
+ 
+ 
 	@Override
 	public void onClick(View v) {
+ 
+		
 		switch (v.getId()) {
 		case R.id.register_btn:
-
+			
 			if (btnValidateName(v) && btnValidateUserName(v)
 					&& btnValidatePassAndConfirmPass(v) && btnValidateEmail(v)) {
 
@@ -333,20 +343,14 @@ public class Register extends Activity implements View.OnClickListener {
 					Toast.makeText(
 							getApplicationContext(),postData(username.getText().toString(), email.getText().toString()), Toast.LENGTH_SHORT).show();
 				}
-
 				else {
 					// ไม่ซ้ำ
-					Toast.makeText(
-							getApplicationContext(),
-							postData(username.getText().toString(), email.getText().toString()), Toast.LENGTH_SHORT).show();
-
 					new register().execute();
-					Intent result_register = new Intent(this, chkRegister.class);
-					startActivity(result_register);
+					//Intent result_register = new Intent(this, chkRegister.class);
+					//startActivity(result_register);
 				}
-
 			}
-
+				
 			break;
 		}
 
