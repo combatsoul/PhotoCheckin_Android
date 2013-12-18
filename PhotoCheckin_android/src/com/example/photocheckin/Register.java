@@ -41,58 +41,48 @@ import java.util.regex.Pattern;
 
 public class Register extends Activity implements View.OnClickListener {
 
-		
-	 
-	
 	// value for register
 	private EditText name;
 	private EditText username;
 	private EditText pass;
 	private EditText email;
 	private EditText confirmpass;
-	// private EditText registerdate;
 
 	String strName;
 	String strUsername;
 	String strPass;
 	String strConfirmPass;
 	String strEmail;
-	// String srrRegisterdate;
+ 
 
 	// Set E-mail syntax
 	private String checkE = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-
+	private ProgressDialog pDialog;
+	String response = "";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.index_register);
 
-		
-		//1
 		if (android.os.Build.VERSION.SDK_INT > 9) {
-			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+					.permitAll().build();
 			StrictMode.setThreadPolicy(policy);
 		}
-		
-		
-		
+
 		// edit text for register
 		name = (EditText) findViewById(R.id.name_texf);
 		username = (EditText) findViewById(R.id.username_texf);
 		pass = (EditText) findViewById(R.id.password_texf);
 		email = (EditText) findViewById(R.id.email_texf);
 		confirmpass = (EditText) findViewById(R.id.confirm_password_texf);
- 
 
 		// call btn login into onClick()
 		Button call_regis = (Button) findViewById(R.id.register_btn);
 		call_regis.setOnClickListener(this);
 	}
-
-		
-	 
-	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -101,13 +91,9 @@ public class Register extends Activity implements View.OnClickListener {
 		return true;
 	}
 
-	private ProgressDialog pDialog;
-	String response = "";
 
 	class register extends AsyncTask<String, String, String> {
-		/**
-		 * Before starting background thread Show Progress Dialog
-		 * */
+
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
@@ -118,9 +104,6 @@ public class Register extends Activity implements View.OnClickListener {
 			pDialog.show();
 		}
 
-		/**
-		 * getting Albums JSON
-		 * */
 		protected String doInBackground(String... args) {
 			// Building Parameters
 			HttpClient httpclient = new DefaultHttpClient();
@@ -129,58 +112,46 @@ public class Register extends Activity implements View.OnClickListener {
 
 			try {
 				// Add your data
-				List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(
-						2);
-				nameValuePairs.add(new BasicNameValuePair("R_name", name
-						.getText().toString()));
-				nameValuePairs.add(new BasicNameValuePair("R_username",
-						username.getText().toString()));
-				nameValuePairs.add(new BasicNameValuePair("R_password", pass
-						.getText().toString()));
-				// nameValuePairs.add(new BasicNameValuePair("R_registerDate",
-				// registerdate.getText().toString()));
-				nameValuePairs.add(new BasicNameValuePair("R_email", email
-						.getText().toString()));
+				List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+				nameValuePairs.add(new BasicNameValuePair("R_name", name.getText().toString()));
+				nameValuePairs.add(new BasicNameValuePair("R_username",username.getText().toString()));
+				nameValuePairs.add(new BasicNameValuePair("R_password", pass.getText().toString()));
+				nameValuePairs.add(new BasicNameValuePair("R_email", email.getText().toString()));
 				httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
 				// Execute HTTP Post Request
 				HttpResponse execute = httpclient.execute(httppost);
 				InputStream content = execute.getEntity().getContent();
-				BufferedReader buffer = new BufferedReader(
-						new InputStreamReader(content));
+				BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
+				
 				String s = "";
 				while ((s = buffer.readLine()) != null) {
 					response += s;
 				}
 				Log.d("response", response);
 			} catch (ClientProtocolException e) {
-				// TODO Auto-generated catch block
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 			}
 			return null;
 		}
 
-		/**
-		 * After completing background task Dismiss the progress dialog
-		 * **/
+		 
 		protected void onPostExecute(String file_url) {
 			// dismiss the dialog after getting all albums
 			pDialog.dismiss();
 			// updating UI from Background Thread
 			runOnUiThread(new Runnable() {
 				public void run() {
-
 					// name.setText(response);
 					Toast.makeText(Register.this, "register complete",
 							Toast.LENGTH_SHORT).show();
 				}
 			});
-
 		}
 	}
 
-	// Check validate of Name
+	
+	// Check validate of Name ---
 	public boolean btnValidateName(View v) {
 		boolean value = true;
 		try {
@@ -188,8 +159,7 @@ public class Register extends Activity implements View.OnClickListener {
 			strName = name.getText().toString().trim();
 			// Empty value checking
 			if (strName.isEmpty()) {
-				Toast.makeText(v.getContext(), "Your Name must not empty",
-						Toast.LENGTH_SHORT).show();
+				Toast.makeText(v.getContext(), "Your Name must not empty",Toast.LENGTH_SHORT).show();
 				value = false;
 			}
 		}
@@ -198,23 +168,30 @@ public class Register extends Activity implements View.OnClickListener {
 			ex.printStackTrace();
 		}
 		return value;
-
 	}
 
-	// Check validate of UserName
+	// Check validate of UserName ---
 	public boolean btnValidateUserName(View v) {
 		boolean value = true;
-	 
+ 
 		try {
-			
 			// Get value converted to a string
 			strUsername = username.getText().toString().trim();
- 
+			
+			 
 			if (strUsername.isEmpty()) {
-				Toast.makeText(v.getContext(), "Your Username must not empty",
-						Toast.LENGTH_SHORT).show();
+				Toast.makeText(v.getContext(), "Your Username must not empty",Toast.LENGTH_SHORT).show();
 				value = false;
 			}
+			else if(strUsername.length()<4){
+				Toast.makeText(v.getContext(), "Your Username must more 4 character",Toast.LENGTH_SHORT).show();
+				value = false;
+			}
+			else if(strUsername.matches(".*[^a-z^0-9].*")) {
+				Toast.makeText(v.getContext(), "Your Username  is Invalid",Toast.LENGTH_SHORT).show();
+				value = false;
+			}
+			
 		}
 
 		catch (NullPointerException ex) {
@@ -232,15 +209,18 @@ public class Register extends Activity implements View.OnClickListener {
 			strPass = pass.getText().toString().trim();
 			strConfirmPass = confirmpass.getText().toString().trim();
 			// Check that Password And Confirm password is equal or not
-			Matcher matcherObj = Pattern.compile(strPass).matcher(
-					strConfirmPass);
+			Matcher matcherObj = Pattern.compile(strPass).matcher(strConfirmPass);
 
 			// Empty value checking
 			if (strPass.isEmpty()) {
-				Toast.makeText(v.getContext(), "Password must not empty",
-						Toast.LENGTH_SHORT).show();
+				Toast.makeText(v.getContext(), "Password must not empty",Toast.LENGTH_SHORT).show();
+				value = false;	
+			} 
+			else if(strPass.length()<4){
+				Toast.makeText(v.getContext(), "Password must must more 4 character",Toast.LENGTH_SHORT).show();
 				value = false;
-			} else if (strConfirmPass.isEmpty()) {
+			}
+			else if (strConfirmPass.isEmpty()) {
 				Toast.makeText(v.getContext(),
 						"ConfirmPassword must not empty", Toast.LENGTH_SHORT)
 						.show();
@@ -250,6 +230,7 @@ public class Register extends Activity implements View.OnClickListener {
 						Toast.LENGTH_SHORT).show();
 				value = false;
 			}
+			
 		}
 
 		catch (NullPointerException ex) {
@@ -292,79 +273,80 @@ public class Register extends Activity implements View.OnClickListener {
 
 	}
 
+	// /2. start
+	// check form server
 
-	
-	
-		///2. start
-		// check form server
-	
+	public String postData(String username, String email) {
+		// Create a new HttpClient and Post Header
+		HttpClient httpclient = new DefaultHttpClient();
+		HttpPost httppost = new HttpPost(
+				"http://www.checkinphoto.com/android/register/chkusername.php");
 
-				public String postData(String username, String email) {
-					// Create a new HttpClient and Post Header
-					HttpClient httpclient = new DefaultHttpClient();
-					HttpPost httppost = new HttpPost("http://www.checkinphoto.com/android/register/chkusername.php");
+		try {
+			// Add your data
+			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+			nameValuePairs
+					.add(new BasicNameValuePair("textUsername", username));
+			nameValuePairs.add(new BasicNameValuePair("textEmail", email));
+			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
-					try {
-						// Add your data
-						List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-						nameValuePairs.add(new BasicNameValuePair("textUsername", username));
-						nameValuePairs.add(new BasicNameValuePair("textEmail", email));
-						httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+			// Execute HTTP Post Request
+			HttpResponse response = httpclient.execute(httppost);
+			InputStream is = response.getEntity().getContent();
+			BufferedInputStream bis = new BufferedInputStream(is);
+			ByteArrayBuffer baf = new ByteArrayBuffer(20);
 
-						// Execute HTTP Post Request
-						HttpResponse response = httpclient.execute(httppost);
-						InputStream is = response.getEntity().getContent();
-						BufferedInputStream bis = new BufferedInputStream(is);
-						ByteArrayBuffer baf = new ByteArrayBuffer(20);
+			int current = 0;
 
-						int current = 0;
+			while ((current = bis.read()) != -1) {
+				baf.append((byte) current);
+			}
 
-						while ((current = bis.read()) != -1) {
-							baf.append((byte) current);
-						}
+			/* Convert the Bytes read to a String. */
+			String text = new String(baf.toByteArray());
 
-						/* Convert the Bytes read to a String. */
-						String text = new String(baf.toByteArray());
+			return text;
 
-						return text;
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			return "";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			return "";
+		}
+	}
 
-					} catch (ClientProtocolException e) {
-						// TODO Auto-generated catch block
-						return "";
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						return "";
-					}
-				}	
-	//end
-	
-	
-	//-----
+	// end
+
+	// -----
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.register_btn:
-						
-		if (btnValidateName(v) && btnValidateUserName(v)&& btnValidatePassAndConfirmPass(v) && btnValidateEmail(v)) {
-				
-				if(postData(username.getText().toString(),email.getText().toString()).trim().equals("Username or Email can not available!"))
-				{
-					//this username or email have on system
-					Toast.makeText(getApplicationContext(), postData(username.getText().toString(), email.getText().toString()), Toast.LENGTH_SHORT).show();
+
+			if (btnValidateName(v) && btnValidateUserName(v)
+					&& btnValidatePassAndConfirmPass(v) && btnValidateEmail(v)) {
+
+				if (postData(username.getText().toString(),
+						email.getText().toString()).trim().equals("Username or Email can not available!")) {
+					// this username or email have on system
+					Toast.makeText(
+							getApplicationContext(),postData(username.getText().toString(), email.getText().toString()), Toast.LENGTH_SHORT).show();
 				}
-				
-				else 
-				{
-					//ไม่ซ้ำ
-					Toast.makeText(getApplicationContext(), postData(username.getText().toString(), email.getText().toString()), Toast.LENGTH_SHORT).show();					
-					
+
+				else {
+					// ไม่ซ้ำ
+					Toast.makeText(
+							getApplicationContext(),
+							postData(username.getText().toString(), email.getText().toString()), Toast.LENGTH_SHORT).show();
+
 					new register().execute();
-					Intent result_register = new Intent(this, chkRegister.class);	
-					startActivity(result_register);	 
+					Intent result_register = new Intent(this, chkRegister.class);
+					startActivity(result_register);
 				}
-				
-		 }
-		
+
+			}
+
 			break;
 		}
 
