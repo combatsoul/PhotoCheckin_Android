@@ -177,6 +177,10 @@ public class Register extends Activity implements View.OnClickListener {
 				Toast.makeText(v.getContext(), "Your Name must not empty",Toast.LENGTH_SHORT).show();
 				value = false;
 			}
+			else if(strName.matches(".*[^a-z^0-9].*")) {
+				Toast.makeText(v.getContext(), "Your Name is Invalid",Toast.LENGTH_SHORT).show();
+				value = false;
+			}
 		}
 		catch (NullPointerException ex) {
 			ex.printStackTrace();
@@ -256,17 +260,17 @@ public class Register extends Activity implements View.OnClickListener {
 			// Get value converted to a string
 			strEmail = email.getText().toString().trim();
 
-			// àªç¤ÇèÒ syntax ¢Í§ E-mail ¡Ñº E-mail ·Õè User ¡ÃÍ¡ÁÒ
-			// ¹Ñé¹µÃ§¡Ñ¹ËÃ×ÍäÁè à¡çº¤èÒäÇéã¹ matcherObj>>>True or False
+			// ร ยชรงยคร�รจร’ syntax ยขร�ยง E-mail ยกร‘ยบ E-mail ยทร•รจ User ยกร�ร�ยกร�ร’
+			// ยนร‘รฉยนยตร�ยงยกร‘ยนร�ร�ร—ร�รคร�รจ ร ยกรงยบยครจร’รคร�รฉรฃยน matcherObj>>>True or False
 			Matcher matcherObj = Pattern.compile(checkE).matcher(strEmail);
 
-			// àªç¤ÇèÒà»ç¹¤èÒÇèÒ§ËÃ×Íà»ÅèÒ?
+			// ร ยชรงยคร�รจร’ร ยปรงยนยครจร’ร�รจร’ยงร�ร�ร—ร�ร ยปร…รจร’?
 			if (strEmail.isEmpty()) {
 				Toast.makeText(v.getContext(), "Email must not empty",
 						Toast.LENGTH_SHORT).show();
 				value = false;
 			}
-			if (!matcherObj.matches()) {
+			else if (!matcherObj.matches()) {
 				Toast.makeText(v.getContext(),
 						"Email " + strEmail + " is Invalid", Toast.LENGTH_SHORT)
 						.show();
@@ -344,7 +348,7 @@ public class Register extends Activity implements View.OnClickListener {
 							getApplicationContext(),postData(username.getText().toString(), email.getText().toString()), Toast.LENGTH_SHORT).show();
 				}
 				else {
-					// ไม่ซ้ำ
+					// เน�เธกเน�เธ�เน�เธณ
 					new register().execute();
 					//Intent result_register = new Intent(this, chkRegister.class);
 					//startActivity(result_register);
