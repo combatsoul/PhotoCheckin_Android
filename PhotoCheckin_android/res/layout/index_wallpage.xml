@@ -6,6 +6,7 @@
     android:orientation="vertical" >
 
     <LinearLayout
+        android:id="@+id/TopMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/topbar"
@@ -13,21 +14,21 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
             android:layout_height="match_parent" >
 
             <FrameLayout
                 android:id="@+id/display"
-                android:layout_width="35dp"
+                android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_margin="5dp"
-                android:layout_weight="0.01"
-                android:background="@color/white"
+                android:background="@color/blueskywhite"
                 android:padding="2dp" >
+
+                <ImageView
+                    android:id="@+id/checkin_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/display" />
             </FrameLayout>
 
             <FrameLayout
@@ -38,10 +39,15 @@
                 android:layout_marginTop="5dp"
                 android:layout_weight="0.01" >
 
+                <Spinner
+                    android:id="@+id/spinner1"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp" />
+
                 <ImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:id="@+id/icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:src="@drawable/nav_icon" />
             </FrameLayout>
 
@@ -58,23 +64,6 @@
                 android:textSize="12sp" />
 
             <FrameLayout
-                android:id="@+id/checkin_icon"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginRight="2dp"
-                android:layout_marginTop="5dp"
-                android:layout_weight="0.01"
-                android:background="@drawable/circle_bg" >
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="17dp"
-                    android:layout_height="17dp"
-                    android:layout_margin="5dp"
-                    android:src="@drawable/mini_checkin_icon" />
-            </FrameLayout>
-
-            <FrameLayout
                 android:id="@+id/activityupdate_icon"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
@@ -89,6 +78,14 @@
                     android:layout_height="20dp"
                     android:layout_margin="3dp"
                     android:src="@drawable/mini_comment_icon" />
+
+                <TextView
+                    android:id="@+id/More_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="6dp"
+                    android:text="" />
             </FrameLayout>
 
             <FrameLayout
@@ -114,774 +111,61 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/nav_menu"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:layout_marginBottom="20dp"
+        android:layout_height="30dp"
         android:background="@color/white"
         android:orientation="vertical"
+        android:padding="3dp"
         android:shadowDx="10" >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="match_parent" >
+
+            <EditText
+                android:id="@+id/editText1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.41"
+                android:background="@drawable/textfield_checkin"
+                android:ems="10"
+                android:hint="checkin this.."
+                android:paddingLeft="5dp"
+                android:textColor="@color/grey"
+                android:textSize="12dp" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="2dp"
+                android:layout_weight="1"
+                android:src="@drawable/camera_checkin" />
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/Dashboard"
+    <ScrollView
+        android:id="@+id/scrollView1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1.60"
-        android:background="@color/blueskywhite" 
-        android:layout_marginTop="-20dp">
+        android:layout_height="match_parent"
+        android:layout_weight="0.30" >
 
-        <ScrollView
-            android:id="@+id/scrollView1"
-            android:layout_width="286dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.02" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="472dp"
+            android:orientation="vertical" >
 
-            <LinearLayout
-                android:id="@+id/Checkin"
+            <ListView
+                android:id="@android:id/list"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:orientation="vertical" >
-
-                <LinearLayout
-                    android:id="@+id/LinearLayout08"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/bg_box_comment"
-                    android:orientation="vertical"
-                    android:paddingBottom="2dp"
-                    android:paddingLeft="2dp"
-                    android:paddingRight="2dp"
-                    android:paddingTop="2dp" >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" >
-
-                        <FrameLayout
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_margin="5dp"
-                            android:background="@drawable/bg_displayprofile"
-                            android:padding="2dp" >
-
-                            <ImageView
-                                android:id="@+id/ImageView15"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/display" />
-                        </FrameLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical" >
-
-                            <TextView
-                                android:id="@+id/TextView29"
-                                android:layout_width="235dp"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="3dp"
-                                android:maxLength="100"
-                                android:text="Text"
-                                android:textSize="12dp" />
-
-                            <TextView
-                                android:id="@+id/TextView27"
-                                android:layout_width="235dp"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="3dp"
-                                android:maxLength="100"
-                                android:text="image"
-                                android:textSize="12dp" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" >
-
-                                <FrameLayout
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp" >
-
-                                    <ImageView
-                                        android:id="@+id/ImageView16"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:src="@drawable/likeheart_icon" />
-                                </FrameLayout>
-
-                                <TextView
-                                    android:id="@+id/TextView28"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="3dp"
-                                    android:text="12"
-                                    android:textColor="@color/grey"
-                                    android:textSize="11dp" />
-
-                                <TextView
-                                    android:id="@+id/TextView26"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="20dp"
-                                    android:text="เข้าร่วม"
-                                    android:textColor="@color/grey"
-                                    android:textSize="11dp" />
-                            </LinearLayout>
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/LinearLayout07"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/bg_box_comment"
-                    android:orientation="vertical"
-                    android:paddingBottom="2dp"
-                    android:paddingLeft="2dp"
-                    android:paddingRight="2dp"
-                    android:paddingTop="2dp" >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" >
-
-                        <FrameLayout
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_margin="5dp"
-                            android:background="@drawable/bg_displayprofile"
-                            android:padding="2dp" >
-
-                            <ImageView
-                                android:id="@+id/ImageView14"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/display" />
-                        </FrameLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical" >
-
-                            <TextView
-                                android:id="@+id/TextView09"
-                                android:layout_width="235dp"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="3dp"
-                                android:maxLength="100"
-                                android:text="Text"
-                                android:textSize="12dp" />
-
-                            <TextView
-                                android:id="@+id/TextView24"
-                                android:layout_width="235dp"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="3dp"
-                                android:maxLength="100"
-                                android:text="image"
-                                android:textSize="12dp" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" >
-
-                                <FrameLayout
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp" >
-
-                                    <ImageView
-                                        android:id="@+id/ImageView13"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:src="@drawable/likeheart_icon" />
-                                </FrameLayout>
-
-                                <TextView
-                                    android:id="@+id/TextView25"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="3dp"
-                                    android:text="12"
-                                    android:textColor="@color/grey"
-                                    android:textSize="11dp" />
-
-                                <TextView
-                                    android:id="@+id/TextView23"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="20dp"
-                                    android:text="เข้าร่วม"
-                                    android:textColor="@color/grey"
-                                    android:textSize="11dp" />
-                            </LinearLayout>
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/LinearLayout06"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/bg_box_comment"
-                    android:orientation="vertical"
-                    android:paddingBottom="2dp"
-                    android:paddingLeft="2dp"
-                    android:paddingRight="2dp"
-                    android:paddingTop="2dp" >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" >
-
-                        <FrameLayout
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_margin="5dp"
-                            android:background="@drawable/bg_displayprofile"
-                            android:padding="2dp" >
-
-                            <ImageView
-                                android:id="@+id/ImageView11"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/display" />
-                        </FrameLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical" >
-
-                            <TextView
-                                android:id="@+id/TextView20"
-                                android:layout_width="235dp"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="3dp"
-                                android:maxLength="100"
-                                android:text="Text"
-                                android:textSize="12dp" />
-
-                            <TextView
-                                android:id="@+id/TextView22"
-                                android:layout_width="235dp"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="3dp"
-                                android:maxLength="100"
-                                android:text="image"
-                                android:textSize="12dp" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" >
-
-                                <FrameLayout
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp" >
-
-                                    <ImageView
-                                        android:id="@+id/ImageView12"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:src="@drawable/likeheart_icon" />
-                                </FrameLayout>
-
-                                <TextView
-                                    android:id="@+id/TextView19"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="3dp"
-                                    android:text="12"
-                                    android:textColor="@color/grey"
-                                    android:textSize="11dp" />
-
-                                <TextView
-                                    android:id="@+id/TextView21"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="20dp"
-                                    android:text="เข้าร่วม"
-                                    android:textColor="@color/grey"
-                                    android:textSize="11dp" />
-                            </LinearLayout>
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/LinearLayout05"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/bg_box_comment"
-                    android:orientation="vertical"
-                    android:paddingBottom="2dp"
-                    android:paddingLeft="2dp"
-                    android:paddingRight="2dp"
-                    android:paddingTop="2dp" >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" >
-
-                        <FrameLayout
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_margin="5dp"
-                            android:background="@drawable/bg_displayprofile"
-                            android:padding="2dp" >
-
-                            <ImageView
-                                android:id="@+id/ImageView09"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/display" />
-                        </FrameLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical" >
-
-                            <TextView
-                                android:id="@+id/TextView16"
-                                android:layout_width="235dp"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="3dp"
-                                android:maxLength="100"
-                                android:text="Text"
-                                android:textSize="12dp" />
-
-                            <TextView
-                                android:id="@+id/TextView18"
-                                android:layout_width="235dp"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="3dp"
-                                android:maxLength="100"
-                                android:text="image"
-                                android:textSize="12dp" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" >
-
-                                <FrameLayout
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp" >
-
-                                    <ImageView
-                                        android:id="@+id/ImageView10"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:src="@drawable/likeheart_icon" />
-                                </FrameLayout>
-
-                                <TextView
-                                    android:id="@+id/TextView15"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="3dp"
-                                    android:text="12"
-                                    android:textColor="@color/grey"
-                                    android:textSize="11dp" />
-
-                                <TextView
-                                    android:id="@+id/TextView17"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="20dp"
-                                    android:text="เข้าร่วม"
-                                    android:textColor="@color/grey"
-                                    android:textSize="11dp" />
-                            </LinearLayout>
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/LinearLayout04"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/bg_box_comment"
-                    android:orientation="vertical"
-                    android:paddingBottom="2dp"
-                    android:paddingLeft="2dp"
-                    android:paddingRight="2dp"
-                    android:paddingTop="2dp" >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" >
-
-                        <FrameLayout
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_margin="5dp"
-                            android:background="@drawable/bg_displayprofile"
-                            android:padding="2dp" >
-
-                            <ImageView
-                                android:id="@+id/ImageView07"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/display" />
-                        </FrameLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical" >
-
-                            <TextView
-                                android:id="@+id/TextView12"
-                                android:layout_width="235dp"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="3dp"
-                                android:maxLength="100"
-                                android:text="Text"
-                                android:textSize="12dp" />
-
-                            <TextView
-                                android:id="@+id/TextView14"
-                                android:layout_width="235dp"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="3dp"
-                                android:maxLength="100"
-                                android:text="image"
-                                android:textSize="12dp" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" >
-
-                                <FrameLayout
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp" >
-
-                                    <ImageView
-                                        android:id="@+id/ImageView08"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:src="@drawable/likeheart_icon" />
-                                </FrameLayout>
-
-                                <TextView
-                                    android:id="@+id/TextView11"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="3dp"
-                                    android:text="12"
-                                    android:textColor="@color/grey"
-                                    android:textSize="11dp" />
-
-                                <TextView
-                                    android:id="@+id/TextView13"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="20dp"
-                                    android:text="เข้าร่วม"
-                                    android:textColor="@color/grey"
-                                    android:textSize="11dp" />
-                            </LinearLayout>
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/LinearLayout02"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/bg_box_comment"
-                    android:orientation="vertical"
-                    android:paddingBottom="2dp"
-                    android:paddingLeft="2dp"
-                    android:paddingRight="2dp"
-                    android:paddingTop="2dp" >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" >
-
-                        <FrameLayout
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_margin="5dp"
-                            android:background="@drawable/bg_displayprofile"
-                            android:padding="2dp" >
-
-                            <ImageView
-                                android:id="@+id/ImageView03"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/display" />
-                        </FrameLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical" >
-
-                            <TextView
-                                android:id="@+id/TextView08"
-                                android:layout_width="235dp"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="3dp"
-                                android:maxLength="100"
-                                android:text="Text"
-                                android:textSize="12dp" />
-
-                            <TextView
-                                android:id="@+id/TextView10"
-                                android:layout_width="235dp"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="3dp"
-                                android:maxLength="100"
-                                android:text="image"
-                                android:textSize="12dp" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" >
-
-                                <FrameLayout
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp" >
-
-                                    <ImageView
-                                        android:id="@+id/ImageView04"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:src="@drawable/likeheart_icon" />
-                                </FrameLayout>
-
-                                <TextView
-                                    android:id="@+id/TextView07"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="3dp"
-                                    android:text="12"
-                                    android:textColor="@color/grey"
-                                    android:textSize="11dp" />
-                            </LinearLayout>
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/LinearLayout01"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/bg_box_comment"
-                    android:orientation="vertical"
-                    android:paddingBottom="2dp"
-                    android:paddingLeft="2dp"
-                    android:paddingRight="2dp"
-                    android:paddingTop="2dp" >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" >
-
-                        <FrameLayout
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_margin="5dp"
-                            android:background="@drawable/bg_displayprofile"
-                            android:padding="2dp" >
-
-                            <ImageView
-                                android:id="@+id/ImageView01"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/display" />
-                        </FrameLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical" >
-
-                            <TextView
-                                android:id="@+id/TextView02"
-                                android:layout_width="235dp"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="3dp"
-                                android:maxLength="100"
-                                android:text="Text"
-                                android:textSize="12dp" />
-
-                            <TextView
-                                android:id="@+id/TextView04"
-                                android:layout_width="235dp"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="3dp"
-                                android:maxLength="100"
-                                android:text="image"
-                                android:textSize="12dp" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" >
-
-                                <FrameLayout
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp" >
-
-                                    <ImageView
-                                        android:id="@+id/ImageView02"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:src="@drawable/likeheart_icon" />
-                                </FrameLayout>
-
-                                <TextView
-                                    android:id="@+id/TextView01"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="3dp"
-                                    android:text="12"
-                                    android:textColor="@color/grey"
-                                    android:textSize="11dp" />
-
-                                <TextView
-                                    android:id="@+id/TextView03"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="20dp"
-                                    android:text="เข้าร่วม"
-                                    android:textColor="@color/grey"
-                                    android:textSize="11dp" />
-                            </LinearLayout>
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/LinearLayout03"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/bg_box_comment"
-                    android:orientation="vertical"
-                    android:paddingBottom="2dp"
-                    android:paddingLeft="2dp"
-                    android:paddingRight="2dp"
-                    android:paddingTop="2dp" >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" >
-
-                        <FrameLayout
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_margin="5dp"
-                            android:background="@drawable/bg_displayprofile"
-                            android:padding="2dp" >
-
-                            <ImageView
-                                android:id="@+id/ImageView05"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/display" />
-                        </FrameLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical" >
-
-                            <TextView
-                                android:id="@+id/detail_text"
-                                android:layout_width="235dp"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="3dp"
-                                android:maxLength="100"
-                                android:text="Text"
-                                android:textSize="12dp" />
-
-                            <TextView
-                                android:id="@+id/TextView05"
-                                android:layout_width="235dp"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="3dp"
-                                android:maxLength="100"
-                                android:text="image"
-                                android:textSize="12dp" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" >
-
-                                <FrameLayout
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp" >
-
-                                    <ImageView
-                                        android:id="@+id/ImageView06"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:src="@drawable/likeheart_icon" />
-
-                                </FrameLayout>
-
-                                <TextView
-                                    android:id="@+id/count"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="3dp"
-                                    android:text="12"
-                                    android:textColor="@color/grey"
-                                    android:textSize="11dp" />
-
-                                <TextView
-                                    android:id="@+id/TextView06"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="20dp"
-                                    android:text="เข้าร่วม"
-                                    android:textColor="@color/grey"
-                                    android:textSize="11dp" />
-                                   
-                                    
-                                    </LinearLayout>
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-        </ScrollView>
-
-    </LinearLayout>
+                android:layout_height="600dp" >
+            </ListView>
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
