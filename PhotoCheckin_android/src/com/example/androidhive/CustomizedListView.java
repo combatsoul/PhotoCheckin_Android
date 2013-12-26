@@ -126,9 +126,6 @@ public class CustomizedListView extends Activity {
 					//set string tail
 					String textMore = "    ´ÙµèÍ..";		
 					
-
-					textMore.setTextColor(Color.parseColor("#FFFFFF"));
-					myTextView.setText(Html.fromHtml("<h2>Title</h2><br><p>Description here</p>"));
 					
 					//title
 					hashMap.put("title",jsonObject.getString("activityname")); 
