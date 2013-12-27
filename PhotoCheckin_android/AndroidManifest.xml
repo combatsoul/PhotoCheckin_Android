@@ -77,7 +77,19 @@
 
         <!-- spinnerlist -->
         <activity android:name="com.example.photocheckin.SpinnerlistMenu" />
-        <activity android:name="com.example.androidhive.CustomizedListView" />
+        <activity android:name="com.example.listview.WallPage" />
+
+        <!-- Result Forget Calendar -->
+        <activity android:name="com.example.photocheckin.DateTimeSelection" />
+
+        <!-- Result Forget Calendar -->
+        <activity android:name="com.example.photocheckin.DateTimePicker" />
+
+        <!-- Result Forget Calendar -->
+        <activity android:name="com.example.photocheckin.DatePicker" />
+
+        <!-- Result Forget Calendar -->
+        <activity android:name="com.example.photocheckin.TimePicker" />
 
         <!-- Goolge API Key -->
         <meta-data

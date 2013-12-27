@@ -1,6 +1,6 @@
 package com.example.photocheckin;
 
-import com.example.androidhive.CustomizedListView;
+import com.example.listview.WallPage;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -52,7 +52,7 @@ import android.widget.Button;
 	                        startActivity(call_loginbtn);                        
 	                        break;        
 	                case R.id.wallpage_btn:
-                        Intent call_wallpagebtn = new Intent(this,CustomizedListView.class);
+                        Intent call_wallpagebtn = new Intent(this,WallPage.class);
                         startActivity(call_wallpagebtn);                        
                         break;    
                         

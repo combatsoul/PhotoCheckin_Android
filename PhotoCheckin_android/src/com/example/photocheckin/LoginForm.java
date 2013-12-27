@@ -20,6 +20,7 @@ import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
+import com.example.listview.WallPage;
 import com.example.photocheckin.Register.register;
 
 import android.app.Activity;
