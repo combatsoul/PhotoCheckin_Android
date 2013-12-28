@@ -126,11 +126,16 @@ public class LoginForm extends Activity implements View.OnClickListener {
 						}
 					});
 						
-					Intent call_index_wallpage = new Intent(LoginForm.this, LoginForm.class);
-					startActivity(call_index_wallpage);
+					// when can't login it will close page loginform last
+					finish();
+					Intent goMain = new Intent(getApplicationContext(),LoginForm.class);
+					startActivity(goMain);
 				}else{
-					Intent call_index_wallpage = new Intent(LoginForm.this, WallPage.class);
-					startActivity(call_index_wallpage);
+					
+					// login done
+					finish();
+					Intent goMain = new Intent(getApplicationContext(),WallPage.class);
+					startActivity(goMain);
 				}
 			} catch (ClientProtocolException e) {
 				// TODO Auto-generated catch block
@@ -139,24 +144,8 @@ public class LoginForm extends Activity implements View.OnClickListener {
 			}
 			return null;
 		}
-
-		/**
-		 * After completing background task Dismiss the progress dialog
-		 * **/
-//		protected void onPostExecute(String file_url) {
-//			// dismiss the dialog after getting all albums
-//			pDialog.dismiss();
-//			// updating UI from Background Thread
-//			runOnUiThread(new Runnable() {
-//				public void run() {
-//
-//					// name.setText(response);
-//					Toast.makeText(LoginForm.this, "Login Complete",
-//							Toast.LENGTH_SHORT).show();
-//				}
-//			});
-//
-//		}
+			
+		
 
 	}
 	
