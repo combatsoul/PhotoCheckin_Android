@@ -26,6 +26,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -47,6 +48,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -60,6 +62,7 @@ import com.example.photocheckin.DateTimePicker.DateWatcher;
 import com.example.photocheckin.R;
 import com.example.photocheckin.http.HttpPhotoCheckIn;
 import com.google.android.gms.internal.ar;
+
 
 public class WallPage extends Activity implements View.OnClickListener,DateWatcher {
 	
@@ -75,6 +78,7 @@ public class WallPage extends Activity implements View.OnClickListener,DateWatch
 	private ImageView calendarEnd;
 	private ProgressDialog pDialog;
 	private String response = "";
+	private LinearLayout showDialogView;
 	
 	private EditText activityname;
 	private EditText activitydetail;
@@ -93,13 +97,8 @@ public class WallPage extends Activity implements View.OnClickListener,DateWatch
 		
 		Log.d(TAG, "onCreate");
 		
-		// edit text for register
-//		activityname = (EditText) pwindo.getContentView().findViewById(R.id.activityname_texf);
-//		activitydetail = (EditText) pwindo.getContentView().findViewById(R.id.activitydetail_texa);
-//		location = (EditText) pwindo.getContentView().findViewById(R.id.location_texf);
-//		startcalendar = (EditText) pwindo.getContentView().findViewById(R.id.calendar1_texf);
-//		endcalendar = (EditText) pwindo.getContentView().findViewById(R.id.calendar2_texf);
-//		
+//		 edit text for register
+		
 		listview = (ListView) findViewById(android.R.id.list);
 		hashMap = new HashMap<String, String>();
 		new GetDataTask().execute();
@@ -147,6 +146,11 @@ public class WallPage extends Activity implements View.OnClickListener,DateWatch
 								"http://www.checkinphoto.com/android/createactivity/chkCreate.php");
 
 						try {
+							activityname = (EditText) showDialogView.findViewById(R.id.activityname_texf);
+							activitydetail = (EditText) showDialogView.findViewById(R.id.activitydetail_texa);
+							location = (EditText) showDialogView.findViewById(R.id.location_texf);
+							startcalendar = (EditText) showDialogView.findViewById(R.id.calendar1_texf);
+							endcalendar = (EditText) showDialogView.findViewById(R.id.calendar2_texf);
 							// Add your data
 							List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 							nameValuePairs.add(new BasicNameValuePair("activityname_texf", activityname.getText().toString()));
@@ -211,6 +215,8 @@ public class WallPage extends Activity implements View.OnClickListener,DateWatch
 					final Dialog mDateTimeDialog = new Dialog(WallPage.this);
 			        // Inflate the root layout
 			        final RelativeLayout mDateTimeDialogView = (RelativeLayout) getLayoutInflater().inflate(R.layout.datetimepicker, null);
+			        
+			        final LinearLayout createDialogView = (LinearLayout) getLayoutInflater().inflate(R.layout.index_createactivity, null);
 			        // Grab widget instance
 			        final DateTimePicker mDateTimePicker = (DateTimePicker) mDateTimeDialogView.findViewById(R.id.DateTimePicker);
 			        mDateTimePicker.setDateChangedListener(WallPage.this);
@@ -264,14 +270,14 @@ public class WallPage extends Activity implements View.OnClickListener,DateWatch
 								minute = String.valueOf(mDateTimePicker.getMinute());
 							}
 							
-			               String result_string = String.valueOf(mDateTimePicker.getDay()) + "-" + month + "-" + String.valueOf(mDateTimePicker.getYear())
+			               String result_string = String.valueOf(mDateTimePicker.getYear()) + "-" + month + "-" + String.valueOf(mDateTimePicker.getDay())
 			                                                + "  " + hour + ":" + minute +":00";
 			               System.out.print("Result2"+result_string);
 							
-							EditText text = (EditText) pwindo.getContentView().findViewById(R.id.calendar1_texf);
-							text.setText(result_string);
-							//((EditText)findViewById(R.id.calendar1_texf)).setText("123453");
-							mDateTimeDialog.dismiss();
+			               EditText text = (EditText) showDialogView.findViewById(R.id.calendar1_texf);
+			               text.setText(result_string);
+			               //((EditText)findViewById(R.id.calendar1_texf)).setText("123453");
+			               mDateTimeDialog.cancel();
 						}catch(Exception e){
 							Log.i("Log", e.getMessage()+"Error!");
 						}
@@ -371,14 +377,15 @@ public class WallPage extends Activity implements View.OnClickListener,DateWatch
 								minute = String.valueOf(mDateTimePicker.getMinute());
 							}
 							
-			               String result_string = String.valueOf(mDateTimePicker.getDay()) + "-" + month + "-" + String.valueOf(mDateTimePicker.getYear())
-			                                                + "  " + hour + ":" + minute +":00";
+							String result_string = String.valueOf(mDateTimePicker.getYear()) + "-" + month + "-" + String.valueOf(mDateTimePicker.getDay())			                                                + "  " + hour + ":" + minute +":00";
 			               System.out.print("Result2"+result_string);
 							
-							EditText text = (EditText) pwindo.getContentView().findViewById(R.id.calendar2_texf);
+//							EditText text = (EditText) pwindo.getContentView().findViewById(R.id.calendar2_texf);
+			               EditText text = (EditText) showDialogView.findViewById(R.id.calendar2_texf);
+			               
 							text.setText(result_string);
 							//((EditText)findViewById(R.id.calendar1_texf)).setText("123453");
-							mDateTimeDialog.dismiss();
+							mDateTimeDialog.cancel();
 						}catch(Exception e){
 							Log.i("Log", e.getMessage()+"Error!");
 						}
@@ -415,42 +422,83 @@ public class WallPage extends Activity implements View.OnClickListener,DateWatch
 				}
 			};
 			
-			// call
-			 private void showCreateActivity(View v){
-				 // We need to get the instance of the LayoutInflater 
-				 LayoutInflater inflater = (LayoutInflater) WallPage.this 
-				 .getSystemService(Context.LAYOUT_INFLATER_SERVICE); 
-				 View layout = inflater.inflate(R.layout.index_createactivity,(ViewGroup)
-
-				 findViewById(R.id.linearMenu)); 
-				 pwindo = new PopupWindow(layout, 450, 600, true); 
-				 pwindo.showAtLocation(layout, Gravity.CENTER, 0, 0);
+			
+			private void showCreateActivitys(View v){
+				final Dialog createDialog = new Dialog(WallPage.this);
+		        // Inflate the root layout
+		        showDialogView = (LinearLayout) getLayoutInflater().inflate(R.layout.index_createactivity, null);
+		        // Setup TimePicker
 				 
-
-
-				 ClosePopup = (ImageView) layout.findViewById(R.id.imageCross); 
-				 ClosePopup.setOnClickListener(cancel_button_click_listener);
-				 
-				 btnCreate = (Button) layout.findViewById(R.id.btn_create_popup); 
-				 btnCreate.setOnClickListener(create_button_click_listener);
-				 
-				 calendarStart = (ImageView) layout.findViewById(R.id.imagecalendar1);
+		        ((ImageView) showDialogView.findViewById(R.id.imageCross)).setOnClickListener(new OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							createDialog.cancel();
+							
+						}
+		         });
+		         
+		        ((Button) showDialogView.findViewById(R.id.btn_create_popup)).setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						new createactivity().execute();
+						createDialog.cancel();
+						
+					}
+				});
+		     // generate a 150x150 QR code			        
+		         
+				 calendarStart = (ImageView) showDialogView.findViewById(R.id.imagecalendar1);
 				 calendarStart.setOnClickListener(showStartdatePicker);
 				 
-				 calendarEnd = (ImageView) layout.findViewById(R.id.imagecalendar2);
+				 calendarEnd = (ImageView) showDialogView.findViewById(R.id.imagecalendar2);
 				 calendarEnd.setOnClickListener(showEnddatePicker);
+		        
+		        // No title on the dialog window
+				 createDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		        // Set the dialog content view
+				 createDialog.setContentView(showDialogView);
+		        // Display the dialog
+				 createDialog.show(); 
 				 }
-			 
-			 private void showCalendar(View v){
-				 // We need to get the instance of the LayoutInflater 
-				 LayoutInflater inflater = (LayoutInflater) WallPage.this 
-				 .getSystemService(Context.LAYOUT_INFLATER_SERVICE); 
-				 View layout = inflater.inflate(R.layout.datetime_selection,(ViewGroup)
-
-				 findViewById(R.id.DateTimePicker)); 
-				 pwindo = new PopupWindow(layout, 450, 600, true); 
-				 pwindo.showAtLocation(layout, Gravity.CENTER, 0, 0);
-				 }
+			
+			
+//			// call
+//			 private void showCreateActivity(View v){
+//				 // We need to get the instance of the LayoutInflater 
+//				 LayoutInflater inflater = (LayoutInflater) WallPage.this 
+//				 .getSystemService(Context.LAYOUT_INFLATER_SERVICE); 
+//				 View layout = inflater.inflate(R.layout.index_createactivity,(ViewGroup)
+//
+//				 findViewById(R.id.linearMenu)); 
+//				 pwindo = new PopupWindow(layout, 450, 600, true); 
+//				 pwindo.showAtLocation(layout, Gravity.CENTER, 0, 0);
+//				 
+//
+//
+//				 ClosePopup = (ImageView) layout.findViewById(R.id.imageCross); 
+//				 ClosePopup.setOnClickListener(cancel_button_click_listener);
+//				 
+//				 btnCreate = (Button) layout.findViewById(R.id.btn_create_popup); 
+//				 btnCreate.setOnClickListener(create_button_click_listener);
+//				 
+//				 calendarStart = (ImageView) layout.findViewById(R.id.imagecalendar1);
+//				 calendarStart.setOnClickListener(showStartdatePicker);
+//				 
+//				 calendarEnd = (ImageView) layout.findViewById(R.id.imagecalendar2);
+//				 calendarEnd.setOnClickListener(showEnddatePicker);
+//				 }
+//			 
+//			 private void showCalendar(View v){
+//				 // We need to get the instance of the LayoutInflater 
+//				 LayoutInflater inflater = (LayoutInflater) WallPage.this 
+//				 .getSystemService(Context.LAYOUT_INFLATER_SERVICE); 
+//				 View layout = inflater.inflate(R.layout.datetime_selection,(ViewGroup)
+//
+//				 findViewById(R.id.DateTimePicker)); 
+//				 pwindo = new PopupWindow(layout, 450, 600, true); 
+//				 pwindo.showAtLocation(layout, Gravity.CENTER, 0, 0);
+//				 }
 			 
 			 
 			 //call popup
@@ -461,7 +509,7 @@ public class WallPage extends Activity implements View.OnClickListener,DateWatch
 				}
 				else if(arrList.get(i) == "create activity"){
 					Toast.makeText(getApplication(), "Create Activity",Toast.LENGTH_LONG).show();
-					 showCreateActivity(v);
+					 showCreateActivitys(v);
 				}
 				else if(arrList.get(i) == "Profile"){
 					  Toast.makeText(getApplication(), "Profiles",Toast.LENGTH_LONG).show();		
