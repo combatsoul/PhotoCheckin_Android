@@ -9,46 +9,49 @@
     <LinearLayout
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical" 
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:orientation="vertical" >
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="50dp">
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/bg_pictureprofile"
+            android:padding="3dp"
+            android:orientation="vertical" >
+           
 
             <ImageView
-                android:id="@+id/checkin_img"
-                android:layout_width="84dp"
-                android:layout_height="84dp"
-                android:layout_gravity="center"
-                android:src="@drawable/profile" />
+                android:id="@+id/pictureprofile"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/profile_pic" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="15dp" 
-            android:layout_marginBottom="5dp">
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical" >
 
             <TextView
                 android:id="@+id/register_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textColor="@color/white"
                 android:text="Registration"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="14dp"/>
-
+                android:textSize="14dp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical" >
 
             <EditText
                 android:id="@+id/name_texf"
@@ -57,13 +60,13 @@
                 android:background="@drawable/textfield_bg"
                 android:ems="10"
                 android:hint="Name Lastname"
-                android:inputType="textPersonName" 
-                android:textSize="14dp"
+                android:inputType="textPersonName"
+                android:padding="6dp"
                 android:paddingLeft="10dp"
-                android:padding="6dp">
+                android:textSize="14dp" >
+
                 <requestFocus />
             </EditText>
-                
         </LinearLayout>
 
         <LinearLayout
@@ -75,8 +78,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" 
-            android:layout_marginTop="4dp">
+            android:layout_marginTop="4dp"
+            android:orientation="vertical" >
 
             <EditText
                 android:id="@+id/username_texf"
@@ -86,16 +89,16 @@
                 android:ems="10"
                 android:hint="Username"
                 android:inputType="textPersonName"
-                android:paddingLeft="10dp"
                 android:padding="6dp"
+                android:paddingLeft="10dp"
                 android:textSize="14dp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="4dp">
+            android:layout_marginTop="4dp"
+            android:orientation="vertical" >
 
             <EditText
                 android:id="@+id/password_texf"
@@ -105,18 +108,17 @@
                 android:ems="10"
                 android:hint="Password"
                 android:inputType="text|textPassword|textPersonName"
-                android:paddingLeft="10dp"
                 android:padding="6dp"
+                android:paddingLeft="10dp"
                 android:textSize="14dp" >
-
             </EditText>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="4dp">
+            android:layout_marginTop="4dp"
+            android:orientation="vertical" >
 
             <EditText
                 android:id="@+id/confirm_password_texf"
@@ -126,10 +128,9 @@
                 android:ems="10"
                 android:hint="Confirm-Password"
                 android:inputType="text|textPassword|textPersonName"
-                android:paddingLeft="10dp"
                 android:padding="6dp"
-                android:textSize="14dp"/>
-
+                android:paddingLeft="10dp"
+                android:textSize="14dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -145,31 +146,28 @@
                 android:background="@drawable/textfield_bg"
                 android:ems="10"
                 android:hint="Email"
-                android:paddingLeft="10dp"
                 android:padding="6dp"
-                android:textSize="14dp"/>
-
+                android:paddingLeft="10dp"
+                android:textSize="14dp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:orientation="vertical">
-            
-              <Button
+            android:orientation="vertical" >
+
+            <Button
                 android:id="@+id/register_btn"
                 android:layout_width="match_parent"
                 android:layout_height="34dp"
-                android:text="Register" 
                 android:background="@drawable/white_bg_btn"
-                android:textSize="15dp"
-                android:paddingTop="2dp"
                 android:paddingBottom="2dp"
-                android:textColor="@color/grey"/>
-
+                android:paddingTop="2dp"
+                android:text="Register"
+                android:textColor="@color/grey"
+                android:textSize="15dp" />
         </LinearLayout>
-
     </LinearLayout>
 
 </LinearLayout>
