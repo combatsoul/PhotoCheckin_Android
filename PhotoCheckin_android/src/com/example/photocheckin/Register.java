@@ -101,7 +101,6 @@ public class Register extends Activity implements View.OnClickListener {
 				Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
 				photoPickerIntent.setType("image/*");
 				startActivityForResult(photoPickerIntent, SELECT_PHOTO);
-				
 			}
 		});
 
@@ -191,15 +190,16 @@ public class Register extends Activity implements View.OnClickListener {
 	// Check validate of Name ---
 	public boolean btnValidateName(View v) {
 		boolean value = true;
-
 		try {
 			// Get value converted to a string
-			strName = name.getText().toString().trim();
+			strName = name.getText().toString();
 			// Empty value checking
 			if (strName.isEmpty()) {
 				Toast.makeText(v.getContext(), "Your Name must not empty",Toast.LENGTH_SHORT).show();
 				value = false;
-			} else if (strName.matches(".*[^a-z^0-9].*")) {
+			} 
+			//else if (strName.matches(".*[^a-z^0-9].*")) {
+			else if (strName.matches(".*^a-z^0-9.*")) {
 				Toast.makeText(v.getContext(), "Your Name is Invalid",Toast.LENGTH_SHORT).show();
 				value = false;
 			}
@@ -388,120 +388,6 @@ public class Register extends Activity implements View.OnClickListener {
 		}
 	}
 
-	
-	
-	//upload images ---
-	/*public class UploadimageActivity extends Activity {
-
-		private static final int SELECT_PHOTO = 1;
-		ImageView showImg;
-		Bitmap yourSelectedImage;
-		InputStream inputStream;
-		
-		@Override
-		public void onCreate(Bundle savedInstanceState) {
-//		super.onCreate(savedInstanceState);
-//		setContentView(R.layout.main);
-
-		ImageView btnimage =(ImageView)findViewById(R.id.pictureprofile);
-		btnimage.setOnClickListener(new OnClickListener() {
-
-		public void onClick(View arg0) {
-			Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-			photoPickerIntent.setType("image/*");
-			startActivityForResult(photoPickerIntent, SELECT_PHOTO);
-		}
-		});
-
-		Button upload = (Button)findViewById(R.id.register_btn);
-		upload.setOnClickListener(new OnClickListener() {
-		public void onClick(View arg0) {
-
-		Bitmap bitmap = yourSelectedImage;
-		ByteArrayOutputStream stream = new ByteArrayOutputStream();
-		bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream); //compress to which format you want.
-		
-		byte [] byte_arr = stream.toByteArray();
-		String image_str = Base64.encodeBytes(byte_arr);
-
-		
-		ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		//nameValuePairs.add(new BasicNameValuePair("image",image_str));
-		nameValuePairs.add(new BasicNameValuePair("name","pic"));
-		//user for create folder image
-		nameValuePairs.add(new BasicNameValuePair("R_username",username.getText().toString()));
-
-		try{
-		HttpClient httpclient = new DefaultHttpClient();
-		HttpPost httppost = new HttpPost("http://checkinphoto.com/android/register/upload.php");
-		httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-		HttpResponse response = httpclient.execute(httppost);
-		String the_string_response = convertResponseToString(response);
-		Toast.makeText(UploadimageActivity.this, "Response " + the_string_response, Toast.LENGTH_LONG).show();
-		}catch(Exception e){
-		Toast.makeText(UploadimageActivity.this, "ERROR " + e.getMessage(), Toast.LENGTH_LONG).show();
-		System.out.println("Error in http connection "+e.toString());
-		}}
-		});
-
-		}
-
-		@Override
-		protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
-		super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
-
-		switch(requestCode) {
-		case SELECT_PHOTO:
-
-		if(resultCode == RESULT_OK){
-		try{
-		Uri selectedImage = imageReturnedIntent.getData();
-		InputStream imageStream = getContentResolver().openInputStream(selectedImage);
-		yourSelectedImage = BitmapFactory.decodeStream(imageStream);
-			//showImg = (ImageView)findViewById(R.id.pictureprofile);
-			//showImg.setImageBitmap(yourSelectedImage);
-		}
-		catch(Exception e){ }
-
-		}}}
-		public String convertResponseToString(HttpResponse response) throws IllegalStateException, IOException{
-
-		String res = "";
-		StringBuffer buffer = new StringBuffer();
-		inputStream = response.getEntity().getContent();
-		int contentLength = (int) response.getEntity().getContentLength(); //getting content length…..
-		Toast.makeText(UploadimageActivity.this, "contentLength : " + contentLength, Toast.LENGTH_LONG).show();
-		if (contentLength < 0){
-		}
-		else{
-		byte[] data = new byte[512];
-		int len = 0;
-		try{
-			while (-1 != (len = inputStream.read(data)) ){
-			buffer.append(new String(data, 0, len)); //converting to string and appending to stringbuffer…..
-			}
-		}
-		catch (IOException e){
-			e.printStackTrace();
-		}
-		try{
-			inputStream.close(); // closing the stream…..
-		}
-		catch (IOException e)
-		{
-		e.printStackTrace();
-		}
-		res = buffer.toString(); // converting stringbuffer to string…..
-
-		Toast.makeText(UploadimageActivity.this, "Result : " + res, Toast.LENGTH_LONG).show();
-		//System.out.println("Response => " + EntityUtils.toString(response.getEntity()));
-		}
-		return res;
-		}
-		}*/
-	//end
-
-		
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {

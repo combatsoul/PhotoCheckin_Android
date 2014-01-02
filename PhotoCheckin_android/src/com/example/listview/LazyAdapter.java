@@ -46,7 +46,6 @@ public class LazyAdapter extends BaseAdapter {
 		HashMap<String, String> song = new HashMap<String, String>();
 		song = data.get(position);
 
-
 		return vi;
 	}
 }
