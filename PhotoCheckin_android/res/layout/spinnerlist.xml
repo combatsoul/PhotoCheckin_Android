@@ -28,7 +28,7 @@
                     android:padding="2dp" >
 
                     <ImageView
-                        android:id="@+id/checkin_img"
+                        android:id="@+id/pictureprofile"
                         android:layout_width="15dp"
                         android:layout_height="15dp"
                         android:src="@drawable/camera_checkin" />

@@ -7,7 +7,8 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -114,29 +115,145 @@ public class LoginForm extends Activity implements View.OnClickListener {
 				}
 				String value = response.substring(response.length()-1);
 				Log.d("value : ", value);
-				if(value.equals("0")){	
-					// dismiss the dialog after getting all albums
-					pDialog.dismiss();
-					// updating UI from Background Thread
-					runOnUiThread(new Runnable() {
-						public void run() {
-							// name.setText(response);
-							Toast.makeText(LoginForm.this, "Login fail, please try again",
-									Toast.LENGTH_SHORT).show();
-						}
-					});
-						
-					// when can't login it will close page loginform last
-					finish();
-					Intent goMain = new Intent(getApplicationContext(),LoginForm.class);
-					startActivity(goMain);
-				}else{
-					
-					// login done
-					finish();
-					Intent goMain = new Intent(getApplicationContext(),WallPage.class);
-					startActivity(goMain);
+				
+				String usertypeRegis = "register";
+				String usertypeAdmin = "admin";
+				String notblock = "block0";
+				String block = "block1";
+				String[] sentence = response.split(" ");
+				
+				for(String word: sentence)
+				{
+				    if(word.equals(usertypeRegis)){
+				    	for(String word2: sentence){
+				    		if(word2.equals(notblock)){
+				    			if(value.equals("0")){	
+									// dismiss the dialog after getting all albums
+									pDialog.dismiss();
+									// updating UI from Background Thread
+									runOnUiThread(new Runnable() {
+										public void run() {
+											// name.setText(response);
+											Toast.makeText(LoginForm.this, "Login fail, please try again",
+													Toast.LENGTH_SHORT).show();
+										}
+									});
+										
+									// when can't login it will close page loginform last
+									finish();
+									Intent goMain = new Intent(getApplicationContext(),LoginForm.class);
+									startActivity(goMain);
+								}else{
+									
+									// login done
+									finish();
+									Intent goMain = new Intent(getApplicationContext(),WallPage.class);
+									startActivity(goMain);
+								}
+				    		}
+				    		if(word2.equals(block)){
+								// dismiss the dialog after getting all albums
+								pDialog.dismiss();
+								// updating UI from Background Thread
+								runOnUiThread(new Runnable() {
+									public void run() {
+										// name.setText(response);
+										Toast.makeText(LoginForm.this, "Login fail, please try again",
+												Toast.LENGTH_SHORT).show();
+									}
+								});
+									
+								// when can't login it will close page loginform last
+								finish();
+								Intent goMain = new Intent(getApplicationContext(),LoginForm.class);
+								startActivity(goMain);
+				    		}
+				    	}
+				    }else if(word.equals(usertypeAdmin)){
+				    	for(String word2: sentence){
+				    		if(word2.equals(notblock)){
+				    			if(value.equals("0")){	
+									// dismiss the dialog after getting all albums
+									pDialog.dismiss();
+									// updating UI from Background Thread
+									runOnUiThread(new Runnable() {
+										public void run() {
+											// name.setText(response);
+											Toast.makeText(LoginForm.this, "Login fail, please try again",
+													Toast.LENGTH_SHORT).show();
+										}
+									});
+										
+									// when can't login it will close page loginform last
+									finish();
+									Intent goMain = new Intent(getApplicationContext(),LoginForm.class);
+									startActivity(goMain);
+								}else{
+									
+									// login done
+									finish();
+									Intent goMain = new Intent(getApplicationContext(),WallPage.class);
+									startActivity(goMain);
+								}
+				    		}
+				    		if(word2.equals(block)){
+								// dismiss the dialog after getting all albums
+								pDialog.dismiss();
+								// updating UI from Background Thread
+								runOnUiThread(new Runnable() {
+									public void run() {
+										// name.setText(response);
+										Toast.makeText(LoginForm.this, "Login fail, please try again",
+												Toast.LENGTH_SHORT).show();
+									}
+								});
+									
+								// when can't login it will close page loginform last
+								finish();
+								Intent goMain = new Intent(getApplicationContext(),LoginForm.class);
+								startActivity(goMain);
+				    		}
+				    	}
+				    }else{
+						// dismiss the dialog after getting all albums
+						pDialog.dismiss();
+						// updating UI from Background Thread
+						runOnUiThread(new Runnable() {
+							public void run() {
+								// name.setText(response);
+								Toast.makeText(LoginForm.this, "Login fail, please try again",
+										Toast.LENGTH_SHORT).show();
+							}
+						});
+				    }
+				        
 				}
+
+//				if(value.equals("0")){	
+//					// dismiss the dialog after getting all albums
+//					pDialog.dismiss();
+//					// updating UI from Background Thread
+//					runOnUiThread(new Runnable() {
+//						public void run() {
+//							// name.setText(response);
+//							Toast.makeText(LoginForm.this, "Login fail, please try again",
+//									Toast.LENGTH_SHORT).show();
+//						}
+//					});
+//						
+//					// when can't login it will close page loginform last
+//					finish();
+//					Intent goMain = new Intent(getApplicationContext(),LoginForm.class);
+//					startActivity(goMain);
+//				}
+//				else{
+//					
+//					// login done
+//					finish();
+//					Intent goMain = new Intent(getApplicationContext(),WallPage.class);
+//					startActivity(goMain);
+//				}
+//				
 			} catch (ClientProtocolException e) {
 				// TODO Auto-generated catch block
 			} catch (IOException e) {
