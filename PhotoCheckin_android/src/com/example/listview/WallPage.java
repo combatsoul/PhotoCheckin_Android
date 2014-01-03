@@ -32,6 +32,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
@@ -65,6 +66,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.photocheckin.DateTimePicker;
+import com.example.photocheckin.chkRegister;
 import com.example.photocheckin.DateTimePicker.DateWatcher;
 import com.example.photocheckin.R;
 import com.example.photocheckin.http.HttpPhotoCheckIn;
@@ -204,6 +206,9 @@ public class WallPage extends Activity implements View.OnClickListener,
 						@Override
 						public void run() {
 							finish();
+							Intent goMain = new Intent(getApplicationContext(),
+									WallPage.class);
+							startActivity(goMain);
 							Toast.makeText(WallPage.this,
 									"Create activity complete",
 									Toast.LENGTH_SHORT).show();
