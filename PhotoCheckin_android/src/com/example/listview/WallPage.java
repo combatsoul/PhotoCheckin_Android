@@ -27,6 +27,7 @@ import org.json.JSONObject;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -84,6 +85,8 @@ public class WallPage extends Activity implements View.OnClickListener,
 	private ImageView calendarEnd;
 	private ProgressDialog pDialog;
 	private String response = "";
+	private String strName;
+	private String strLocation;	
 	private LinearLayout showDialogView;
 
 	private EditText activityname;
@@ -91,6 +94,8 @@ public class WallPage extends Activity implements View.OnClickListener,
 	private EditText location;
 	private EditText startcalendar;
 	private EditText endcalendar;
+	private EditText namechk;
+	private EditText locationchk;
 
 	ArrayList<HashMap<String, String>> arrayList = new ArrayList<HashMap<String, String>>();
 	HashMap<String, String> hashMap;
@@ -550,8 +555,12 @@ public class WallPage extends Activity implements View.OnClickListener,
 
 							@Override
 							public void onClick(View v) {
+								if (btnValidateName(v)&&btnValidateLocation(v)&&btnValidateDateTime(v)) {
 								new createactivity().execute();
 								createDialog.cancel();
+								}else{
+									
+								}
 
 							}
 						});
@@ -573,6 +582,75 @@ public class WallPage extends Activity implements View.OnClickListener,
 				createDialog.show();
 			}
 
+			// Check validate of Name ---
+			public boolean btnValidateName(View v) {
+				boolean value = true;
+				try {
+					namechk = (EditText) showDialogView.findViewById(R.id.activityname_texf);
+					// Get value converted to a string
+					strName = namechk.getText().toString();
+					// Empty value checking
+					if (strName.isEmpty()) {
+						Toast.makeText(v.getContext(), "Your Activity name must not empty",Toast.LENGTH_SHORT).show();
+						value = false;
+					}
+				} catch (NullPointerException ex) {
+					ex.printStackTrace();
+				}
+				return value;
+			}
+			
+			// Check validate of Name ---
+			public boolean btnValidateLocation(View v) {
+				boolean value = true;
+				try {
+					locationchk = (EditText) showDialogView.findViewById(R.id.location_texf);
+					// Get value converted to a string
+					strLocation = locationchk.getText().toString();
+					// Empty value checking
+					if (strLocation.isEmpty()) {
+						Toast.makeText(v.getContext(), "Your Location must not empty",Toast.LENGTH_SHORT).show();
+						value = false;
+					}
+				} catch (NullPointerException ex) {
+					ex.printStackTrace();
+				}
+				return value;
+			}
+			
+			// Check validate of DateTime ---
+			@SuppressLint("SimpleDateFormat")
+			public boolean btnValidateDateTime(View v) {
+				boolean value = true;
+				try {
+					// Get value converted to a string
+					startcalendar = (EditText) showDialogView.findViewById(R.id.calendar1_texf);
+					endcalendar = (EditText) showDialogView.findViewById(R.id.calendar2_texf);
+					String startdate = startcalendar.getText().toString();
+					String enddate = endcalendar.getText().toString();
+
+		            String myFormatString = "yyyy-MM-dd HH:mm:ss"; // for example
+		            SimpleDateFormat df = new SimpleDateFormat(myFormatString);
+		            java.util.Date date1 = df.parse(enddate);
+		            java.util.Date startingDate = df.parse(startdate);
+
+		            if (date1.after(startingDate)){
+		            	value = true;
+		            }else{
+		            	Toast.makeText(v.getContext(), "End date must not less than start date, please check again.",Toast.LENGTH_SHORT).show();
+		            	value = false;
+		            }
+					
+				} catch (NullPointerException ex) {
+					ex.printStackTrace();
+				} catch (java.text.ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return value;
+			}
+			
+			
 			// // call
 			// private void showCreateActivity(View v){
 			// // We need to get the instance of the LayoutInflater
