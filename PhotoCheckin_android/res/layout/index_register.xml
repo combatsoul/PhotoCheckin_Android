@@ -165,7 +165,7 @@
                 android:paddingBottom="2dp"
                 android:paddingTop="2dp"
                 android:text="Register"
-                android:textColor="@color/grey"
+                android:textColor="@color/black"
                 android:textSize="15dp" />
         </LinearLayout>
     </LinearLayout>
