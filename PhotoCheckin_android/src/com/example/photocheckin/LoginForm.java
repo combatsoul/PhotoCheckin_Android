@@ -214,18 +214,19 @@ public class LoginForm extends Activity implements View.OnClickListener {
 								startActivity(goMain);
 				    		}
 				    	}
-				    }else{
-						// dismiss the dialog after getting all albums
-						pDialog.dismiss();
-						// updating UI from Background Thread
-						runOnUiThread(new Runnable() {
-							public void run() {
-								// name.setText(response);
-								Toast.makeText(LoginForm.this, "Login fail, please try again",
-										Toast.LENGTH_SHORT).show();
-							}
-						});
 				    }
+//				    else{
+//						// dismiss the dialog after getting all albums
+//						pDialog.dismiss();
+//						// updating UI from Background Thread
+//						runOnUiThread(new Runnable() {
+//							public void run() {
+//								// name.setText(response);
+//								Toast.makeText(LoginForm.this, "Login fail, please try again",
+//										Toast.LENGTH_SHORT).show();
+//							}
+//						});
+//				    }
 				        
 				}
 
