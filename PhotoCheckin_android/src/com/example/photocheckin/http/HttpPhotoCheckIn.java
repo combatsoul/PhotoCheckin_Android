@@ -26,14 +26,8 @@ public class HttpPhotoCheckIn {
 		HttpResponse response;
 		try {
 			response = httpclient.execute(httpget);
-			// Examine the response status
-			//Log.i("Praeda", response.getStatusLine().toString());
 
-			// Get hold of the response entity
 			HttpEntity entity = response.getEntity();
-			// If the response does not enclose an entity, there is no need
-			// to worry about connection release
-
 			if (entity != null) {
 
 				// A Simple JSON Response Read

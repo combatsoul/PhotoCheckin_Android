@@ -39,8 +39,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
-                android:maxLength="80"
-                android:text="Title"
+                android:maxLength="90"
+                android:text=""
                 android:textSize="12dp" />
 
             <TextView
@@ -49,8 +49,9 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
+                android:layout_marginTop="2dp"
                 android:layout_weight="0.71"
-                android:text="Detail"
+                android:text=""
                 android:textColor="@color/grey"
                 android:textSize="12dp" />
 
@@ -63,7 +64,7 @@
                 android:layout_marginRight="3dp"
                 android:layout_marginTop="5dp"
                 android:maxLength="100"
-                android:text="Image"
+                android:text=""
                 android:textSize="12dp" />
 
             <LinearLayout

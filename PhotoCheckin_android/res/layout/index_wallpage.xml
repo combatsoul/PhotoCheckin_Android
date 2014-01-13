@@ -42,20 +42,23 @@
                 <Spinner
                     android:id="@+id/spinner1"
                     android:layout_width="25dp"
-                    android:layout_height="25dp" />
+                    android:layout_height="28dp" 
+                    android:background="@color/transparent"/>
 
                 <ImageView
                     android:id="@+id/icon"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                  android:layout_width="25dp"
+                    android:layout_height="28dp"
+         
                     android:src="@drawable/nav_icon" />
+                
             </FrameLayout>
 
             <EditText
                 android:id="@+id/search"
                 android:layout_width="100dp"
-                android:layout_height="25dp"
-                android:layout_margin="5dp"
+                android:layout_height="22dp"
+                android:layout_margin="6dp"
                 android:layout_weight="1"
                 android:background="@drawable/textfield_bg"
                 android:ems="10"

@@ -12,7 +12,6 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.TimeZone;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -64,7 +63,6 @@ import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.photocheckin.DateTimePicker;
 import com.example.photocheckin.chkRegister;
 import com.example.photocheckin.DateTimePicker.DateWatcher;
@@ -78,7 +76,7 @@ public class WallPage extends Activity implements View.OnClickListener,
 	private String TAG = "WallPage";
 	private ListView listview;
 	private LazyAdapter adapter;
-
+	
 	// set variable createactivity
 	private ImageView ClosePopup;
 	private Button btnCreate;
@@ -108,9 +106,7 @@ public class WallPage extends Activity implements View.OnClickListener,
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.index_wallpage);
 
-		Log.d(TAG, "onCreate");
-
-		// edit text for register
+		//Log.d(TAG, "onCreate");
 
 		listview = (ListView) findViewById(android.R.id.list);
 		hashMap = new HashMap<String, String>();
@@ -126,14 +122,16 @@ public class WallPage extends Activity implements View.OnClickListener,
 		arrList.add(cn);
 		arrList.add(ca);
 		arrList.add(pf);
-
-		ArrayAdapter<String> arrAd = new ArrayAdapter<String>(WallPage.this,
-				android.R.layout.simple_spinner_item, arrList);
+		
+		// spinner item
+		ArrayAdapter<String> arrAd = new ArrayAdapter<String>(WallPage.this,android.R.layout.simple_spinner_item, arrList);
 		spin.setAdapter(arrAd);
 		spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-			// 1
+			
+			// Create activity
 			class createactivity extends AsyncTask<String, String, String> {
+				
+				//dialog
 				@Override
 				protected void onPreExecute() {
 					super.onPreExecute();
@@ -144,8 +142,8 @@ public class WallPage extends Activity implements View.OnClickListener,
 					pDialog.setCancelable(false);
 					pDialog.show();
 				}
-
-				// 2
+				
+				//send activity create
 				protected String doInBackground(String... args) {
 					// Building Parameters
 					HttpClient httpclient = new DefaultHttpClient();
@@ -154,38 +152,23 @@ public class WallPage extends Activity implements View.OnClickListener,
 					try {
 						activityname = (EditText) showDialogView.findViewById(R.id.activityname_texf);
 						activitydetail = (EditText) showDialogView.findViewById(R.id.activitydetail_texa);
-						location = (EditText) showDialogView
-								.findViewById(R.id.location_texf);
-						startcalendar = (EditText) showDialogView
-								.findViewById(R.id.calendar1_texf);
-						endcalendar = (EditText) showDialogView
-								.findViewById(R.id.calendar2_texf);
+						location = (EditText) showDialogView.findViewById(R.id.location_texf);
+						startcalendar = (EditText) showDialogView.findViewById(R.id.calendar1_texf);
+						endcalendar = (EditText) showDialogView.findViewById(R.id.calendar2_texf);
+						
 						// Add your data
-						List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(
-								2);
-						nameValuePairs.add(new BasicNameValuePair(
-								"activityname_texf", activityname.getText()
-										.toString()));
-						nameValuePairs.add(new BasicNameValuePair(
-								"activitydetail_texa", activitydetail.getText()
-										.toString()));
-						nameValuePairs
-								.add(new BasicNameValuePair("location_texf",
-										location.getText().toString()));
-						nameValuePairs.add(new BasicNameValuePair(
-								"calendar1_texf", startcalendar.getText()
-										.toString()));
-						nameValuePairs.add(new BasicNameValuePair(
-								"calendar2_texf", endcalendar.getText()
-										.toString()));
-						httppost.setEntity(new UrlEncodedFormEntity(
-								nameValuePairs));
+						List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+						nameValuePairs.add(new BasicNameValuePair("activityname_texf", activityname.getText().toString()));
+						nameValuePairs.add(new BasicNameValuePair("activitydetail_texa", activitydetail.getText().toString()));
+						nameValuePairs.add(new BasicNameValuePair("location_texf",location.getText().toString()));
+						nameValuePairs.add(new BasicNameValuePair("calendar1_texf", startcalendar.getText().toString()));
+						nameValuePairs.add(new BasicNameValuePair("calendar2_texf", endcalendar.getText().toString()));
+						httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
 						// Execute HTTP Post Request
 						HttpResponse execute = httpclient.execute(httppost);
 						InputStream content = execute.getEntity().getContent();
-						BufferedReader buffer = new BufferedReader(
-								new InputStreamReader(content));
+						BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
 
 						String s = "";
 						while ((s = buffer.readLine()) != null) {
@@ -194,23 +177,18 @@ public class WallPage extends Activity implements View.OnClickListener,
 						Log.d("response", response);
 					} catch (ClientProtocolException e) {
 					} catch (IOException e) {
-					}
-					return null;
-
+					}return null;
 				}
 
-				// 3
 				protected void onPostExecute(String file_url) {
 					Handler myHandler = new Handler();
 					myHandler.postDelayed(new Runnable() {
 						@Override
 						public void run() {
 							finish();
-							Intent goMain = new Intent(getApplicationContext(),
-									WallPage.class);
+							Intent goMain = new Intent(getApplicationContext(),WallPage.class);
 							startActivity(goMain);
-							Toast.makeText(WallPage.this,
-									"Create activity complete",
+							Toast.makeText(WallPage.this,"Create activity complete",
 									Toast.LENGTH_SHORT).show();
 						}
 					}, 1000);
@@ -654,48 +632,7 @@ public class WallPage extends Activity implements View.OnClickListener,
 				}
 				return value;
 			}
-			
-			
-			// // call
-			// private void showCreateActivity(View v){
-			// // We need to get the instance of the LayoutInflater
-			// LayoutInflater inflater = (LayoutInflater) WallPage.this
-			// .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			// View layout =
-			// inflater.inflate(R.layout.index_createactivity,(ViewGroup)
-			//
-			// findViewById(R.id.linearMenu));
-			// pwindo = new PopupWindow(layout, 450, 600, true);
-			// pwindo.showAtLocation(layout, Gravity.CENTER, 0, 0);
-			//
-			//
-			//
-			// ClosePopup = (ImageView) layout.findViewById(R.id.imageCross);
-			// ClosePopup.setOnClickListener(cancel_button_click_listener);
-			//
-			// btnCreate = (Button) layout.findViewById(R.id.btn_create_popup);
-			// btnCreate.setOnClickListener(create_button_click_listener);
-			//
-			// calendarStart = (ImageView)
-			// layout.findViewById(R.id.imagecalendar1);
-			// calendarStart.setOnClickListener(showStartdatePicker);
-			//
-			// calendarEnd = (ImageView)
-			// layout.findViewById(R.id.imagecalendar2);
-			// calendarEnd.setOnClickListener(showEnddatePicker);
-			// }
-			//
-			// private void showCalendar(View v){
-			// // We need to get the instance of the LayoutInflater
-			// LayoutInflater inflater = (LayoutInflater) WallPage.this
-			// .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			// View layout =
-			// inflater.inflate(R.layout.datetime_selection,(ViewGroup)
-			//
-			// findViewById(R.id.DateTimePicker));
-			// pwindo = new PopupWindow(layout, 450, 600, true);
-			// pwindo.showAtLocation(layout, Gravity.CENTER, 0, 0);
-			// }
+
 
 			// call popup
 			public void onItemSelected(AdapterView<?> adapterView, View v,
@@ -714,7 +651,7 @@ public class WallPage extends Activity implements View.OnClickListener,
 				}
 			}
 
-			public void onNothingSelected(AdapterView<?> arg0) {
+		public void onNothingSelected(AdapterView<?> arg0) {
 			}
 		});
 		// check internet
@@ -723,16 +660,16 @@ public class WallPage extends Activity implements View.OnClickListener,
 					Toast.LENGTH_LONG).show();
 			Log.d(TAG, "Internet Can not..");
 		} else {
-			Toast.makeText(getApplication(), "connected", Toast.LENGTH_LONG)
-					.show();
+			Toast.makeText(getApplication(), "connected", Toast.LENGTH_LONG).show();
 		}
 
 		if (android.os.Build.VERSION.SDK_INT > 9) {
-			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-					.permitAll().build();
+			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 			StrictMode.setThreadPolicy(policy);
 		}
 		// end
+		
+		
 	}
 
 	private boolean isConnectInternet() {
@@ -760,9 +697,9 @@ public class WallPage extends Activity implements View.OnClickListener,
 			// TODO Auto-generated method stub
 			try {
 				JSONArray jsonArray = new JSONArray(result);
-				Log.d("JSON Array", jsonArray.toString());
+				//Log.d("JSON Array", jsonArray.toString());
 
-				for (int i = 0; i < jsonArray.length(); i++) {
+				for (int i = 0; i < 10; i++) {
 					hashMap = new HashMap<String, String>();
 					JSONObject jsonObject = new JSONObject(
 							jsonArray.getString(i));

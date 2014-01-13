@@ -33,8 +33,12 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.photocheckin.IntroMain"
-            android:label="@string/app_name" >
+          	android:name="com.example.photocheckin.Present"
+          	android:label="@string/app_name" >
+          	
+          	<!-- android:name="com.example.photocheckin.IntroMain" -->
+          	
+            
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

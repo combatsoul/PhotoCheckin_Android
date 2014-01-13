@@ -14,7 +14,11 @@
     <color name="bluesky">#3baedf</color>
     <color name="greyblack">#585858</color>
     <color name="blueskywhite">#cee2ee</color>  
-    <color name="white_light">#F1F1F1</color>   
+    <color name="white_light">#F1F1F1</color> 
+    <color name="bluesky1">#0799d7</color> 
+    <color name="transparent">@android:color/transparent</color>
+      
     
+ 
 
 </resources>
