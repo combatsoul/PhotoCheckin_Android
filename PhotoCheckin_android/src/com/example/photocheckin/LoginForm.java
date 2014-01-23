@@ -26,13 +26,18 @@ import com.example.photocheckin.Register.register;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -46,12 +51,16 @@ public class LoginForm extends Activity implements View.OnClickListener {
 	String strPassword = "";
 	EditText input_username;
 	EditText input_password;
+	private String TAG = "LoginForm";
+	private View v;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.index_loginform);
+		
+		chkinternet(v);
 
 		// call btn login
 		Button call_login = (Button) findViewById(R.id.loginform_btn);
@@ -68,13 +77,12 @@ public class LoginForm extends Activity implements View.OnClickListener {
 		// go to register
 		ImageButton goto_register = (ImageButton) findViewById(R.id.register_btnimg);
 		goto_register.setOnClickListener(this);
-
+		
 	}
 
 	// validate --
 	private ProgressDialog pDialog;
 	String response = "";
-	
 	class login extends AsyncTask<String, String, String> {
 		/**
 		 * Before starting background thread Show Progress Dialog
@@ -271,7 +279,7 @@ public class LoginForm extends Activity implements View.OnClickListener {
 	public boolean btnValidateUsername(View v) {
 		boolean value = true;
 		try {
-			// รับค่ามาแปลงให้เป็น String
+			// เธฃเธฑเธ�เธ�เน�เธฒเธกเธฒเน�เธ�เธฅเธ�เน�เธซเน�เน€เธ�เน�เธ� String
 			strUsername = input_username.getText().toString().trim();
 			if (strUsername.isEmpty()) {
 				Toast.makeText(v.getContext(), "Your Username must not empty",
@@ -288,7 +296,7 @@ public class LoginForm extends Activity implements View.OnClickListener {
 	public boolean btnValidatePassword(View v) {
 		boolean value = true;
 		try {
-			// รับค่ามาแปลงให้เป็น String
+			// เธฃเธฑเธ�เธ�เน�เธฒเธกเธฒเน�เธ�เธฅเธ�เน�เธซเน�เน€เธ�เน�เธ� String
 			strPassword = input_password.getText().toString().trim();
 			if (strPassword.isEmpty()) {
 				Toast.makeText(v.getContext(), "Your Password must not empty",
@@ -301,6 +309,37 @@ public class LoginForm extends Activity implements View.OnClickListener {
 		}
 		return value;
 	} 
+	
+	private boolean isConnectInternet() {
+		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo netInfo = cm.getActiveNetworkInfo();
+		if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+			return true;
+		}
+		return false;
+	}
+	// check internet
+public void chkinternet(View v){
+
+if (isConnectInternet()) {
+	Toast.makeText(getApplication(), "Internet Error",Toast.LENGTH_LONG).show();
+	Log.d(TAG, "Internet Can not..");
+} else {
+	Toast.makeText(getApplication(), "connected", Toast.LENGTH_LONG)
+			.show();
+}
+
+if (android.os.Build.VERSION.SDK_INT > 9) {
+	StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+			.permitAll().build();
+	StrictMode.setThreadPolicy(policy);
+}
+
+}
+
+
+	
+	
 	
 	// check link to page ---
 	@Override

@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:background="@drawable/bg_box_comment"
+      android:background="@drawable/bg_boxlist"
         android:orientation="vertical" >
 
         <LinearLayout

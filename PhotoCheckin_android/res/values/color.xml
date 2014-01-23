@@ -17,6 +17,8 @@
     <color name="white_light">#F1F1F1</color> 
     <color name="bluesky1">#0799d7</color> 
     <color name="transparent">@android:color/transparent</color>
+     <color name="brown">#240f00</color>
+    
       
     
  

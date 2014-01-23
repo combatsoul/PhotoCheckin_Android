@@ -1,6 +1,7 @@
 package com.example.photocheckin;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -26,4 +27,6 @@ public class Profile extends Activity implements View.OnClickListener {
 		// TODO Auto-generated method stub
 
 	}
+
+	
 }
