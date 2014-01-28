@@ -1,0 +1,21 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+ 
+
+    <item
+        android:id="@+id/menu"
+        android:icon="@drawable/java"
+        android:orderInCategory="2"
+        android:showAsAction="always"
+        android:title="Java">
+        
+        <menu>
+            <item
+                 android:title="sub"
+            />
+        </menu>
+        
+ 	</item>
+
+ 
+
+</menu>

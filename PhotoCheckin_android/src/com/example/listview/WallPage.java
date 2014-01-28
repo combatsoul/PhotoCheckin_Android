@@ -1,6 +1,8 @@
 package com.example.listview;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -12,14 +14,19 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.TimeZone;
+
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
+import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.ByteArrayBuffer;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,6 +54,7 @@ import android.text.Html;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -65,7 +73,13 @@ import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.imgaeloader.ImageLoader;
+import com.example.photocheckin.Base64;
 import com.example.photocheckin.DateTimePicker;
+import com.example.photocheckin.LoginForm;
+import com.example.photocheckin.Profile;
+//import com.example.photocheckin.Profile;
 import com.example.photocheckin.chkRegister;
 import com.example.photocheckin.DateTimePicker.DateWatcher;
 import com.example.photocheckin.R;
@@ -83,15 +97,15 @@ public class WallPage extends Activity implements View.OnClickListener,DateWatch
 	private PopupWindow pwindo;
 	private ImageView calendarStart;
 	private ImageView calendarEnd;
-	private TextView nameUserProfile;
-	
+	private TextView nameofProfile;
+
 	private ProgressDialog pDialog;
 	private String response = "";
 	private String strName;
 	private String strLocation;
 	private LinearLayout showDialogView;
 	private LinearLayout showDialogProfile;
-	
+
 	private EditText activityname;
 	private EditText activitydetail;
 	private EditText location;
@@ -100,35 +114,76 @@ public class WallPage extends Activity implements View.OnClickListener,DateWatch
 	private EditText namechk;
 	private EditText locationchk;
 
-
 	ArrayList<HashMap<String, String>> arrayList = new ArrayList<HashMap<String, String>>();
 	HashMap<String, String> hashMap;
-
+	private String name;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.index_wallpage);
 
+		// get username form login
+		String UserNamelogin = getIntent().getStringExtra("username");
+		// TextView showtext = (TextView) findViewById(R.id.nameuser_text);
+		// showtext.setText(UserNamelogin);
+				
+		//sent to wallpage
+		ImageView imageViewProfile = (ImageView) findViewById(R.id.pictureprofile);
+		TextView textViewName = (TextView) findViewById(R.id.nameuser_text);
+		
+		
+		
+		String imageJson = selDataUser("http://www.checkinphoto.com/android/userprofile/seluser.php?username=",UserNamelogin);
+		JSONArray jsonArray;
+		try {
+			jsonArray = new JSONArray(imageJson);
+				for (int i = 0; i < jsonArray.length(); i++) {
+					JSONObject jsonObject = new JSONObject(jsonArray.getString(i));
+					
+					ImageLoader imageLoader = new ImageLoader(jsonObject.getString("pic"), imageViewProfile);
+					textViewName.setText(jsonObject.getString("name"));
+
+				   name = jsonObject.getString("name");
+				   Log.d(TAG, "Name "+name);
+ 
+			    
+	 
+				   
+				}
+				
+				//TextView varName = (TextView)findViewById(R.id.profilename_text);
+				//varName.setText(name);	
+					
+				
+				
+		} 
+		catch (JSONException e1) {
+			e1.printStackTrace();
+		}
+
+
 		listview = (ListView) findViewById(android.R.id.list);
 		hashMap = new HashMap<String, String>();
 		new GetDataTask().execute();
 
-		String cn = "check-in";
-		String ca = "create activity";
-		String pf = "Profile";
-		
-		// spinner1 --
-		final List<String> arrList = new ArrayList<String>();
-		Spinner spin = (Spinner) findViewById(R.id.spinner1);
-		arrList.add(cn);
-		arrList.add(ca);
-		arrList.add(pf);
+//		String cn = "check-in";
+//		String ca = "create activity";
+//		String pf = "Profile";
+//
+//		// spinner1 --
+//		final List<String> arrList = new ArrayList<String>();
+//		Spinner spin = (Spinner) findViewById(R.id.spinner1);
+//		arrList.add(cn);
+//		arrList.add(ca);
+//		arrList.add(pf);
 
-		// spinner item
-		ArrayAdapter<String> arrAd = new ArrayAdapter<String>(WallPage.this,android.R.layout.simple_spinner_item, arrList);
-		spin.setAdapter(arrAd);
-		spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//		// spinner item
+//		ArrayAdapter<String> arrAd = new ArrayAdapter<String>(WallPage.this,
+//				android.R.layout.simple_spinner_item, arrList);
+//		spin.setAdapter(arrAd);
+//		spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
 			// Create activity
 			class createactivity extends AsyncTask<String, String, String> {
@@ -149,35 +204,53 @@ public class WallPage extends Activity implements View.OnClickListener,DateWatch
 				protected String doInBackground(String... args) {
 					// Building Parameters
 					HttpClient httpclient = new DefaultHttpClient();
-				//httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
-				
-					
+					// httpPost.setEntity(new
+					// UrlEncodedFormEntity(params,"UTF-8"));
+
 					HttpPost httppost = new HttpPost("http://www.checkinphoto.com/android/createactivity/chkCreate.php");
 
 					try {
-						
-						activityname = (EditText) showDialogView.findViewById(R.id.activityname_texf);
-						activitydetail = (EditText) showDialogView.findViewById(R.id.activitydetail_texa);
-						location = (EditText) showDialogView.findViewById(R.id.location_texf);
-						startcalendar = (EditText) showDialogView.findViewById(R.id.calendar1_texf);
-						endcalendar = (EditText) showDialogView.findViewById(R.id.calendar2_texf);
+
+						activityname = (EditText) showDialogView
+								.findViewById(R.id.activityname_texf);
+						activitydetail = (EditText) showDialogView
+								.findViewById(R.id.activitydetail_texa);
+						location = (EditText) showDialogView
+								.findViewById(R.id.location_texf);
+						startcalendar = (EditText) showDialogView
+								.findViewById(R.id.calendar1_texf);
+						endcalendar = (EditText) showDialogView
+								.findViewById(R.id.calendar2_texf);
 
 						// Add your data
-						List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);			
-						
-						
-						nameValuePairs.add(new BasicNameValuePair("activityname_texf","¿Ë¡¿Ë¡¿Ë¡¿Ë¡¿Ë¡¾à¾Ðè×ÑèÑ"/*activityname.getText().toString()*/));
-						nameValuePairs.add(new BasicNameValuePair("activitydetail_texa", activitydetail.getText().toString()));
-						nameValuePairs.add(new BasicNameValuePair("location_texf",location.getText().toString()));
-						nameValuePairs.add(new BasicNameValuePair("calendar1_texf", startcalendar.getText().toString()));
-						nameValuePairs.add(new BasicNameValuePair("calendar2_texf", endcalendar.getText().toString()));
-						httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs,"UTF-8"));
+						List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(
+								2);
+
+						nameValuePairs.add(new BasicNameValuePair(
+								"activityname_texf", activityname.getText()
+										.toString()));
+						nameValuePairs.add(new BasicNameValuePair(
+								"activitydetail_texa", activitydetail.getText()
+										.toString()));
+						nameValuePairs
+								.add(new BasicNameValuePair("location_texf",
+										location.getText().toString()));
+						nameValuePairs.add(new BasicNameValuePair(
+								"calendar1_texf", startcalendar.getText()
+										.toString()));
+						nameValuePairs.add(new BasicNameValuePair(
+								"calendar2_texf", endcalendar.getText()
+										.toString()));
+						httppost.setEntity(new UrlEncodedFormEntity(
+								nameValuePairs, "UTF-8"));
 
 						// Execute HTTP Post Request
 						HttpResponse execute = httpclient.execute(httppost);
 						InputStream content = execute.getEntity().getContent();
-						//BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
-						BufferedReader buffer = new BufferedReader(new InputStreamReader(content,"UTF-8"));
+						// BufferedReader buffer = new BufferedReader(new
+						// InputStreamReader(content));
+						BufferedReader buffer = new BufferedReader(
+								new InputStreamReader(content, "UTF-8"));
 
 						String s = "";
 						while ((s = buffer.readLine()) != null) {
@@ -189,8 +262,42 @@ public class WallPage extends Activity implements View.OnClickListener,DateWatch
 					}
 					return null;
 				}
+				
+				
+				
 
-				protected void onPostExecute(String file_url){
+				//action bar
+				@Override
+				public boolean onCreateOptionsMenu(Menu menu) {
+
+					getMenuInflater().inflate(R.menu.menubar, menu);
+					return true;
+				}
+				
+				//call
+				@Override
+				public boolean onOptionsItemSelected(MenuItem item) {
+
+					switch (item.getItemId()) {
+
+					case R.id.menu:
+						homeActivity();
+						return true;
+
+					case R.id.java:
+						javaActivity();
+						return true;
+
+					case R.id.android:
+						androidActivity();
+						return true;
+
+					default:
+						return super.onOptionsItemSelected(item);
+					}
+				//end
+				
+				protected void onPostExecute(String file_url) {
 					Handler myHandler = new Handler();
 					myHandler.postDelayed(new Runnable() {
 						@Override
@@ -204,7 +311,7 @@ public class WallPage extends Activity implements View.OnClickListener,DateWatch
 									Toast.LENGTH_SHORT).show();
 						}
 					}, 1000);
-				}
+				
 			}
 
 			// 4
@@ -223,7 +330,6 @@ public class WallPage extends Activity implements View.OnClickListener,DateWatch
 				}
 			};
 
-			
 			// pop up DateTimepicker for Start date
 			private OnClickListener showStartdatePicker = new OnClickListener() {
 				@Override
@@ -232,10 +338,13 @@ public class WallPage extends Activity implements View.OnClickListener,DateWatch
 					// Create the dialog
 					final Dialog mDateTimeDialog = new Dialog(WallPage.this);
 					// Inflate the root layout
-					final RelativeLayout mDateTimeDialogView = (RelativeLayout) getLayoutInflater().inflate(R.layout.datetimepicker, null);
-					final LinearLayout createDialogView = (LinearLayout) getLayoutInflater().inflate(R.layout.index_createactivity, null);
+					final RelativeLayout mDateTimeDialogView = (RelativeLayout) getLayoutInflater()
+							.inflate(R.layout.datetimepicker, null);
+					final LinearLayout createDialogView = (LinearLayout) getLayoutInflater()
+							.inflate(R.layout.index_createactivity, null);
 					// Grab widget instance
-					final DateTimePicker mDateTimePicker = (DateTimePicker) mDateTimeDialogView.findViewById(R.id.DateTimePicker);
+					final DateTimePicker mDateTimePicker = (DateTimePicker) mDateTimeDialogView
+							.findViewById(R.id.DateTimePicker);
 					mDateTimePicker.setDateChangedListener(WallPage.this);
 
 					// Update demo edittext when the "OK" button is clicked
@@ -373,7 +482,6 @@ public class WallPage extends Activity implements View.OnClickListener,DateWatch
 				}
 			};
 
-			
 			// pop up DateTimepicker for End date
 			private OnClickListener showEnddatePicker = new OnClickListener() {
 				@Override
@@ -527,6 +635,8 @@ public class WallPage extends Activity implements View.OnClickListener,DateWatch
 				}
 			};
 
+		
+
 			private void showCreateActivitys(View v) {
 				final Dialog createDialog = new Dialog(WallPage.this);
 				// Inflate the root layout
@@ -657,44 +767,45 @@ public class WallPage extends Activity implements View.OnClickListener,DateWatch
 				return value;
 			}
 
-			// call popup
-			public void onItemSelected(AdapterView<?> adapterView, View v,
-					int i, long l) {
-
-				if (arrList.get(i) == "check-in") {
-					// Toast.makeText(getApplication(),
-					// "Check-in",Toast.LENGTH_LONG).show();
-				} else if (arrList.get(i) == "create activity") {
-					Toast.makeText(getApplication(), "Create Activity",
-							Toast.LENGTH_LONG).show();
-					showCreateActivitys(v);
-				} else if (arrList.get(i) == "Profile") {
-//					Toast.makeText(getApplication(), "Profiles",
+//			// call popup
+//			public void onItemSelected(AdapterView<?> adapterView, View v,
+//					int i, long l) {
+//
+//				if (arrList.get(i) == "check-in") {
+//					// Toast.makeText(getApplication(),
+//					// "Check-in",Toast.LENGTH_LONG).show();
+//				} else if (arrList.get(i) == "create activity") {
+//					Toast.makeText(getApplication(), "Create Activity",
 //							Toast.LENGTH_LONG).show();
-					profile(v);
-					
-				}
-			}
+//					showCreateActivitys(v);
+//				} else if (arrList.get(i) == "Profile") {
+//					// Toast.makeText(getApplication(), "Profiles",
+//					// Toast.LENGTH_LONG).show();
+//				
+//					profile(v);
+//				}
+//			}
 
-			//showprofile
-			private void profile(View v){
-				
+			// showprofile
+			private void profile(View v) {
+								
+
 				final Dialog createDialogProfile = new Dialog(WallPage.this);
-				showDialogProfile = (LinearLayout)getLayoutInflater().inflate(R.layout.index_profile, null);
+				showDialogProfile = (LinearLayout) getLayoutInflater().inflate(R.layout.index_profile,null);
 				
-				//close 
+				//sent to profile
+				//TextView nameprofile = (TextView)findViewById(R.id.profilename_text); 
+				//nameprofile.setText(name);
+				
+			 
+				//click image close
 				((ImageView) showDialogProfile.findViewById(R.id.closeprofile))
 						.setOnClickListener(new OnClickListener() {
 							@Override
 							public void onClick(View v) {
 								createDialogProfile.cancel();
-
-				}
+							}
 				});
-
-				//name
-				//nameUserProfile = (TextView) showDialogView.findViewById(R.id.edit_name);			
-				//nameUserProfile.setOnClickListener(showEnddatePicker);
 
 				// No title on the dialog window
 				createDialogProfile.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -703,12 +814,13 @@ public class WallPage extends Activity implements View.OnClickListener,DateWatch
 				createDialogProfile.show();
 
 			}
+
 			// end profile
-			
-			
 
 			public void onNothingSelected(AdapterView<?> arg0) {
-			}});
+			}
+			}
+		
 		// check internet
 		if (isConnectInternet()) {
 			Toast.makeText(getApplication(), "Internet Error",
@@ -737,13 +849,53 @@ public class WallPage extends Activity implements View.OnClickListener,DateWatch
 		return false;
 	}
 
+	// 1. check username of username form server and select ---
+	private String selDataUser(String url, String UserNamelogin) {
+
+		// sent to check
+		HttpClient httpclient = new DefaultHttpClient();
+		HttpPost httppost = new HttpPost(url + UserNamelogin); //url
+
+		try {
+			List<NameValuePair> datauser = new ArrayList<NameValuePair>(2);
+			datauser.add(new BasicNameValuePair("chkUsername_text",UserNamelogin));
+			httppost.setEntity(new UrlEncodedFormEntity(datauser));
+
+			// Execute HTTP Post Request
+			HttpResponse response = httpclient.execute(httppost);
+			InputStream is = response.getEntity().getContent();
+			BufferedInputStream bis = new BufferedInputStream(is);
+			ByteArrayBuffer baf = new ByteArrayBuffer(20);
+
+			int current = 0;
+			while ((current = bis.read()) != -1) {
+				baf.append((byte) current);
+			}
+
+			/* Convert the Bytes read to a String. */
+			String text = new String(baf.toByteArray());
+			Log.d("result", text);
+			return text;
+		} catch (ClientProtocolException e) {
+
+		} catch (IOException e) {
+
+		}
+		return "";
+	}
+
+	// end
+
+	
+
 	// get data
 	protected class GetDataTask extends AsyncTask<String, Void, String> {
 		@Override
 		protected String doInBackground(String... arg0) {
 			// TODO Auto-generated method stub
 			HttpPhotoCheckIn httpPhotoCheckIn = new HttpPhotoCheckIn();
-			String result = httpPhotoCheckIn.connect("http://www.checkinphoto.com/android/activity/selectActivity.php");
+			String result = httpPhotoCheckIn
+					.connect("http://www.checkinphoto.com/android/activity/selectActivity.php");
 			return result;
 		}
 
@@ -752,21 +904,22 @@ public class WallPage extends Activity implements View.OnClickListener,DateWatch
 			// TODO Auto-generated method stub
 			try {
 				JSONArray jsonArray = new JSONArray(result);
-				// Log.d("JSON Array", jsonArray.toString());
+				Log.d("JSON Array", jsonArray.toString());
 
-				for (int i = 0; i < 15; i++) {
+				for (int i = 0; i <= 10; i++) {
 					hashMap = new HashMap<String, String>();
 					JSONObject jsonObject = new JSONObject(
 							jsonArray.getString(i));
 
 					// set string tail
-					String textMore = "    ´ÙµèÍ..";
+					String textMore = "  à¸­à¹ˆà¸²à¸™à¸•à¹ˆà¸­..";
 
 					// title
 					hashMap.put("title", jsonObject.getString("activityname"));
 					// detail
 					int countdetail = jsonObject.getString("activitydetail")
 							.length();
+
 					// if detail >= 120 show button more
 					if (countdetail >= 120) {
 						// set maxtext 120
@@ -789,7 +942,7 @@ public class WallPage extends Activity implements View.OnClickListener,DateWatch
 						SimpleDateFormat oldFormat = new SimpleDateFormat(
 								"yyyy-MM-dd HH:mm:ss"); // beform
 						SimpleDateFormat newFormat = new SimpleDateFormat(
-								"àÁ×èÍ HH:mm:ss    ÇÑ¹·Õè dd-MMM-yyyy"); // after
+								"à¹€à¸¡à¸·à¹ˆà¸­: HH:mm:ss    à¸§à¸±à¸™à¸—à¸µà¹ˆ: dd-MMM-yyyy"); // after
 
 						date = oldFormat.parse(dateString);
 						hashMap.put("time", newFormat.format(date));

@@ -55,7 +55,7 @@
             </FrameLayout>
 
             <TextView
-                android:id="@+id/edit_name"
+                android:id="@+id/profilename_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -83,7 +83,7 @@
                     android:src="@drawable/email_icon" />
 
                 <TextView
-                    android:id="@+id/textView1"
+                    android:id="@+id/nameuser_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="2dp"

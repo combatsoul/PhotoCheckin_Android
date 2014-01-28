@@ -130,7 +130,6 @@ public class Register extends Activity implements View.OnClickListener {
 		}
 
 		protected String doInBackground(String... args) {
-			
 			Bitmap bitmap = yourSelectedImage;
 			ByteArrayOutputStream stream = new ByteArrayOutputStream();
 			bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream); //compress to which format you want.

@@ -32,42 +32,29 @@
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/nav"
-                android:layout_width="30dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="5dp"
-                android:layout_weight="0.03"
-                android:background="@color/white" >
+                android:id="@+id/name"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_weight="0.17" >
 
-                <Spinner
-                    android:id="@+id/spinner1"
+                <TextView
+                    android:id="@+id/nameuser_text"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="2dp"
-                    android:background="@color/white"/>
-                   
-            </FrameLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="nameuser"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="14dp" />
 
-            <EditText
-                android:id="@+id/search"
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight="0.38"
-                android:background="@drawable/textfield_bg"
-                android:ems="10"
-                android:padding="5dp"
-                android:textColor="@color/grey"
-                android:textSize="14sp" />
+            </FrameLayout>
 
             <FrameLayout
                 android:id="@+id/activityupdate_icon"
                 android:layout_width="38dp"
                 android:layout_height="38dp"
                 android:layout_marginRight="2dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="7dp"
                 android:background="@drawable/circle_bg" >
 
                 <ImageView
@@ -90,8 +77,8 @@
                 android:id="@+id/adduser_icon"
                 android:layout_width="38dp"
                 android:layout_height="38dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="7dp"
                 android:layout_weight="0.00"
                 android:background="@drawable/circle_bg" >
 
@@ -101,6 +88,22 @@
                     android:layout_height="match_parent"
                     android:layout_margin="3dp"
                     android:src="@drawable/mini_adduser_icon" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/nav"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="0.03"
+                android:background="@color/white" >
+
+                <Spinner
+                    android:id="@+id/spinner1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white" />
             </FrameLayout>
         </LinearLayout>
 
@@ -114,7 +117,7 @@
     <LinearLayout
         android:id="@+id/nav_menu"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="36dp"
         android:background="@color/white"
         android:orientation="vertical"
         android:padding="3dp"
@@ -122,19 +125,20 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="35dp"
+            android:layout_weight="0.69" >
 
             <EditText
                 android:id="@+id/editText1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.41"
+                android:layout_height="30dp"
+                android:layout_weight="1.26"
                 android:background="@drawable/textfield_checkin"
                 android:ems="10"
                 android:hint="checkin this.."
                 android:paddingLeft="5dp"
                 android:textColor="@color/grey"
-                android:textSize="12dp" />
+                android:textSize="13dp" />
 
             <ImageView
                 android:id="@+id/imageView6"
