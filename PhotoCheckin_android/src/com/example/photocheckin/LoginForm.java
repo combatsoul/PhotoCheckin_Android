@@ -313,25 +313,42 @@ if (android.os.Build.VERSION.SDK_INT > 9) {
 	// check link to page ---
 	@Override
 	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.loginform_btn:
+//		switch (v.getId()) {
+//		case R.id.loginform_btn:
+//			if (btnValidateUsername(v) && btnValidatePassword(v)) {
+////				checkLogin(v);
+//				new login().execute();
+////				Intent call_index_wallpage = new Intent(this, WallPage.class);
+////				startActivity(call_index_wallpage);
+//			}
+//			break;
+//		case R.id.register_btnimg:
+//			Intent call_registerbtn = new Intent(this, Register.class);
+//			startActivity(call_registerbtn);
+//			break;
+//			
+//		 case R.id.forgetpass_btn:
+//             Intent call_forgetpassword = new Intent(this, ForgetPassword.class);
+//             startActivity(call_forgetpassword);                        
+//             break; 
+//		}
+		
+		//edit
+		int id = v.getId();
+		if (id == R.id.loginform_btn) {
 			if (btnValidateUsername(v) && btnValidatePassword(v)) {
-//				checkLogin(v);
 				new login().execute();
-//				Intent call_index_wallpage = new Intent(this, WallPage.class);
-//				startActivity(call_index_wallpage);
 			}
-			break;
-		case R.id.register_btnimg:
+		} 
+		else if (id == R.id.register_btnimg) {
 			Intent call_registerbtn = new Intent(this, Register.class);
 			startActivity(call_registerbtn);
-			break;
-			
-		 case R.id.forgetpass_btn:
-             Intent call_forgetpassword = new Intent(this, ForgetPassword.class);
-             startActivity(call_forgetpassword);                        
-             break; 
+		} 
+		else if (id == R.id.forgetpass_btn) {
+            Intent call_forgetpassword = new Intent(this, ForgetPassword.class);
+            startActivity(call_forgetpassword);   
 		}
+		
 	}
 
 }

@@ -266,53 +266,53 @@ public class WallPage extends Activity implements View.OnClickListener,DateWatch
 				
 				
 
-				//action bar
-				@Override
-				public boolean onCreateOptionsMenu(Menu menu) {
-
-					getMenuInflater().inflate(R.menu.menubar, menu);
-					return true;
-				}
-				
-				//call
-				@Override
-				public boolean onOptionsItemSelected(MenuItem item) {
-
-					switch (item.getItemId()) {
-
-					case R.id.menu:
-						homeActivity();
-						return true;
-
-					case R.id.java:
-						javaActivity();
-						return true;
-
-					case R.id.android:
-						androidActivity();
-						return true;
-
-					default:
-						return super.onOptionsItemSelected(item);
-					}
-				//end
-				
-				protected void onPostExecute(String file_url) {
-					Handler myHandler = new Handler();
-					myHandler.postDelayed(new Runnable() {
-						@Override
-						public void run() {
-							finish();
-							Intent goMain = new Intent(getApplicationContext(),
-									WallPage.class);
-							startActivity(goMain);
-							Toast.makeText(WallPage.this,
-									"Create activity complete",
-									Toast.LENGTH_SHORT).show();
-						}
-					}, 1000);
-				
-			}
+//				//action bar
+//				@Override
+//				public boolean onCreateOptionsMenu(Menu menu) {
+//
+//					getMenuInflater().inflate(R.menu.menubar, menu);
+//					return true;
+//				}
+//				
+//				//call
+//				@Override
+//				public boolean onOptionsItemSelected(MenuItem item) {
+//
+//					switch (item.getItemId()) {
+//
+//					case R.id.menu:
+//						homeActivity();
+//						return true;
+//
+//					case R.id.java:
+//						javaActivity();
+//						return true;
+//
+//					case R.id.android:
+//						androidActivity();
+//						return true;
+//
+//					default:
+//						return super.onOptionsItemSelected(item);
+//					}
+//				//end
+//				
+//				protected void onPostExecute(String file_url) {
+//					Handler myHandler = new Handler();
+//					myHandler.postDelayed(new Runnable() {
+//						@Override
+//						public void run() {
+//							finish();
+//							Intent goMain = new Intent(getApplicationContext(),
+//									WallPage.class);
+//							startActivity(goMain);
+//							Toast.makeText(WallPage.this,
+//									"Create activity complete",
+//									Toast.LENGTH_SHORT).show();
+//						}
+//					}, 1000);
+//				
+//			}
 
 			// 4
 			private OnClickListener cancel_button_click_listener = new OnClickListener() {

@@ -143,13 +143,23 @@ public class ForgetPassword extends Activity implements View.OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.ok_btn:
+//		switch (v.getId()) {
+//		case R.id.ok_btn:
+//			if (btnValidateEmail(v)) {
+//				new forgetpass().execute();
+//			}
+//			break;
+//
+//		}
+		
+		//edit
+		int id = v.getId();
+		if (id == R.id.ok_btn) {
 			if (btnValidateEmail(v)) {
 				new forgetpass().execute();
 			}
-			break;
-
-		}
+		} 
+		//end
+		
 	}
 }

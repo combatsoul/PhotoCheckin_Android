@@ -23,12 +23,22 @@ public class resultForgetPassword extends Activity implements View.OnClickListen
 
 	@Override
 	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.login_btn:				
-				Intent call_index_wallpage = new Intent(this, LoginForm.class);
-				startActivity(call_index_wallpage);
-			break;
-
+//		switch (v.getId()) {
+//		case R.id.login_btn:				
+//				Intent call_index_wallpage = new Intent(this, LoginForm.class);
+//				startActivity(call_index_wallpage);
+//			break;
+//
+//		}
+		
+		//edit
+		int id = v.getId();
+		if(id == R.id.login_btn){
+			Intent call_index_wallpage = new Intent(this, LoginForm.class);
+			startActivity(call_index_wallpage);
 		}
+		
+		
+		
 	}
 }
