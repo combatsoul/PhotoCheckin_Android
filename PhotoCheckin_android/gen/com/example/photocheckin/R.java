@@ -8,6 +8,9 @@
 package com.example.photocheckin;
 
 public final class R {
+    public static final class array {
+        public static final int planets_array=0x7f090000;
+    }
     public static final class attr {
         /** 
     The size of the ad. It must be one of BANNER, FULL_BANNER, LEADERBOARD,
@@ -216,95 +219,97 @@ containing a value of this type.
         public static final int bg_boxlist=0x7f020006;
         public static final int bg_displayprofile=0x7f020007;
         public static final int bg_login=0x7f020008;
-        public static final int bg_pictureprofile=0x7f020009;
-        public static final int bg_present=0x7f02000a;
-        public static final int bg_register=0x7f02000b;
-        public static final int blue_btn=0x7f02000c;
-        public static final int borderbuttom_bg_texf=0x7f02000d;
-        public static final int bordertop_bg_texf=0x7f02000e;
-        public static final int button_hover=0x7f02000f;
-        public static final int calendar_icon1=0x7f020010;
-        public static final int camera_checkin=0x7f020011;
-        public static final int circle_bg=0x7f020012;
-        public static final int close=0x7f020013;
-        public static final int closeprofile=0x7f020014;
-        public static final int common_signin_btn_icon_dark=0x7f020015;
-        public static final int common_signin_btn_icon_disabled_dark=0x7f020016;
-        public static final int common_signin_btn_icon_disabled_focus_dark=0x7f020017;
-        public static final int common_signin_btn_icon_disabled_focus_light=0x7f020018;
-        public static final int common_signin_btn_icon_disabled_light=0x7f020019;
-        public static final int common_signin_btn_icon_focus_dark=0x7f02001a;
-        public static final int common_signin_btn_icon_focus_light=0x7f02001b;
-        public static final int common_signin_btn_icon_light=0x7f02001c;
-        public static final int common_signin_btn_icon_normal_dark=0x7f02001d;
-        public static final int common_signin_btn_icon_normal_light=0x7f02001e;
-        public static final int common_signin_btn_icon_pressed_dark=0x7f02001f;
-        public static final int common_signin_btn_icon_pressed_light=0x7f020020;
-        public static final int common_signin_btn_text_dark=0x7f020021;
-        public static final int common_signin_btn_text_disabled_dark=0x7f020022;
-        public static final int common_signin_btn_text_disabled_focus_dark=0x7f020023;
-        public static final int common_signin_btn_text_disabled_focus_light=0x7f020024;
-        public static final int common_signin_btn_text_disabled_light=0x7f020025;
-        public static final int common_signin_btn_text_focus_dark=0x7f020026;
-        public static final int common_signin_btn_text_focus_light=0x7f020027;
-        public static final int common_signin_btn_text_light=0x7f020028;
-        public static final int common_signin_btn_text_normal_dark=0x7f020029;
-        public static final int common_signin_btn_text_normal_light=0x7f02002a;
-        public static final int common_signin_btn_text_pressed_dark=0x7f02002b;
-        public static final int common_signin_btn_text_pressed_light=0x7f02002c;
-        public static final int createactivity_bg=0x7f02002d;
-        public static final int cross=0x7f02002e;
-        public static final int detail=0x7f02002f;
-        public static final int display=0x7f020030;
-        public static final int email=0x7f020031;
-        public static final int email_icon=0x7f020032;
-        public static final int forgot_password=0x7f020033;
-        public static final int gradient_bg=0x7f020034;
-        public static final int gradient_bg_hover=0x7f020035;
-        public static final int ic_launcher=0x7f020036;
-        public static final int ic_plusone_medium_off_client=0x7f020037;
-        public static final int ic_plusone_small_off_client=0x7f020038;
-        public static final int ic_plusone_standard_off_client=0x7f020039;
-        public static final int ic_plusone_tall_off_client=0x7f02003a;
-        public static final int image_bg=0x7f02003b;
-        public static final int inaccept_icon=0x7f02003c;
-        public static final int likeheart_icon=0x7f02003d;
-        public static final int list_selector=0x7f02003e;
-        public static final int mini_adduser_icon=0x7f02003f;
-        public static final int mini_checkin_icon=0x7f020040;
-        public static final int mini_comment_icon=0x7f020041;
-        public static final int nav_icon=0x7f020042;
-        public static final int picker_bottom=0x7f020043;
-        public static final int picker_middle=0x7f020044;
-        public static final int picker_top=0x7f020045;
-        public static final int present=0x7f020046;
-        public static final int profile_pic=0x7f020047;
-        public static final int register_icon=0x7f020048;
-        public static final int search=0x7f020049;
-        public static final int secrecy_icon=0x7f02004a;
-        public static final int star_icon=0x7f02004b;
-        public static final int textarea_bg=0x7f02004c;
-        public static final int textfield_bg=0x7f02004d;
-        public static final int textfield_checkin=0x7f02004e;
-        public static final int topbar=0x7f02004f;
-        public static final int user_icon=0x7f020050;
-        public static final int user_profile=0x7f020051;
-        public static final int white_bg_btn=0x7f020052;
+        public static final int bg_nav_list=0x7f020009;
+        public static final int bg_pictureprofile=0x7f02000a;
+        public static final int bg_present=0x7f02000b;
+        public static final int bg_register=0x7f02000c;
+        public static final int blue_btn=0x7f02000d;
+        public static final int borderbuttom_bg_texf=0x7f02000e;
+        public static final int bordertop_bg_texf=0x7f02000f;
+        public static final int button_hover=0x7f020010;
+        public static final int calendar_icon1=0x7f020011;
+        public static final int camera_checkin=0x7f020012;
+        public static final int circle_bg=0x7f020013;
+        public static final int close=0x7f020014;
+        public static final int closeprofile=0x7f020015;
+        public static final int common_signin_btn_icon_dark=0x7f020016;
+        public static final int common_signin_btn_icon_disabled_dark=0x7f020017;
+        public static final int common_signin_btn_icon_disabled_focus_dark=0x7f020018;
+        public static final int common_signin_btn_icon_disabled_focus_light=0x7f020019;
+        public static final int common_signin_btn_icon_disabled_light=0x7f02001a;
+        public static final int common_signin_btn_icon_focus_dark=0x7f02001b;
+        public static final int common_signin_btn_icon_focus_light=0x7f02001c;
+        public static final int common_signin_btn_icon_light=0x7f02001d;
+        public static final int common_signin_btn_icon_normal_dark=0x7f02001e;
+        public static final int common_signin_btn_icon_normal_light=0x7f02001f;
+        public static final int common_signin_btn_icon_pressed_dark=0x7f020020;
+        public static final int common_signin_btn_icon_pressed_light=0x7f020021;
+        public static final int common_signin_btn_text_dark=0x7f020022;
+        public static final int common_signin_btn_text_disabled_dark=0x7f020023;
+        public static final int common_signin_btn_text_disabled_focus_dark=0x7f020024;
+        public static final int common_signin_btn_text_disabled_focus_light=0x7f020025;
+        public static final int common_signin_btn_text_disabled_light=0x7f020026;
+        public static final int common_signin_btn_text_focus_dark=0x7f020027;
+        public static final int common_signin_btn_text_focus_light=0x7f020028;
+        public static final int common_signin_btn_text_light=0x7f020029;
+        public static final int common_signin_btn_text_normal_dark=0x7f02002a;
+        public static final int common_signin_btn_text_normal_light=0x7f02002b;
+        public static final int common_signin_btn_text_pressed_dark=0x7f02002c;
+        public static final int common_signin_btn_text_pressed_light=0x7f02002d;
+        public static final int createactivity_bg=0x7f02002e;
+        public static final int cross=0x7f02002f;
+        public static final int detail=0x7f020030;
+        public static final int display=0x7f020031;
+        public static final int email=0x7f020032;
+        public static final int email_icon=0x7f020033;
+        public static final int forgot_password=0x7f020034;
+        public static final int gradient_bg=0x7f020035;
+        public static final int gradient_bg_hover=0x7f020036;
+        public static final int ic_launcher=0x7f020037;
+        public static final int ic_plusone_medium_off_client=0x7f020038;
+        public static final int ic_plusone_small_off_client=0x7f020039;
+        public static final int ic_plusone_standard_off_client=0x7f02003a;
+        public static final int ic_plusone_tall_off_client=0x7f02003b;
+        public static final int image_bg=0x7f02003c;
+        public static final int inaccept_icon=0x7f02003d;
+        public static final int likeheart_icon=0x7f02003e;
+        public static final int list_selector=0x7f02003f;
+        public static final int mini_adduser_icon=0x7f020040;
+        public static final int mini_checkin_icon=0x7f020041;
+        public static final int mini_comment_icon=0x7f020042;
+        public static final int nav_icon=0x7f020043;
+        public static final int nav_list=0x7f020044;
+        public static final int picker_bottom=0x7f020045;
+        public static final int picker_middle=0x7f020046;
+        public static final int picker_top=0x7f020047;
+        public static final int present=0x7f020048;
+        public static final int profile_pic=0x7f020049;
+        public static final int register_icon=0x7f02004a;
+        public static final int search=0x7f02004b;
+        public static final int secrecy_icon=0x7f02004c;
+        public static final int star_icon=0x7f02004d;
+        public static final int textarea_bg=0x7f02004e;
+        public static final int textfield_bg=0x7f02004f;
+        public static final int textfield_checkin=0x7f020050;
+        public static final int topbar=0x7f020051;
+        public static final int user_icon=0x7f020052;
+        public static final int user_profile=0x7f020053;
+        public static final int white_bg_btn=0x7f020054;
     }
     public static final class id {
         public static final int Add_Activity=0x7f050067;
         public static final int CancelDialog=0x7f05001f;
-        public static final int Checkin=0x7f05006a;
+        public static final int Checkin=0x7f05006b;
         public static final int ControlButtons=0x7f05001c;
-        public static final int Dashboard=0x7f050069;
+        public static final int Dashboard=0x7f05006a;
         public static final int DateTimeDialog=0x7f05001b;
         public static final int DateTimePicker=0x7f050005;
         public static final int Detail=0x7f050063;
         public static final int ImagePost=0x7f050064;
         public static final int ImageView02=0x7f050048;
-        public static final int ImageView07=0x7f05006c;
-        public static final int ImageView08=0x7f05006f;
-        public static final int LinearLayout04=0x7f05006b;
+        public static final int ImageView07=0x7f05006d;
+        public static final int ImageView08=0x7f050070;
+        public static final int LinearLayout04=0x7f05006c;
         public static final int LinearLayout1=0x7f050032;
         public static final int LinearLayout2=0x7f050042;
         public static final int More_text=0x7f050054;
@@ -312,13 +317,13 @@ containing a value of this type.
         public static final int ResetDateTime=0x7f05001e;
         public static final int SetDateTime=0x7f05001d;
         public static final int TextView03=0x7f050049;
-        public static final int TextView14=0x7f050070;
-        public static final int TextView15=0x7f05006e;
-        public static final int TextView16=0x7f05006d;
+        public static final int TextView14=0x7f050071;
+        public static final int TextView15=0x7f05006f;
+        public static final int TextView16=0x7f05006e;
         public static final int Time=0x7f050068;
         public static final int Title=0x7f050062;
         public static final int TopMenu=0x7f050050;
-        public static final int action_settings=0x7f050074;
+        public static final int action_settings=0x7f050075;
         public static final int activitydetail_texa=0x7f050028;
         public static final int activityname_texf=0x7f050026;
         public static final int activityroom_btn=0x7f050060;
@@ -328,7 +333,7 @@ containing a value of this type.
         public static final int calendar1_texf=0x7f05002c;
         public static final int calendar2_texf=0x7f05002f;
         public static final int checkedTextView1=0x7f050035;
-        public static final int checkin_textbtn=0x7f050073;
+        public static final int checkin_textbtn=0x7f050074;
         public static final int closeprofile=0x7f050045;
         public static final int confirm_password_texf=0x7f05004e;
         public static final int date_container=0x7f05000b;
@@ -389,20 +394,21 @@ containing a value of this type.
         public static final int pictureprofile=0x7f05003b;
         public static final int profile_btn=0x7f05005f;
         public static final int profilename_text=0x7f050046;
-        public static final int progressBar1=0x7f050071;
+        public static final int progressBar1=0x7f050072;
         public static final int register_btn=0x7f05004f;
         public static final int register_btnimg=0x7f050041;
         public static final int register_txt=0x7f05004a;
         public static final int satellite=0x7f050002;
         public static final int scrollView1=0x7f05003a;
         public static final int search_texf=0x7f050022;
-        public static final int spinner1=0x7f050058;
+        public static final int spinner=0x7f050058;
+        public static final int spinner_show=0x7f050069;
         public static final int success=0x7f05003c;
         public static final int terrain=0x7f050003;
         public static final int textView3=0x7f050029;
         public static final int textView4=0x7f05002b;
         public static final int textView5=0x7f05002e;
-        public static final int tryEmail_btn=0x7f050072;
+        public static final int tryEmail_btn=0x7f050073;
         public static final int username_texf=0x7f05004c;
         public static final int wallpage_btn=0x7f05005e;
         public static final int year_container=0x7f05000f;
@@ -427,14 +433,16 @@ containing a value of this type.
         public static final int index_wallpage=0x7f03000a;
         public static final int intro_main=0x7f03000b;
         public static final int list_box=0x7f03000c;
-        public static final int photocheckin_detail=0x7f03000d;
-        public static final int result_forgetpassword=0x7f03000e;
-        public static final int result_invalidforgetpassword=0x7f03000f;
-        public static final int result_register=0x7f030010;
-        public static final int spinnerlist=0x7f030011;
+        public static final int main=0x7f03000d;
+        public static final int photocheckin_detail=0x7f03000e;
+        public static final int result_forgetpassword=0x7f03000f;
+        public static final int result_invalidforgetpassword=0x7f030010;
+        public static final int result_register=0x7f030011;
+        public static final int spinner_op=0x7f030012;
+        public static final int spinnerlist=0x7f030013;
     }
     public static final class menu {
-        public static final int intro_main=0x7f0a0000;
+        public static final int intro_main=0x7f0b0000;
     }
     public static final class string {
         public static final int action_settings=0x7f06001b;
@@ -551,11 +559,11 @@ containing a value of this type.
     
  API 11 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f090000;
+        public static final int AppBaseTheme=0x7f0a0000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f090001;
+        public static final int AppTheme=0x7f0a0001;
     }
     public static final class styleable {
         /** Attributes that can be used with a AdsAttrs.
