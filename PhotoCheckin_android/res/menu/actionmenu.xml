@@ -7,8 +7,8 @@
         android:showAsAction="always"/>
     <item
         android:id="@+id/refresh"
-        android:layout_marginRight="15sp"
         android:icon="@drawable/refresh_icon"
+        android:orderInCategory="50"
         android:showAsAction="always"/>
 
     <!-- submenu -->
@@ -16,23 +16,22 @@
         android:id="@+id/checkin"
         android:orderInCategory="50"
         android:showAsAction="never"
-        android:title="Checkin Photo">
-        <item
-            android:id="@+id/createactivity"
-            android:orderInCategory="50"
-            android:showAsAction="never"
-            android:title="Create Activity"/>
-        <item
-            android:id="@+id/profile"
-            android:orderInCategory="50"
-            android:showAsAction="never"
-            android:title="Edit Profile"/>
-        <item
-            android:id="@+id/Logout"
-            android:icon="@drawable/logout_icon"
-            android:orderInCategory="50"
-            android:showAsAction="never"
-            android:title="Logout"/>
-    </item>
+        android:title="Checkin Photo"/>
+    <item
+        android:id="@+id/createactivity"
+        android:orderInCategory="50"
+        android:showAsAction="never"
+        android:title="Create Activity"/>
+    <item
+        android:id="@+id/profile"
+        android:orderInCategory="50"
+        android:showAsAction="never"
+        android:title="Edit Profile"/>
+    <item
+        android:id="@+id/Logout"
+        android:icon="@drawable/logout_icon"
+        android:orderInCategory="50"
+        android:showAsAction="never"
+        android:title="Logout"/>
 
 </menu>

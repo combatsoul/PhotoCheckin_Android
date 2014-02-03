@@ -23,9 +23,7 @@ public class Profile extends Activity implements View.OnClickListener {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.index_profile);
-		
-		//call
-		getDataProfile();
+ 
 	}
 
 	
@@ -33,24 +31,6 @@ public class Profile extends Activity implements View.OnClickListener {
 	public void onClick(View v) {
 			
 	}
-	
-	public void getDataProfile(){
-
-		String getName = getIntent().getStringExtra("Name_Profile");
-		String getImage = getIntent().getStringExtra("Image_Profile");
-		//ImageView getImage = (ImageView).getStringExtra("Image_Profile");
-		
- 		
-		//name
-		TextView varName = (TextView)findViewById(R.id.profilename_text);
-		varName.setText(getName);
-		
-		ImageView varImage = (ImageView)findViewById(R.id.PictureProfile);
-		varImage.setTag(getName);
-		
-		 
-	}
-	
  
 	
 }

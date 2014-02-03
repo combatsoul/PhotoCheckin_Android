@@ -167,7 +167,6 @@ containing a value of this type.
         public static final int zOrderOnTop=0x7f010010;
     }
     public static final class color {
-        public static final int BGbuledrak=0x7f04001e;
         public static final int background=0x7f04000c;
         public static final int bg_org=0x7f040017;
         public static final int black=0x7f040013;
@@ -197,6 +196,7 @@ containing a value of this type.
         public static final int greenlight=0x7f04000f;
         public static final int grey=0x7f04000b;
         public static final int greyblack=0x7f040015;
+        public static final int linebuledrak=0x7f04001e;
         public static final int orange=0x7f04001c;
         public static final int orangedark=0x7f040012;
         public static final int orangelight=0x7f040011;
@@ -308,66 +308,67 @@ containing a value of this type.
         public static final int white_bg_btn=0x7f02005a;
     }
     public static final class id {
-        public static final int Add_Activity=0x7f05005c;
+        public static final int Add_Activity=0x7f05005d;
         public static final int CancelDialog=0x7f05001f;
-        public static final int Checkin=0x7f050061;
+        public static final int Checkin=0x7f050062;
         public static final int ControlButtons=0x7f05001c;
-        public static final int Dashboard=0x7f050060;
+        public static final int Dashboard=0x7f050061;
         public static final int DateTimeDialog=0x7f05001b;
         public static final int DateTimePicker=0x7f050005;
-        public static final int Detail=0x7f050058;
-        public static final int ImagePost=0x7f050059;
-        public static final int ImageView02=0x7f050048;
-        public static final int ImageView07=0x7f050063;
-        public static final int ImageView08=0x7f050066;
-        public static final int LinearLayout04=0x7f050062;
+        public static final int Detail=0x7f050059;
+        public static final int ImagePost=0x7f05005a;
+        public static final int ImageView02=0x7f050049;
+        public static final int ImageView07=0x7f050064;
+        public static final int ImageView08=0x7f050067;
+        public static final int LinearLayout04=0x7f050063;
         public static final int LinearLayout1=0x7f050032;
         public static final int LinearLayout2=0x7f050042;
-        public static final int Logout=0x7f050070;
-        public static final int PictureProfile=0x7f050033;
-        public static final int RelativeLayout1=0x7f050051;
+        public static final int Logout=0x7f050071;
+        public static final int PictureProfilePage=0x7f050046;
+        public static final int RelativeLayout1=0x7f050052;
         public static final int ResetDateTime=0x7f05001e;
         public static final int SetDateTime=0x7f05001d;
-        public static final int TextView03=0x7f050049;
-        public static final int TextView14=0x7f050067;
-        public static final int TextView15=0x7f050065;
-        public static final int TextView16=0x7f050064;
-        public static final int Time=0x7f05005d;
-        public static final int Title=0x7f050057;
-        public static final int action_settings=0x7f050071;
+        public static final int TextView03=0x7f05004a;
+        public static final int TextView14=0x7f050068;
+        public static final int TextView15=0x7f050066;
+        public static final int TextView16=0x7f050065;
+        public static final int Time=0x7f05005e;
+        public static final int Title=0x7f050058;
+        public static final int action_settings=0x7f050072;
         public static final int activitydetail_texa=0x7f050028;
         public static final int activityname_texf=0x7f050026;
-        public static final int activityroom_btn=0x7f050055;
+        public static final int activityroom_btn=0x7f050056;
         public static final int btn_create_popup=0x7f050031;
         public static final int calendar1_texf=0x7f05002c;
         public static final int calendar2_texf=0x7f05002f;
         public static final int checkedTextView1=0x7f050035;
-        public static final int checkin=0x7f05006d;
-        public static final int checkin_photo=0x7f05006b;
-        public static final int checkin_textbtn=0x7f05006a;
+        public static final int checkin=0x7f05006e;
+        public static final int checkin_photo=0x7f05006c;
+        public static final int checkin_textbtn=0x7f05006b;
         public static final int closeprofile=0x7f050045;
-        public static final int confirm_password_texf=0x7f05004e;
-        public static final int createactivity=0x7f05006e;
+        public static final int confirm_password_texf=0x7f05004f;
+        public static final int createactivity=0x7f05006f;
         public static final int date_container=0x7f05000b;
         public static final int date_display=0x7f05000d;
         public static final int date_minus=0x7f05000e;
         public static final int date_plus=0x7f05000c;
-        public static final int detail_textv=0x7f050034;
-        public static final int display=0x7f05005e;
+        public static final int detail_textv=0x7f050033;
+        public static final int display=0x7f05005f;
         public static final int edit_email=0x7f050027;
         public static final int email_texf=0x7f050036;
         public static final int forgetpass_btn=0x7f050040;
-        public static final int heartlike=0x7f05005a;
-        public static final int heartlike_count=0x7f05005b;
+        public static final int heartlike=0x7f05005b;
+        public static final int heartlike_count=0x7f05005c;
         public static final int hour_container=0x7f050013;
         public static final int hour_display=0x7f050015;
         public static final int hour_minus=0x7f050016;
         public static final int hour_plus=0x7f050014;
         public static final int hybrid=0x7f050004;
         public static final int imageCross=0x7f050021;
-        public static final int imagePrifile=0x7f050056;
+        public static final int imagePrifile=0x7f050057;
         public static final int imageSearch=0x7f050023;
-        public static final int imageView3=0x7f050047;
+        public static final int imageView1=0x7f050034;
+        public static final int imageView3=0x7f050048;
         public static final int imagecalendar1=0x7f05002d;
         public static final int imagecalendar2=0x7f050030;
         public static final int layout=0x7f050043;
@@ -375,7 +376,7 @@ containing a value of this type.
         public static final int linearLayout1=0x7f050006;
         public static final int linearMenu=0x7f050020;
         public static final int location_texf=0x7f05002a;
-        public static final int login_btn=0x7f050052;
+        public static final int login_btn=0x7f050053;
         public static final int login_password_texf=0x7f05003e;
         public static final int login_username_texf=0x7f05003d;
         public static final int loginform_btn=0x7f05003f;
@@ -389,24 +390,24 @@ containing a value of this type.
         public static final int month_display=0x7f050009;
         public static final int month_minus=0x7f05000a;
         public static final int month_plus=0x7f050008;
-        public static final int name=0x7f05005f;
-        public static final int name_texf=0x7f05004b;
+        public static final int name=0x7f050060;
+        public static final int name_texf=0x7f05004c;
         public static final int nameuser_text=0x7f050025;
-        public static final int nav_menu=0x7f050050;
+        public static final int nav_menu=0x7f050051;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
         public static final int ok_btn=0x7f050037;
         public static final int output=0x7f050024;
-        public static final int password_texf=0x7f05004d;
+        public static final int password_texf=0x7f05004e;
         public static final int pictureprofile=0x7f05003b;
-        public static final int profile=0x7f05006f;
-        public static final int profile_btn=0x7f050054;
-        public static final int profilename_text=0x7f050046;
-        public static final int progressBar1=0x7f050068;
-        public static final int refresh=0x7f05006c;
-        public static final int register_btn=0x7f05004f;
+        public static final int profile=0x7f050070;
+        public static final int profile_btn=0x7f050055;
+        public static final int profilename_text=0x7f050047;
+        public static final int progressBar1=0x7f050069;
+        public static final int refresh=0x7f05006d;
+        public static final int register_btn=0x7f050050;
         public static final int register_btnimg=0x7f050041;
-        public static final int register_txt=0x7f05004a;
+        public static final int register_txt=0x7f05004b;
         public static final int satellite=0x7f050002;
         public static final int scrollView1=0x7f05003a;
         public static final int search_texf=0x7f050022;
@@ -415,9 +416,9 @@ containing a value of this type.
         public static final int textView3=0x7f050029;
         public static final int textView4=0x7f05002b;
         public static final int textView5=0x7f05002e;
-        public static final int tryEmail_btn=0x7f050069;
-        public static final int username_texf=0x7f05004c;
-        public static final int wallpage_btn=0x7f050053;
+        public static final int tryEmail_btn=0x7f05006a;
+        public static final int username_texf=0x7f05004d;
+        public static final int wallpage_btn=0x7f050054;
         public static final int year_container=0x7f05000f;
         public static final int year_display=0x7f050011;
         public static final int year_minus=0x7f050012;
@@ -560,11 +561,19 @@ containing a value of this type.
 
 
 
+
+
+
+
     
 
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
+
+
+
+
 
 
 
@@ -578,7 +587,6 @@ containing a value of this type.
          */
         public static final int AppBaseTheme=0x7f0a0000;
         /**  Application theme. 
- All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f0a0001;
     }

@@ -8,8 +8,8 @@
     <LinearLayout
         android:id="@+id/nav_menu"
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/BGbuledrak"
+        android:layout_height="3dp"
+        android:background="@color/linebuledrak"
         android:orientation="vertical"
     
         android:shadowDx="10" >
