@@ -34,6 +34,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -44,6 +45,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.ParseException;
@@ -89,9 +91,9 @@ import com.example.photocheckin.R;
 import com.example.photocheckin.http.HttpPhotoCheckIn;
 import com.google.android.gms.internal.ar;
 
-
 public class WallPage extends Activity implements View.OnClickListener,DateWatcher {
-
+	
+	private String Name;
 	private String TAG = "WallPage";
 	private ListView listview;
 	private LazyAdapter adapter;  
@@ -123,51 +125,73 @@ public class WallPage extends Activity implements View.OnClickListener,DateWatch
 	private String name;
 	private Spinner spinner;
 
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		//requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.index_wallpage);
 		
- 
+		//ซ่อน
+		//getActionBar().setDisplayShowTitleEnabled(false);
+		//getActionBar().setDisplayShowHomeEnabled(false);
+		//color titlebar
+		 
+	//	ActionBar actionBar = getActionBar();
+	//	actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_org));
+	 
+	 
 		
-		//sprint
-		 int arr_images[] = {
-				 R.drawable.arrow_up_hover,
-                 R.drawable.arrow_down_hover,
-                 R.drawable.back_left,
-                 };
-		 final List<Integer> arrList = new ArrayList<Integer>();
-		spinner = (Spinner) findViewById(R.id.spinner);
-		ArrayAdapter<CharSequence> adapterS = ArrayAdapter.createFromResource(this,R.array.planets_array, android.R.layout.simple_spinner_item);	
-		adapterS.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinner.setAdapter(adapterS);
-		spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+		//hiding default app icon
+		ActionBar actionBar = getActionBar();
+		actionBar.setDisplayShowHomeEnabled(false);
+		actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.topbar));
+		
+		//displaying custom ActionBar
+		View mActionBarView = getLayoutInflater().inflate(R.layout.my_action_bar, null);
+		actionBar.setCustomView(mActionBarView);
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+		
+		
+//		//sprint
+// 
+//		final List<Integer> arrList = new ArrayList<Integer>();
+//		spinner = (Spinner) findViewById(R.id.spinner);
+//		ArrayAdapter<CharSequence> adapterS = ArrayAdapter.createFromResource(this,R.array.planets_array, android.R.layout.simple_spinner_item);	
+//		adapterS.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//		spinner.setAdapter(adapterS);
+//		spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+//
+//            @Override
+//            public void onItemSelected(AdapterView<?> arg0, View arg1,int arg2, long arg3) {
+//            	//Toast.makeText(WallPage.this, "select "+arg2+"", Toast.LENGTH_SHORT).show();
+//                
+//                if(arg2 == 0){
+//                	//showCreateActivitys(v);
+//                }
+//                else if(arg2 == 1){
+//                	profile();
+//                }               
+//
+//            }
 
-            @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1,int arg2, long arg3) {
-            	//Toast.makeText(WallPage.this, "select "+arg2+"", Toast.LENGTH_SHORT).show();
-                
-                if(arg2 == 0){
-                	//showCreateActivitys(v);
-                }
-                else if(arg2 == 1){
-                	profile();
-                }               
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
-                // TODO Auto-generated method stub
-
-            }
-        });
+//            
+//            @Override
+//            public void onNothingSelected(AdapterView<?> arg0) {
+//                // TODO Auto-generated method stub
+//
+//            }
+//       
+//        });
 		
 	// end
  
 			
 			
+
+		
+		
+		 
 		// get username form login
 		String UserNamelogin = getIntent().getStringExtra("username");
 
@@ -175,21 +199,29 @@ public class WallPage extends Activity implements View.OnClickListener,DateWatch
 		ImageView imageViewProfile = (ImageView) findViewById(R.id.pictureprofile);
 		TextView textViewName = (TextView) findViewById(R.id.nameuser_text);
 
-		String imageJson = selDataUser(
-				"http://www.checkinphoto.com/android/userprofile/seluser.php?username=",
-				UserNamelogin);
+		String imageJson = selDataUser("http://www.checkinphoto.com/android/userprofile/seluser.php?username=",UserNamelogin);
 		JSONArray jsonArray;
 		try {
 			jsonArray = new JSONArray(imageJson);
 			for (int i = 0; i < jsonArray.length(); i++) {
 				JSONObject jsonObject = new JSONObject(jsonArray.getString(i));
 
-				ImageLoader imageLoader = new ImageLoader(
-						jsonObject.getString("pic"), imageViewProfile);
+				ImageLoader imageLoader = new ImageLoader(jsonObject.getString("pic"),imageViewProfile);
 				textViewName.setText(jsonObject.getString("name"));
-
 				name = jsonObject.getString("name");
-				Log.d(TAG, "Name " + name);
+ 
+				//sent value name and picture  to Profile
+				Intent goProfile = new Intent(getApplicationContext(),Profile.class);
+				goProfile.putExtra("Name_Profile",name);
+				goProfile.putExtra("Image_Profile",jsonObject.getString("pic"));
+				
+				startActivity(goProfile);
+			
+				//goProfile.putExtra("Image_Profile",pic);
+				//goProfile.putExtra("username",input_username.getText().toString());
+				//Log.d(TAG, "NameProfile============> " + name);
+				//end sent value
+			
 			}
 
 			// TextView varName = (TextView)findViewById(R.id.profilename_text);
@@ -203,19 +235,11 @@ public class WallPage extends Activity implements View.OnClickListener,DateWatch
 		hashMap = new HashMap<String, String>();
 		new GetDataTask().execute();
 	
-		
-		//sprinner
 	
-		
-		//end
-		
+
 		
 		
-		
-		
-		
-		
-		
+ 
 		
 		// Create activity
 		class createactivity extends AsyncTask<String, String, String> {
@@ -743,18 +767,12 @@ public class WallPage extends Activity implements View.OnClickListener,DateWatch
 				}
 				return value;
 			}
-
-			// action bar --
-
-//			public boolean onCreateOptionsMenu(Menu menu) {
-//				MenuInflater inflater = getMenuInflater();
-//				inflater.inflate(R.menu.main, menu);
-//				return true;
-//			}
-
-			// end profile
+ 
 			public void onNothingSelected(AdapterView<?> arg0) {
+				
+				
 			}
+			
 		}
 
 		// check internet
@@ -825,44 +843,18 @@ public class WallPage extends Activity implements View.OnClickListener,DateWatch
 	// end
 
 	
-	
-	
-//	// action bar --
-//	@Override
-//	public boolean onCreateOptionsMenu(Menu menu) {
-//		MenuInflater inflater = getMenuInflater();
-//		inflater.inflate(R.menu.main, menu);
-//		return true;
-//	}
-//	@Override
-//	public boolean onOptionsItemSelected(MenuItem item) {
-//		int chkID = item.getItemId();
-//		if (chkID == R.id.sub_Checkin) {
-//			Toast.makeText(this, "Select Chceckin", Toast.LENGTH_SHORT).show();
-//		} else if (chkID == R.id.sub_Create) {
-//			 
-//			//showCreateActivitys();
-//
-//		} else if (chkID == R.id.sub_profile) {
-//			profile();
-//			
-//		} else if (chkID == R.id.action_settings) {
-//			Toast.makeText(this, "Select Settings", Toast.LENGTH_SHORT).show();
-//		}
-//
-//		return true;
-// 
-//	}
-	
+ 
 	
 	
 	
 	
 	//profile view
 	private void profile() {
+				
 			final Dialog createDialogProfile = new Dialog(WallPage.this);
 			showDialogProfile = (LinearLayout) getLayoutInflater().inflate(R.layout.index_profile, null);
-			// click image close
+			
+			// click image close windowns
 			((ImageView) showDialogProfile.findViewById(R.id.closeprofile))
 					.setOnClickListener(new OnClickListener() {
 						@Override
@@ -872,15 +864,41 @@ public class WallPage extends Activity implements View.OnClickListener,DateWatch
 					});
 
 			// No title on the dialog window
-			createDialogProfile
-					.requestWindowFeature(Window.FEATURE_NO_TITLE);
+			createDialogProfile.requestWindowFeature(Window.FEATURE_NO_TITLE);
 			createDialogProfile.setContentView(showDialogProfile);
 			// Display the dialog
 			createDialogProfile.show();
 		}
 
 	
-
+// action menu
+@Override
+ public boolean onCreateOptionsMenu(Menu menu) {
+   MenuInflater inflater = getMenuInflater();
+   inflater.inflate(R.menu.actionmenu, menu);
+ 
+   return true;
+ } 
+ 
+	@Override
+ public boolean onOptionsItemSelected(MenuItem item) {
+   
+		int id = item.getItemId(); 
+		
+//		if(id == R.id.checkin){
+//			Toast.makeText(this, "1 selected", Toast.LENGTH_SHORT)
+//	          .show();
+//		}
+		if(id == R.id.createactivity){
+			
+		}
+		else if(id == R.id.profile){
+			profile();
+		}
+		
+   return true;
+ } 
+	
 
 
 
@@ -977,7 +995,5 @@ public class WallPage extends Activity implements View.OnClickListener,DateWatch
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 	}
-
-	//
-
+ 
 }

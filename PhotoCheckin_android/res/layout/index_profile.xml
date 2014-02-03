@@ -48,7 +48,7 @@
                 android:padding="3dp" >
 
                 <ImageView
-                    android:id="@+id/imageView1"
+                    android:id="@+id/PictureProfile"
                     android:layout_width="match_parent"
                     android:layout_height="78dp"
                     android:src="@drawable/profile_pic" />

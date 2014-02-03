@@ -1,5 +1,7 @@
 package com.example.photocheckin;
 
+import com.example.imgaeloader.ImageLoader;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -22,27 +24,33 @@ public class Profile extends Activity implements View.OnClickListener {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.index_profile);
 		
-		
-		Bundle extras = getIntent().getExtras();
-		String getName = extras.getString("name");
-		//String getPic = extras.getString("pic");
-		
-		//get value
-		//String getName = getIntent().getStringExtra("name");
-		//String getPic = getIntent().getStringExtra("pic");
-		TextView getvalue = (TextView) findViewById(R.id.profilename_text);
-		getvalue.setText(getName);
-		
-		
+		//call
+		getDataProfile();
 	}
 
+	
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
-				
-				
- 		
+			
 	}
+	
+	public void getDataProfile(){
 
+		String getName = getIntent().getStringExtra("Name_Profile");
+		String getImage = getIntent().getStringExtra("Image_Profile");
+		//ImageView getImage = (ImageView).getStringExtra("Image_Profile");
+		
+ 		
+		//name
+		TextView varName = (TextView)findViewById(R.id.profilename_text);
+		varName.setText(getName);
+		
+		ImageView varImage = (ImageView)findViewById(R.id.PictureProfile);
+		varImage.setTag(getName);
+		
+		 
+	}
+	
+ 
 	
 }
