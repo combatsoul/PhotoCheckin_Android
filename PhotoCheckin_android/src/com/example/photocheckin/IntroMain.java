@@ -26,9 +26,9 @@ import android.widget.Button;
 	        Button call_login = (Button) findViewById(R.id.login_btn);
 	        call_login.setOnClickListener(this);
 	        
-	        //call btn wallpage
-	        Button call_wallpage = (Button) findViewById(R.id.wallpage_btn);
-	        call_wallpage.setOnClickListener(this);
+	        //call btn take photo
+	        Button call_takephoto = (Button) findViewById(R.id.takeaphoto_btn);
+	        call_takephoto.setOnClickListener(this);
 	        
 	        //call btn profile
 	        Button call_profile = (Button) findViewById(R.id.profile_btn);
@@ -41,34 +41,7 @@ import android.widget.Button;
 
 	        @Override
 	        public void onClick(View v) {
-//	                switch (v.getId()) {
-//	                
-//	                case R.id.register_btn:
-//	                        Intent call_registerbtn= new Intent(this, Register.class);
-//	                        startActivity(call_registerbtn);                        
-//	                        break;
-//	                case R.id.login_btn:
-//	                        Intent call_loginbtn = new Intent(this, LoginForm.class);
-//	                        startActivity(call_loginbtn);                        
-//	                        break;        
-//	                case R.id.wallpage_btn:
-//                        Intent call_wallpagebtn = new Intent(this,WallPage.class);
-//                        startActivity(call_wallpagebtn);                        
-//                        break;    
-//                        
-//	                case R.id.profile_btn:
-//                        Intent call_profilebtn = new Intent(this, Profile.class);
-//                        startActivity(call_profilebtn);                        
-//                        break; 
-//                        
-//	                case R.id.activityroom_btn:
-//                        Intent call_activityroombtn = new Intent(this, Profile.class);
-//                        startActivity(call_activityroombtn);                        
-//                        break; 
-//	                }
-	                
-	                
-	                //edit
+ 
 	                int id = v.getId();
 	                if (id == R.id.register_btn) {
 	                	 Intent call_registerbtn= new Intent(this, Register.class);
@@ -78,9 +51,9 @@ import android.widget.Button;
 	                	Intent call_loginbtn = new Intent(this, LoginForm.class);
                         startActivity(call_loginbtn);      
 	                }
-	                else if (id == R.id.wallpage_btn) {
-	                	Intent call_wallpagebtn = new Intent(this,WallPage.class);
-                        startActivity(call_wallpagebtn); 
+	                else if (id == R.id.takeaphoto_btn) {
+	                	Intent call_takeaphoto_btn = new Intent(this,TakePhotoCheckin.class);
+                        startActivity(call_takeaphoto_btn); 
 	                    
 	                }
 	                else if (id == R.id.profile_btn) {

@@ -84,7 +84,7 @@ import com.example.photocheckin.Base64;
 import com.example.photocheckin.DateTimePicker;
 import com.example.photocheckin.LoginForm;
 import com.example.photocheckin.Profile;
-//import com.example.photocheckin.Profile;
+import com.example.photocheckin.TakePhotoCheckin;
 import com.example.photocheckin.chkRegister;
 import com.example.photocheckin.DateTimePicker.DateWatcher;
 import com.example.photocheckin.R;
@@ -110,6 +110,7 @@ public class WallPage extends Activity implements View.OnClickListener,DateWatch
 	private String strLocation;
 	private LinearLayout showDialogView;
 	public LinearLayout showDialogProfile;
+	public LinearLayout showDialogTakePhoto;
 
 	private EditText activityname;
 	private EditText activitydetail;
@@ -777,11 +778,25 @@ public class WallPage extends Activity implements View.OnClickListener,DateWatch
 
 		} catch (IOException e) {
 
-		}
+		}	
 		return "";
 	}
+	
+	
+	//take a photo checkin--
+		public void checkinPhoto(){
+			
+			Intent goTakePhotoCheckin = new Intent(getApplicationContext(),TakePhotoCheckin.class);
+			startActivity(goTakePhotoCheckin);
  
+			
+			
+			
+		}//end
 
+		
+		
+		
  
 	//profile view
 	public void profile() {
@@ -837,6 +852,9 @@ public class WallPage extends Activity implements View.OnClickListener,DateWatch
 		}
 		else if(id == R.id.profile){
 			profile();
+		}
+		else if(id == R.id.checkin_photo){
+			checkinPhoto();
 		}
 		
    return true;
