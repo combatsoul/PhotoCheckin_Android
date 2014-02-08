@@ -127,6 +127,7 @@ public class WallPage extends FragmentActivity implements View.OnClickListener,D
 	private LinearLayout showDialogView;
 	public LinearLayout showDialogProfile;
 	public LinearLayout showDialogTakePhoto;
+	public LinearLayout createDialogView; 
 
 	private EditText activityname;
 	private EditText activitydetail;
@@ -660,7 +661,7 @@ public class WallPage extends FragmentActivity implements View.OnClickListener,D
 //		showDialogView = (LinearLayout) getLayoutInflater().inflate(
 //				R.layout.index_googlemap, null);
 		
-		final LinearLayout createDialogView = (LinearLayout) getLayoutInflater().inflate(R.layout.index_googlemap, null);
+		createDialogView = (LinearLayout) getLayoutInflater().inflate(R.layout.index_googlemap, null);
 
 		
 		SupportMapFragment mapFragment = (SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map);
@@ -670,24 +671,15 @@ public class WallPage extends FragmentActivity implements View.OnClickListener,D
 		mMap.setMyLocationEnabled(true);
 		
 		etPlace = (EditText) createDialogView.findViewById(R.id.searchmap_texf);
-		confrimlocation = (Button) createDialogView.findViewById(R.id.btn_create_popup);
+		confrimlocation = (Button) createDialogView.findViewById(R.id.btn_ok_popup);
 		confrimlocation.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-//				if (btnValidateName(v)
-//						&& btnValidateLocation(v)
-//						&& btnValidateDateTime(v)) {
-//					new createactivity().execute();
 					String et = etPlace.getText().toString();
 					EditText text = (EditText) showDialogView.findViewById(R.id.location_texf);
 					text.setText(et);
 					mapDialog.cancel();
-					
-//				} else {
-//
-//				}
-
 			}
 		});
 		  // Getting the place entered
