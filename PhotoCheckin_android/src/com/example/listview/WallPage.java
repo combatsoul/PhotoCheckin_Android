@@ -154,6 +154,32 @@ public class WallPage extends FragmentActivity implements View.OnClickListener,
 	public String UserNamelogin;
 	// textshow
 	TextView show;
+<<<<<<< HEAD
+	
+	private Dialog createDialog;
+//	public static ArrayList<HashMap<String, String>> arraylist;
+//	JSONObject jsonobject;
+//	JSONArray jsonarray;
+	JSONObject jsonObject;
+	JSONArray jsonArray;
+	 //Json api 
+	public static final String TAG_ID = "id";
+	public static final String TAG_LASTTIME = "lasttime";
+	public static final String TAG_ACTIVITYNAME = "activityname";
+	public static final String TAG_ACTIVITYDETAIL = "activitydetail";
+	public static final String TAG_CREATEBY = "createby";
+	public static final String TAG_CONDITION = "condition";
+	public static final String TAG_USERTYPE = "usertype";
+	public static final String TAG_BLOCK = "block";
+	public static final String TAG_REGISTERDATE = "registerdate";
+	public static final String TAG_STARTDATE = "startdate";
+	public static final String TAG_ENDDATE = "enddate";
+	public static final String TAG_PICTURE = "picture";
+	public static final String TAG_LATITUDE = "latitude";
+	public static final String TAG_LONGITUDE = "longitude";
+	public static final String TAG_QRCODE = "qrcode";
+=======
+>>>>>>> 7df7342b428b36d9760828d0967162af82c8ca49
 
 	ArrayList<HashMap<String, String>> arrayList = new ArrayList<HashMap<String, String>>();
 	HashMap<String, String> hashMap;
@@ -217,8 +243,13 @@ public class WallPage extends FragmentActivity implements View.OnClickListener,
 
 		// TODO execute class
 
+<<<<<<< HEAD
+		 new GetDataTask().execute();
+		//new getSelCheckinphoto().execute();
+=======
 		// new GetDataTask().execute();
 		new getSelCheckinphoto().execute();
+>>>>>>> 7df7342b428b36d9760828d0967162af82c8ca49
 	}
 
 	// Button Dialog Popup to Search Google Map
@@ -552,6 +583,18 @@ public class WallPage extends FragmentActivity implements View.OnClickListener,
 					}
 				});
 		// generate a 150x150 QR code
+<<<<<<< HEAD
+		
+		
+		//set cannot focus edittext 
+		location = (EditText) showDialogView.findViewById(R.id.location_texf);
+		startcalendar = (EditText) showDialogView.findViewById(R.id.calendar1_texf);
+		endcalendar = (EditText) showDialogView.findViewById(R.id.calendar2_texf);
+//		location.setFocusable(false);
+		startcalendar.setFocusable(false);
+		endcalendar.setFocusable(false);
+=======
+>>>>>>> 7df7342b428b36d9760828d0967162af82c8ca49
 
 		mapSearch = (ImageView) showDialogView.findViewById(R.id.imageSearch);
 		mapSearch.setOnClickListener(showMapSearch);
@@ -586,6 +629,7 @@ public class WallPage extends FragmentActivity implements View.OnClickListener,
 		}
 
 		String url = "https://maps.googleapis.com/maps/api/geocode/json?";
+<<<<<<< HEAD
 
 		try {
 			// encoding special characters like space in the user input place
@@ -594,6 +638,16 @@ public class WallPage extends FragmentActivity implements View.OnClickListener,
 			e.printStackTrace();
 		}
 
+=======
+
+		try {
+			// encoding special characters like space in the user input place
+			location = URLEncoder.encode(location, "utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+
+>>>>>>> 7df7342b428b36d9760828d0967162af82c8ca49
 		String address = "address=" + location;
 
 		String sensor = "sensor=false";
@@ -673,6 +727,7 @@ public class WallPage extends FragmentActivity implements View.OnClickListener,
 
 			// Reading data from url
 			iStream = urlConnection.getInputStream();
+<<<<<<< HEAD
 
 			BufferedReader br = new BufferedReader(new InputStreamReader(
 					iStream));
@@ -783,6 +838,118 @@ public class WallPage extends FragmentActivity implements View.OnClickListener,
 				// Setting the position for the marker
 				markerOptions.position(latLng);
 
+=======
+
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+					iStream));
+
+			StringBuffer sb = new StringBuffer();
+
+			String line = "";
+			while ((line = br.readLine()) != null) {
+				sb.append(line);
+			}
+
+			data = sb.toString();
+			br.close();
+
+		} catch (Exception e) {
+			Log.d("Exception while downloading url", e.toString());
+		} finally {
+			iStream.close();
+			urlConnection.disconnect();
+		}
+
+		return data;
+	}
+
+	/** A class, to download Places from Geocoding webservice */
+	class DownloadTask extends AsyncTask<String, Integer, String> {
+
+		String data = null;
+
+		// Invoked by execute() method of this object
+		@Override
+		protected String doInBackground(String... url) {
+			try {
+				data = downloadUrl(url[0]);
+			} catch (Exception e) {
+				Log.d("Background Task", e.toString());
+			}
+			return data;
+		}
+
+		// Executed after the complete execution of doInBackground() method
+		@Override
+		protected void onPostExecute(String result) {
+
+			// Instantiating ParserTask which parses the json data from
+			// Geocoding webservice
+			// in a non-ui thread
+			ParserTask parserTask = new ParserTask();
+
+			// Start parsing the places in JSON format
+			// Invokes the "doInBackground()" method of the class ParseTask
+			parserTask.execute(result);
+		}
+	}
+
+	/** A class to parse the Geocoding Places in non-ui thread */
+	class ParserTask extends
+			AsyncTask<String, Integer, List<HashMap<String, String>>> {
+
+		JSONObject jObject;
+
+		// Invoked by execute() method of this object
+		@Override
+		protected List<HashMap<String, String>> doInBackground(
+				String... jsonData) {
+
+			List<HashMap<String, String>> places = null;
+			GeocodeJSONParser parser = new GeocodeJSONParser();
+
+			try {
+				jObject = new JSONObject(jsonData[0]);
+
+				/** Getting the parsed data as a an ArrayList */
+				places = parser.parse(jObject);
+
+			} catch (Exception e) {
+				Log.d("Exception", e.toString());
+			}
+			return places;
+		}
+
+		// Executed after the complete execution of doInBackground() method
+		@Override
+		protected void onPostExecute(List<HashMap<String, String>> list) {
+
+			// Clears all the existing markers
+			mMap.clear();
+
+			for (int i = 0; i < list.size(); i++) {
+
+				// Creating a marker
+				MarkerOptions markerOptions = new MarkerOptions();
+
+				// Getting a place from the places list
+				HashMap<String, String> hmPlace = list.get(i);
+
+				// Getting latitude of the place
+				double lat = Double.parseDouble(hmPlace.get("lat"));
+
+				// Getting longitude of the place
+				double lng = Double.parseDouble(hmPlace.get("lng"));
+
+				// Getting name
+				String name = hmPlace.get("formatted_address");
+
+				LatLng latLng = new LatLng(lat, lng);
+
+				// Setting the position for the marker
+				markerOptions.position(latLng);
+
+>>>>>>> 7df7342b428b36d9760828d0967162af82c8ca49
 				// Setting the title for the marker
 				markerOptions.title(name);
 
@@ -849,19 +1016,27 @@ public class WallPage extends FragmentActivity implements View.OnClickListener,
 					.findViewById(R.id.calendar2_texf);
 			String startdate = startcalendar.getText().toString();
 			String enddate = endcalendar.getText().toString();
-
-			String myFormatString = "yyyy-MM-dd HH:mm:ss"; // for
-															// example
-			SimpleDateFormat df = new SimpleDateFormat(myFormatString);
-			java.util.Date date1 = df.parse(enddate);
-			java.util.Date startingDate = df.parse(startdate);
-
-			if (date1.after(startingDate)) {
-				value = true;
-			} else {
+			
+			if(!startdate.equals("")&&!enddate.equals("")){
+				String myFormatString = "yyyy-MM-dd HH:mm:ss"; // for
+				// example
+				SimpleDateFormat df = new SimpleDateFormat(myFormatString);
+				java.util.Date date1 = df.parse(enddate);
+				java.util.Date startingDate = df.parse(startdate);
+				if (date1.after(startingDate)) {
+					value = true;
+				} else {
+					Toast.makeText(
+							v.getContext(),
+							"End date must not less than start date, please check again.",
+							Toast.LENGTH_SHORT).show();
+					value = false;
+				}
+				
+			}else{
 				Toast.makeText(
 						v.getContext(),
-						"End date must not less than start date, please check again.",
+						"Your date must not empty.",
 						Toast.LENGTH_SHORT).show();
 				value = false;
 			}
@@ -944,6 +1119,7 @@ public class WallPage extends FragmentActivity implements View.OnClickListener,
 						createDialogProfile.cancel();
 					}
 				});
+<<<<<<< HEAD
 
 		// sent name to profile
 		TextView varName = (TextView) showDialogProfile
@@ -974,6 +1150,38 @@ public class WallPage extends FragmentActivity implements View.OnClickListener,
 	}
 
 	@Override
+=======
+
+		// sent name to profile
+		TextView varName = (TextView) showDialogProfile
+				.findViewById(R.id.profilename_text);
+		varName.setText(sentName);
+
+		// sent image to profile
+		ImageView imageViewProfile2 = (ImageView) showDialogProfile
+				.findViewById(R.id.PictureProfilePage);
+		imageViewProfile2.getDrawable();
+
+		ImageLoader imageLoader = new ImageLoader(sentImg, imageViewProfile2);// ภาพ
+
+		// No title on the dialog window
+		createDialogProfile.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		createDialogProfile.setContentView(showDialogProfile);
+		// Display the dialog
+		createDialogProfile.show();
+	}
+
+	// action menu
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.actionmenu, menu);
+
+		return true;
+	}
+
+	@Override
+>>>>>>> 7df7342b428b36d9760828d0967162af82c8ca49
 	public boolean onOptionsItemSelected(MenuItem item) {
 		View v = null;
 		int id = item.getItemId();
@@ -1071,38 +1279,57 @@ public class WallPage extends FragmentActivity implements View.OnClickListener,
 			// TODO Auto-generated method stub
 
 			super.onPostExecute(result);
+			pDialog.dismiss();
 		}
 
 	}
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 7df7342b428b36d9760828d0967162af82c8ca49
 	// get data
+	@SuppressLint("SimpleDateFormat")
 	protected class GetDataTask extends AsyncTask<String, Void, String> {
-		@Override
-		protected String doInBackground(String... arg0) {
-			// TODO Auto-generated method stub
-			HttpPhotoCheckIn httpPhotoCheckIn = new HttpPhotoCheckIn();
-			String result = httpPhotoCheckIn
-					.connect("http://www.checkinphoto.com/android/activity/selectActivity.php");
-			return result;
-		}
 
 		@Override
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
 			try {
-				JSONArray jsonArray = new JSONArray(result);
+				jsonArray = new JSONArray(result);
 				Log.d("JSON Array", jsonArray.toString());
 
 				for (int i = 0; i <= 10; i++) {
 					hashMap = new HashMap<String, String>();
-					JSONObject jsonObject = new JSONObject(
+					jsonObject = new JSONObject(
 							jsonArray.getString(i));
 
 					// set string tail
 					String textMore = "  อ่านต่อ..";
 
+					
+					
 					// title
 					hashMap.put("title", jsonObject.getString("activityname"));
+					
+					
+					hashMap.put("id", jsonObject.getString(TAG_ID));
+					hashMap.put("lasttime", jsonObject.getString(TAG_LASTTIME));
+					hashMap.put("activityname", jsonObject.getString(TAG_ACTIVITYNAME));
+					hashMap.put("activitydetail", jsonObject.getString(TAG_ACTIVITYDETAIL));
+					hashMap.put("createby", jsonObject.getString(TAG_CREATEBY));
+					hashMap.put("condition", jsonObject.getString(TAG_CONDITION));
+					hashMap.put("usertype", jsonObject.getString(TAG_USERTYPE));
+					hashMap.put("block", jsonObject.getString(TAG_BLOCK));
+					hashMap.put("registerdate", jsonObject.getString(TAG_REGISTERDATE));
+					hashMap.put("startdate", jsonObject.getString(TAG_STARTDATE));
+					hashMap.put("enddate", jsonObject.getString(TAG_ENDDATE));
+					hashMap.put("picture", jsonObject.getString(TAG_PICTURE));
+					hashMap.put("latitude", jsonObject.getString(TAG_LATITUDE));
+					hashMap.put("longitude", jsonObject.getString(TAG_LONGITUDE));
+					hashMap.put("qrcode", jsonObject.getString(TAG_QRCODE));
+					
+					
 					// detail
 					int countdetail = jsonObject.getString("activitydetail")
 							.length();
@@ -1145,18 +1372,31 @@ public class WallPage extends FragmentActivity implements View.OnClickListener,
 					arrayList.add(hashMap);
 
 				}
-
-				SimpleAdapter adapter = new SimpleAdapter(WallPage.this,
-						arrayList, R.layout.list_box, new String[] { "title",
-								"detail", "time" }, new int[] { R.id.Title,
-								R.id.Detail, R.id.Time });
+				
+				
+				// Pass the results into ListViewAdapter.java
+				adapter = new LazyAdapter(WallPage.this, arrayList);
+				// Set the adapter to the ListView
 				listview.setAdapter(adapter);
+				
 			} catch (JSONException e) {
 				Log.e("ERROR JSON", e.toString());
 			}
 
 			super.onPostExecute(result);
 		}
+		
+		
+		@Override
+		protected String doInBackground(String... arg0) {
+			// TODO Auto-generated method stub
+			HttpPhotoCheckIn httpPhotoCheckIn = new HttpPhotoCheckIn();
+			String result = httpPhotoCheckIn
+					.connect("http://www.checkinphoto.com/android/activity/selectActivity.php");			
+			
+			return result;
+		}
+		
 	}
 
 	// TODO select data all

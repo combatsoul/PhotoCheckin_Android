@@ -1,5 +1,22 @@
 int array planets_array 0x7f090000
 int attr adSize 0x7f010000
+<<<<<<< HEAD
+int attr adUnitId 0x7f010001
+int attr cameraBearing 0x7f010003
+int attr cameraTargetLat 0x7f010004
+int attr cameraTargetLng 0x7f010005
+int attr cameraTilt 0x7f010006
+int attr cameraZoom 0x7f010007
+int attr mapType 0x7f010002
+int attr uiCompass 0x7f010008
+int attr uiRotateGestures 0x7f010009
+int attr uiScrollGestures 0x7f01000a
+int attr uiTiltGestures 0x7f01000b
+int attr uiZoomControls 0x7f01000c
+int attr uiZoomGestures 0x7f01000d
+int attr useViewLifecycle 0x7f01000e
+int attr zOrderOnTop 0x7f01000f
+=======
 int attr adSizes 0x7f010001
 int attr adUnitId 0x7f010002
 int attr cameraBearing 0x7f010004
@@ -16,6 +33,7 @@ int attr uiZoomControls 0x7f01000d
 int attr uiZoomGestures 0x7f01000e
 int attr useViewLifecycle 0x7f01000f
 int attr zOrderOnTop 0x7f010010
+>>>>>>> 7df7342b428b36d9760828d0967162af82c8ca49
 int color SkyBorder 0x7f040015
 int color background 0x7f04000c
 int color bg_org 0x7f04001a
@@ -116,6 +134,105 @@ int drawable createactivity_bg 0x7f020039
 int drawable createactivity_icon 0x7f02003a
 int drawable cross 0x7f02003b
 int drawable cross_icon 0x7f02003c
+<<<<<<< HEAD
+int drawable desktop 0x7f02003d
+int drawable detail 0x7f02003e
+int drawable display 0x7f02003f
+int drawable email 0x7f020040
+int drawable email_icon 0x7f020041
+int drawable forgot_password 0x7f020042
+int drawable gradient_bg 0x7f020043
+int drawable gradient_bg_hover 0x7f020044
+int drawable ic_launcher 0x7f020045
+int drawable ic_plusone_medium_off_client 0x7f020046
+int drawable ic_plusone_small_off_client 0x7f020047
+int drawable ic_plusone_standard_off_client 0x7f020048
+int drawable ic_plusone_tall_off_client 0x7f020049
+int drawable image_bg 0x7f02004a
+int drawable image_header 0x7f02004b
+int drawable inaccept_icon 0x7f02004c
+int drawable likeheart_icon 0x7f02004d
+int drawable line 0x7f02004e
+int drawable list_selector 0x7f02004f
+int drawable location_1 0x7f020050
+int drawable logout_icon 0x7f020051
+int drawable mini_adduser_icon 0x7f020052
+int drawable mini_checkin_icon 0x7f020053
+int drawable mini_comment_icon 0x7f020054
+int drawable nav_icon 0x7f020055
+int drawable nav_list 0x7f020056
+int drawable navlist_menu 0x7f020057
+int drawable noimage 0x7f020058
+int drawable picker_bottom 0x7f020059
+int drawable picker_middle 0x7f02005a
+int drawable picker_top 0x7f02005b
+int drawable post_btn 0x7f02005c
+int drawable present 0x7f02005d
+int drawable profile_pic 0x7f02005e
+int drawable red_btn 0x7f02005f
+int drawable refresh_icon 0x7f020060
+int drawable register_icon 0x7f020061
+int drawable search 0x7f020062
+int drawable search_icon 0x7f020063
+int drawable secrecy_icon 0x7f020064
+int drawable star_icon 0x7f020065
+int drawable take_photo 0x7f020066
+int drawable textarea_bg 0x7f020067
+int drawable textfield_bg 0x7f020068
+int drawable textfield_checkin 0x7f020069
+int drawable topbar 0x7f02006a
+int drawable user_icon 0x7f02006b
+int drawable user_profile 0x7f02006c
+int drawable viewprofile_icon 0x7f02006d
+int drawable white_bg_btn 0x7f02006e
+int id Add_Activity 0x7f050076
+int id BorderPicture 0x7f050064
+int id CancelDialog 0x7f05001f
+int id Checkin 0x7f050088
+int id ControlButtons 0x7f05001c
+int id Dashboard 0x7f050087
+int id DateTimeDialog 0x7f05001b
+int id DateTimePicker 0x7f050005
+int id Detail 0x7f050073
+int id ImagePost 0x7f050072
+int id ImageView02 0x7f050056
+int id ImageView07 0x7f05008a
+int id ImageView08 0x7f05008d
+int id LinearLayout04 0x7f050089
+int id LinearLayout1 0x7f05003c
+int id LinearLayout2 0x7f05004f
+int id Logout 0x7f050099
+int id PictureProfilePage 0x7f050053
+int id RelativeLayout1 0x7f05006b
+int id ResetDateTime 0x7f05001e
+int id Search_Showlistview 0x7f05007e
+int id Search_layout 0x7f05007d
+int id SetDateTime 0x7f05001d
+int id TextView03 0x7f050057
+int id TextView14 0x7f05008e
+int id TextView15 0x7f05008c
+int id TextView16 0x7f05008b
+int id Time 0x7f050077
+int id Title 0x7f050071
+int id Top 0x7f05005f
+int id action_settings 0x7f05009a
+int id activitydetail_texa 0x7f050034
+int id activityname_texf 0x7f050032
+int id activityroom_btn 0x7f05006f
+int id border_search 0x7f05007a
+int id btn_create_popup 0x7f05003b
+int id btn_ok_popup 0x7f050046
+int id button_selectpic 0x7f050093
+int id calendar1_texf 0x7f050037
+int id calendar2_texf 0x7f050039
+int id checkedTextView1 0x7f05003f
+int id checkin_photo 0x7f050096
+int id close_btn 0x7f050083
+int id closeprofile 0x7f050052
+int id closewindows_btn 0x7f050068
+int id confirm_password_texf 0x7f05005c
+int id createactivity 0x7f050097
+=======
 int drawable detail 0x7f02003d
 int drawable display 0x7f02003e
 int drawable email 0x7f02003f
@@ -210,10 +327,24 @@ int id closeprofile 0x7f050048
 int id closewindows_btn 0x7f05005e
 int id confirm_password_texf 0x7f050052
 int id createactivity 0x7f050089
+>>>>>>> 7df7342b428b36d9760828d0967162af82c8ca49
 int id date_container 0x7f05000b
 int id date_display 0x7f05000d
 int id date_minus 0x7f05000e
 int id date_plus 0x7f05000c
+<<<<<<< HEAD
+int id detail_textv 0x7f05003d
+int id detail_txt 0x7f050067
+int id display 0x7f050085
+int id done_btn 0x7f050084
+int id edit_email 0x7f050033
+int id email_texf 0x7f050040
+int id field 0x7f050066
+int id forgetpass_btn 0x7f05004d
+int id googlemapmenu 0x7f050042
+int id heartlike 0x7f050074
+int id heartlike_count 0x7f050075
+=======
 int id detail_textv 0x7f050033
 int id detail_txt 0x7f05005d
 int id display 0x7f05007c
@@ -225,11 +356,43 @@ int id forgetpass_btn 0x7f050043
 int id googlemapmenu 0x7f050038
 int id heartlike 0x7f05006b
 int id heartlike_count 0x7f05006c
+>>>>>>> 7df7342b428b36d9760828d0967162af82c8ca49
 int id hour_container 0x7f050013
 int id hour_display 0x7f050015
 int id hour_minus 0x7f050016
 int id hour_plus 0x7f050014
 int id hybrid 0x7f050004
+<<<<<<< HEAD
+int id image 0x7f050065
+int id imageCross 0x7f05002d
+int id imageCrossUpload 0x7f050091
+int id imageHeader 0x7f050021
+int id imagePrifile 0x7f050070
+int id imageSearch 0x7f05002f
+int id imageSearchMap 0x7f050045
+int id imageView1 0x7f05003e
+int id imageView2 0x7f050081
+int id imageView3 0x7f050055
+int id imageView_pic 0x7f050092
+int id imagecalendar1 0x7f050038
+int id imagecalendar2 0x7f05003a
+int id img_btn 0x7f05007c
+int id layout 0x7f050050
+int id layout_dialog 0x7f050051
+int id layout_popup 0x7f05005e
+int id linearLayout1 0x7f050006
+int id linearMenu 0x7f05002c
+int id location_OnMap 0x7f050082
+int id location_icon 0x7f050060
+int id location_texf 0x7f050036
+int id login_btn 0x7f05006c
+int id login_password_texf 0x7f05004b
+int id login_username_texf 0x7f05004a
+int id loginform_btn 0x7f05004c
+int id map 0x7f050043
+int id mapView 0x7f05007f
+int id messageText 0x7f050095
+=======
 int id image 0x7f05005b
 int id imageCross 0x7f050021
 int id imagePrifile 0x7f050067
@@ -255,6 +418,7 @@ int id login_username_texf 0x7f050040
 int id loginform_btn 0x7f050042
 int id map 0x7f050039
 int id mapView 0x7f050076
+>>>>>>> 7df7342b428b36d9760828d0967162af82c8ca49
 int id min_container 0x7f050017
 int id min_display 0x7f050019
 int id min_minus 0x7f05001a
@@ -263,6 +427,55 @@ int id month_container 0x7f050007
 int id month_display 0x7f050009
 int id month_minus 0x7f05000a
 int id month_plus 0x7f050008
+<<<<<<< HEAD
+int id name 0x7f050086
+int id name_OnMap 0x7f050080
+int id name_location 0x7f050061
+int id name_location_icon 0x7f050062
+int id name_texf 0x7f050059
+int id nameuser_text 0x7f050031
+int id nav_menu 0x7f050020
+int id none 0x7f050000
+int id normal 0x7f050001
+int id ok_btn 0x7f050041
+int id output 0x7f050030
+int id password_texf 0x7f05005b
+int id photo_imgbtn 0x7f05006a
+int id pictureprofile 0x7f050048
+int id profile 0x7f050098
+int id profile_btn 0x7f05006e
+int id profilename_text 0x7f050054
+int id progressBar1 0x7f05008f
+int id register_btn 0x7f05005d
+int id register_btnimg 0x7f05004e
+int id register_txt 0x7f050058
+int id result_detail 0x7f050025
+int id result_edd_activity 0x7f05002b
+int id result_location 0x7f050027
+int id result_name 0x7f050023
+int id result_start_activity 0x7f050029
+int id resultxtSearch 0x7f050078
+int id satellite 0x7f050002
+int id save_btn 0x7f050069
+int id scrollView1 0x7f050047
+int id search_texf 0x7f05002e
+int id search_txt 0x7f05007b
+int id searchmap_texf 0x7f050044
+int id success 0x7f050049
+int id takeaphoto_btn 0x7f05006d
+int id terrain 0x7f050003
+int id textView3 0x7f050035
+int id textView4 0x7f050028
+int id textView5 0x7f05002a
+int id textViewName 0x7f050079
+int id textview_detail 0x7f050024
+int id textview_location 0x7f050026
+int id textview_name 0x7f050022
+int id tryEmail_btn 0x7f050090
+int id tv_latlon 0x7f050063
+int id uploadButton 0x7f050094
+int id username_texf 0x7f05005a
+=======
 int id name 0x7f05007d
 int id name_OnMap 0x7f050077
 int id name_location 0x7f050057
@@ -301,6 +514,7 @@ int id textViewName 0x7f050070
 int id tryEmail_btn 0x7f050087
 int id tv_latlon 0x7f050059
 int id username_texf 0x7f050050
+>>>>>>> 7df7342b428b36d9760828d0967162af82c8ca49
 int id year_container 0x7f05000f
 int id year_display 0x7f050011
 int id year_minus 0x7f050012
@@ -328,6 +542,10 @@ int layout photocheckin_detail 0x7f030012
 int layout result_forgetpassword 0x7f030013
 int layout result_invalidforgetpassword 0x7f030014
 int layout result_register 0x7f030015
+<<<<<<< HEAD
+int layout upload_picture_activity 0x7f030016
+=======
+>>>>>>> 7df7342b428b36d9760828d0967162af82c8ca49
 int menu actionmenu 0x7f0b0000
 int menu intro_main 0x7f0b0001
 int string action_settings 0x7f06001b
@@ -362,11 +580,10 @@ int string hello_world 0x7f06001c
 int style ActionButtonStyle 0x7f0a0002
 int style AppBaseTheme 0x7f0a0000
 int style AppTheme 0x7f0a0001
-int[] styleable AdsAttrs { 0x7f010000, 0x7f010001, 0x7f010002 }
+int[] styleable AdsAttrs { 0x7f010000, 0x7f010001 }
 int styleable AdsAttrs_adSize 0
-int styleable AdsAttrs_adSizes 1
-int styleable AdsAttrs_adUnitId 2
-int[] styleable MapAttrs { 0x7f010003, 0x7f010004, 0x7f010005, 0x7f010006, 0x7f010007, 0x7f010008, 0x7f010009, 0x7f01000a, 0x7f01000b, 0x7f01000c, 0x7f01000d, 0x7f01000e, 0x7f01000f, 0x7f010010 }
+int styleable AdsAttrs_adUnitId 1
+int[] styleable MapAttrs { 0x7f010002, 0x7f010003, 0x7f010004, 0x7f010005, 0x7f010006, 0x7f010007, 0x7f010008, 0x7f010009, 0x7f01000a, 0x7f01000b, 0x7f01000c, 0x7f01000d, 0x7f01000e, 0x7f01000f }
 int styleable MapAttrs_cameraBearing 1
 int styleable MapAttrs_cameraTargetLat 2
 int styleable MapAttrs_cameraTargetLng 3

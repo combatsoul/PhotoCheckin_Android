@@ -61,7 +61,7 @@
         <activity android:name="com.example.photocheckin.Profile" />
 
         <!-- ActivityRoom -->
-        <activity android:name="com.example.photocheckin.ActivityRoom" />
+        <activity android:name="com.example.photocheckin.ActivityRoomla" />
 
         <!-- chk register done -->
         <activity android:name="com.example.photocheckin.chkRegister" />
@@ -96,11 +96,18 @@
 
         <!-- Result Forget Calendar -->
         <activity android:name="com.example.photocheckin.TimePicker" />
+        
+        <!-- Result Forget UploadPicture -->
+        <activity android:name="com.example.photocheckin.UploadPictureActivity" />
 
         <!-- Goolge API Key -->
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
+<<<<<<< HEAD
+            android:value="AIzaSyDph5RBvtcovARSGxWoGFtymQi9KbbaRQc" />
+=======
             android:value="AIzaSyDBxaPSsuqich8kaTsjTV6EUGlxz-3V6RI" />
+>>>>>>> 7df7342b428b36d9760828d0967162af82c8ca49
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
