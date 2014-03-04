@@ -130,7 +130,6 @@ public class Register extends Activity implements View.OnClickListener {
 		}
 
 		protected String doInBackground(String... args) {
-			
 			Bitmap bitmap = yourSelectedImage;
 			ByteArrayOutputStream stream = new ByteArrayOutputStream();
 			bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream); //compress to which format you want.
@@ -390,9 +389,32 @@ public class Register extends Activity implements View.OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.register_btn:
-
+//		switch (v.getId()) {
+//		case R.id.register_btn:
+//
+//			if (btnValidateName(v) && btnValidateUserName(v)
+//					&& btnValidatePassAndConfirmPass(v) && btnValidateEmail(v)) {
+//				if (postDa	ta(username.getText().toString(),
+//						email.getText().toString()).trim().equals(
+//						"Username or Email can not available!")) {
+//					// this username or email have on system
+//					Toast.makeText(
+//							getApplicationContext(),
+//							postData(username.getText().toString(), email
+//									.getText().toString()), Toast.LENGTH_SHORT)
+//							.show();
+//				} else {
+//					new register().execute();
+//				}
+//			}
+//
+//			break;
+//		}
+		
+		//edit
+		
+		int id = v.getId();
+		if(id == R.id.register_btn){
 			if (btnValidateName(v) && btnValidateUserName(v)
 					&& btnValidatePassAndConfirmPass(v) && btnValidateEmail(v)) {
 				if (postData(username.getText().toString(),
@@ -408,8 +430,8 @@ public class Register extends Activity implements View.OnClickListener {
 					new register().execute();
 				}
 			}
-
-			break;
 		}
+		
+		
 	}
 }

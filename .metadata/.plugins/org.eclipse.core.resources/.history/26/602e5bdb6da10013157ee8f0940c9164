@@ -1,0 +1,98 @@
+package com.example.listview;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import com.example.photocheckin.R;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.util.Log;
+import android.view.View.OnClickListener;
+
+public class LazyAdapter extends BaseAdapter {
+
+	private Activity activity;
+	private ArrayList<HashMap<String, String>> data;
+	HashMap<String, String> resultp = new HashMap<String, String>();
+	private static LayoutInflater inflater = null;
+	//public ImageLoader imageLoader;
+
+	public LazyAdapter(Activity a, ArrayList<HashMap<String, String>> d) {
+		activity = a;
+		data = d;
+		inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	//	imageLoader = new ImageLoader(activity.getApplicationContext());
+	}
+
+	public int getCount() {
+		return data.size();
+	}
+
+	public Object getItem(int position) {
+		return position;
+	}
+
+	public long getItemId(int position) {
+		return position;
+	}
+
+	public View getView(final int position, View convertView, ViewGroup parent) {
+		View vi = convertView;
+	
+		HashMap<String, String> song = new HashMap<String, String>();
+		song = data.get(position);
+		
+		
+		
+		
+		View itemView = inflater.inflate(R.layout.list_box, parent, false);
+		itemView.setClickable(true);
+		
+		itemView.setOnClickListener(new OnClickListener() {
+
+			
+			public void onClick(View arg0) {
+				// Get the position
+				resultp = data.get(position);
+				Intent intent = new Intent(context, NewsItem.class);
+
+				intent.putExtra("id", resultp.get(EmbunNew.TAG_ID));
+				intent.putExtra("templename", resultp.get(EmbunNew.TAG_TEMPLE));
+				intent.putExtra("topic", resultp.get(EmbunNew.TAG_TOPIC));
+				intent.putExtra("detail", resultp.get(EmbunNew.TAG_DETAIL));
+				intent.putExtra("start_date", resultp.get(EmbunNew.TAG_STARTDATE));
+				intent.putExtra("end_date", resultp.get(EmbunNew.TAG_ENDDATE));
+				intent.putExtra("pic", resultp.get(EmbunNew.TAG_PIC));
+				intent.putExtra("liked", resultp.get(EmbunNew.TAG_LIKE));
+				
+			
+				context.startActivity(intent);
+				
+				
+				CheckTextNull();
+			}
+
+			private void CheckTextNull() {
+				String activity_id = resultp.get(WallPage.TAG_ID);
+				RequestHTTP(activity_id);
+				
+			}
+			
+			private void RequestHTTP(String activity_id){
+				UserFunctions userFunction = new UserFunctions();
+				JSONObject json = userFunction.viewActivity(activity_id);
+				Log.d("NewComment", "id"+ activity_id);
+			}
+		});
+
+		return vi;
+	}
+}

@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="12"
+        android:minSdkVersion="14"
         android:targetSdkVersion="17" />
 
     <permission
@@ -33,12 +33,11 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-          	android:name="com.example.photocheckin.IntroMain"
-          	android:label="@string/app_name" >
-          	
-          	<!-- android:name="com.example.photocheckin.IntroMain" -->
-          	
-            
+            android:name="com.example.photocheckin.IntroMain"
+            android:label="@string/app_name" >
+
+            <!-- android:name="com.example.photocheckin.IntroMain" -->
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -49,6 +48,10 @@
         <!-- register -->
         <activity android:name="com.example.photocheckin.Register" />
 
+         <!-- TakePhotoCheckin --> 
+        <activity
+            android:name="com.example.photocheckin.TakePhotoCheckin"
+            android:screenOrientation="landscape" /> 
         <!-- Login class -->
         <activity android:name="com.example.photocheckin.LoginForm" />
 
@@ -59,7 +62,7 @@
         <activity android:name="com.example.photocheckin.Profile" />
 
         <!-- ActivityRoom -->
-        <activity android:name="com.example.photocheckin.ActivityRoom" />
+        <activity android:name="com.example.photocheckin.ActivityRoomla" />
 
         <!-- chk register done -->
         <activity android:name="com.example.photocheckin.chkRegister" />
@@ -94,11 +97,14 @@
 
         <!-- Result Forget Calendar -->
         <activity android:name="com.example.photocheckin.TimePicker" />
+        
+        <!-- Result Forget UploadPicture -->
+        <activity android:name="com.example.photocheckin.UploadPictureActivity" />
 
         <!-- Goolge API Key -->
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyCdyyANvidGqA1LJ138mWy45enkWrR3vKo" />
+            android:value="AIzaSyDph5RBvtcovARSGxWoGFtymQi9KbbaRQc" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />

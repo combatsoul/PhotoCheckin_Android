@@ -130,8 +130,7 @@ public class LoginForm extends Activity implements View.OnClickListener {
 				String block = "block1";
 				String[] sentence = response.split(" ");
 				
-				for(String word: sentence)
-				{
+				for(String word: sentence){
 				    if(word.equals(usertypeRegis)){
 				    	for(String word2: sentence){
 				    		if(word2.equals(notblock)){
@@ -148,6 +147,7 @@ public class LoginForm extends Activity implements View.OnClickListener {
 									});
 										
 									// when can't login it will close page loginform last
+									
 									finish();
 									Intent goMain = new Intent(getApplicationContext(),LoginForm.class);
 									startActivity(goMain);
@@ -200,8 +200,12 @@ public class LoginForm extends Activity implements View.OnClickListener {
 									
 									// login done
 									finish();
+									
+									//when login done sent value usename to wallpage
 									Intent goMain = new Intent(getApplicationContext(),WallPage.class);
+									goMain.putExtra("username",input_username.getText().toString());
 									startActivity(goMain);
+									
 								}
 				    		}
 				    		if(word2.equals(block)){
@@ -223,46 +227,11 @@ public class LoginForm extends Activity implements View.OnClickListener {
 				    		}
 				    	}
 				    }
-//				    else{
-//						// dismiss the dialog after getting all albums
-//						pDialog.dismiss();
-//						// updating UI from Background Thread
-//						runOnUiThread(new Runnable() {
-//							public void run() {
-//								// name.setText(response);
-//								Toast.makeText(LoginForm.this, "Login fail, please try again",
-//										Toast.LENGTH_SHORT).show();
-//							}
-//						});
-//				    }
+ 
 				        
 				}
 
-//				if(value.equals("0")){	
-//					// dismiss the dialog after getting all albums
-//					pDialog.dismiss();
-//					// updating UI from Background Thread
-//					runOnUiThread(new Runnable() {
-//						public void run() {
-//							// name.setText(response);
-//							Toast.makeText(LoginForm.this, "Login fail, please try again",
-//									Toast.LENGTH_SHORT).show();
-//						}
-//					});
-//						
-//					// when can't login it will close page loginform last
-//					finish();
-//					Intent goMain = new Intent(getApplicationContext(),LoginForm.class);
-//					startActivity(goMain);
-//				}
-//				else{
-//					
-//					// login done
-//					finish();
-//					Intent goMain = new Intent(getApplicationContext(),WallPage.class);
-//					startActivity(goMain);
-//				}
-//				
+ 			
 			} catch (ClientProtocolException e) {
 				// TODO Auto-generated catch block
 			} catch (IOException e) {
@@ -344,25 +313,42 @@ if (android.os.Build.VERSION.SDK_INT > 9) {
 	// check link to page ---
 	@Override
 	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.loginform_btn:
+//		switch (v.getId()) {
+//		case R.id.loginform_btn:
+//			if (btnValidateUsername(v) && btnValidatePassword(v)) {
+////				checkLogin(v);
+//				new login().execute();
+////				Intent call_index_wallpage = new Intent(this, WallPage.class);
+////				startActivity(call_index_wallpage);
+//			}
+//			break;
+//		case R.id.register_btnimg:
+//			Intent call_registerbtn = new Intent(this, Register.class);
+//			startActivity(call_registerbtn);
+//			break;
+//			
+//		 case R.id.forgetpass_btn:
+//             Intent call_forgetpassword = new Intent(this, ForgetPassword.class);
+//             startActivity(call_forgetpassword);                        
+//             break; 
+//		}
+		
+		//edit
+		int id = v.getId();
+		if (id == R.id.loginform_btn) {
 			if (btnValidateUsername(v) && btnValidatePassword(v)) {
-//				checkLogin(v);
 				new login().execute();
-//				Intent call_index_wallpage = new Intent(this, WallPage.class);
-//				startActivity(call_index_wallpage);
 			}
-			break;
-		case R.id.register_btnimg:
+		} 
+		else if (id == R.id.register_btnimg) {
 			Intent call_registerbtn = new Intent(this, Register.class);
 			startActivity(call_registerbtn);
-			break;
-			
-		 case R.id.forgetpass_btn:
-             Intent call_forgetpassword = new Intent(this, ForgetPassword.class);
-             startActivity(call_forgetpassword);                        
-             break; 
+		} 
+		else if (id == R.id.forgetpass_btn) {
+            Intent call_forgetpassword = new Intent(this, ForgetPassword.class);
+            startActivity(call_forgetpassword);   
 		}
+		
 	}
 
 }

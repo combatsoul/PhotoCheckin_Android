@@ -13,14 +13,21 @@
     <color name="black">#000000</color>
     <color name="bluesky">#3baedf</color>
     <color name="greyblack">#585858</color>
-    <color name="blueskywhite">#cee2ee</color>  
-    <color name="white_light">#F1F1F1</color> 
-    <color name="bluesky1">#0799d7</color> 
+    <color name="blueskywhite">#cee2ee</color>
+    <color name="bg_org">#fac78e</color>
+    
+    <color name="white_light">#F1F1F1</color>
+    <color name="bluesky1">#0799d7</color>
     <color name="transparent">@android:color/transparent</color>
-     <color name="brown">#240f00</color>
+    <color name="brown">#240f00</color>
+    <color name="orange">#f4842c</color>
+    <color name="buledrak">#0D76A3</color>
+    <color name="linebuledrak">#0081b8</color>
+    <color name="brownlight">#a4530f</color>
     
-      
     
- 
+     
+   
+   
 
 </resources>

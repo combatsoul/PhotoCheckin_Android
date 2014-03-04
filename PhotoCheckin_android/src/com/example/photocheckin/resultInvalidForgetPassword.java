@@ -22,13 +22,21 @@ public class resultInvalidForgetPassword extends Activity implements View.OnClic
 
 		@Override
 		public void onClick(View v) {
-			switch (v.getId()) {
-			case R.id.tryEmail_btn:				
-					Intent call_index_wallpage = new Intent(this, ForgetPassword.class);
-					startActivity(call_index_wallpage);
-				break;
-
-			}
+//			switch (v.getId()) {
+//			case R.id.tryEmail_btn:				
+//					Intent call_index_wallpage = new Intent(this, ForgetPassword.class);
+//					startActivity(call_index_wallpage);
+//				break;
+//
+//			}
+//			
+			//edit
+		int id = v.getId();
+		if(id == R.id.tryEmail_btn){
+			Intent call_index_wallpage = new Intent(this, ForgetPassword.class);
+			startActivity(call_index_wallpage);
+		}
+			
 		}
 
 }

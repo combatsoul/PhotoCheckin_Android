@@ -20,6 +20,7 @@
                 android:layout_width="246dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:layout_marginTop="20dp"
                 android:orientation="vertical" >
 
                 <LinearLayout
@@ -69,6 +70,7 @@
                         android:inputType="textPersonName"
                         android:paddingBottom="5dp"
                         android:paddingLeft="10dp"
+                        android:text="kakalot1145"
                         android:paddingTop="3dp"
                         android:textSize="16dp" />
                 </LinearLayout>
@@ -86,6 +88,7 @@
                         android:ems="10"
                         android:hint="Password"
                         android:inputType="textPassword"
+                        android:text="123456"
                         android:paddingBottom="5dp"
                         android:paddingLeft="10dp"
                         android:paddingTop="3dp"
