@@ -143,6 +143,7 @@ public class WallPage extends FragmentActivity implements View.OnClickListener,D
 	private EditText etPlace;
 	private Button confrimlocation;
 	private ImageView mapSearch;
+<<<<<<< HEAD
 	private Dialog createDialog;
 //	public static ArrayList<HashMap<String, String>> arraylist;
 //	JSONObject jsonobject;
@@ -165,6 +166,8 @@ public class WallPage extends FragmentActivity implements View.OnClickListener,D
 	public static final String TAG_LATITUDE = "latitude";
 	public static final String TAG_LONGITUDE = "longitude";
 	public static final String TAG_QRCODE = "qrcode";
+=======
+>>>>>>> 67509c7460dd44d47d743bf907bbaf042dddb235
 	
 	ArrayList<HashMap<String, String>> arrayList = new ArrayList<HashMap<String, String>>();
 	HashMap<String, String> hashMap;
@@ -247,6 +250,26 @@ public class WallPage extends FragmentActivity implements View.OnClickListener,D
 
 	}
 	
+<<<<<<< HEAD
+=======
+//	// 4
+//	private OnClickListener cancel_button_click_listener = new OnClickListener() {
+//		public void onClick(View v) {
+//			pwindo.dismiss();
+//		}
+//	};
+//
+//	private OnClickListener create_button_click_listener = new OnClickListener() {
+//		@Override
+//		public void onClick(View v) {
+//			String url1,url2,url3;
+//			new createactivity().execute(url1, url2, url3);
+//			pwindo.dismiss();
+//
+//		}
+//	};
+	
+>>>>>>> 67509c7460dd44d47d743bf907bbaf042dddb235
 	// Button Dialog Popup to Search Google Map 
 	private OnClickListener showMapSearch = new OnClickListener() {
 		@Override
@@ -393,6 +416,7 @@ public class WallPage extends FragmentActivity implements View.OnClickListener,D
 
 			// Reset Date and Time pickers when the "Reset" button is
 			// clicked
+<<<<<<< HEAD
 
 			((Button) mDateTimeDialogView
 					.findViewById(R.id.ResetDateTime))
@@ -415,6 +439,30 @@ public class WallPage extends FragmentActivity implements View.OnClickListener,D
 		}
 	};
 
+=======
+
+			((Button) mDateTimeDialogView
+					.findViewById(R.id.ResetDateTime))
+					.setOnClickListener(new OnClickListener() {
+
+						public void onClick(View v) {
+							// TODO Auto-generated method stub
+							mDateTimePicker.reset();
+						}
+					});
+
+			// Setup TimePicker
+			// No title on the dialog window
+			mDateTimeDialog
+					.requestWindowFeature(Window.FEATURE_NO_TITLE);
+			// Set the dialog content view
+			mDateTimeDialog.setContentView(mDateTimeDialogView);
+			// Display the dialog
+			mDateTimeDialog.show();
+		}
+	};
+
+>>>>>>> 67509c7460dd44d47d743bf907bbaf042dddb235
 	// pop up DateTimepicker for End date
 	private OnClickListener showEnddatePicker = new OnClickListener() {
 		@Override
@@ -569,7 +617,11 @@ public class WallPage extends FragmentActivity implements View.OnClickListener,D
 	};
 
 	private void showCreateActivitys(View v) {
+<<<<<<< HEAD
 		createDialog = new Dialog(WallPage.this);
+=======
+		final Dialog createDialog = new Dialog(WallPage.this);
+>>>>>>> 67509c7460dd44d47d743bf907bbaf042dddb235
 		// Inflate the root layout
 		showDialogView = (LinearLayout) getLayoutInflater().inflate(
 				R.layout.index_createactivity, null);
@@ -601,6 +653,7 @@ public class WallPage extends FragmentActivity implements View.OnClickListener,D
 					}
 				});
 		// generate a 150x150 QR code
+<<<<<<< HEAD
 		
 		//set cannot focus edittext 
 		location = (EditText) showDialogView.findViewById(R.id.location_texf);
@@ -675,6 +728,75 @@ public class WallPage extends FragmentActivity implements View.OnClickListener,D
 		
 		createDialogView = (LinearLayout) getLayoutInflater().inflate(R.layout.index_googlemap, null);
 
+=======
+
+
+		mapSearch = (ImageView) showDialogView
+				.findViewById(R.id.imageSearch);
+		mapSearch.setOnClickListener(showMapSearch);
+		
+		calendarStart = (ImageView) showDialogView
+				.findViewById(R.id.imagecalendar1);
+		calendarStart.setOnClickListener(showStartdatePicker);
+
+		calendarEnd = (ImageView) showDialogView
+				.findViewById(R.id.imagecalendar2);
+		calendarEnd.setOnClickListener(showEnddatePicker);
+
+		// No title on the dialog window
+		createDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		// Set the dialog content view
+		createDialog.setContentView(showDialogView);
+		//fix size dialog
+//		createDialog.getWindow().setLayout(450, 700);
+		// Display the dialog
+		createDialog.show();
+	}
+	
+	
+	// Button click to Search Google Map 
+	private void searchMappResult(){
+			  // Getting the place entered
+            String location = etPlace.getText().toString();
+
+            if(location==null || location.equals("")){
+                Toast.makeText(getBaseContext(), "No Place is entered", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            String url = "https://maps.googleapis.com/maps/api/geocode/json?";
+
+            try {
+                // encoding special characters like space in the user input place
+                location = URLEncoder.encode(location, "utf-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+
+            String address = "address=" + location;
+
+            String sensor = "sensor=false";
+
+            // url , from where the geocoding data is fetched
+            url = url + address + "&" + sensor;
+
+            // Instantiating DownloadTask to get places from Google Geocoding service
+            // in a non-ui thread
+            DownloadTask downloadTask = new DownloadTask();
+
+            // Start downloading the geocoding places
+            downloadTask.execute(url);
+	};
+	
+	//Dialog Popup to Search Google Map 
+	private void showMapSearchResult(){
+		final Dialog mapDialog = new Dialog(WallPage.this);
+//		showDialogView = (LinearLayout) getLayoutInflater().inflate(
+//				R.layout.index_googlemap, null);
+		
+		createDialogView = (LinearLayout) getLayoutInflater().inflate(R.layout.index_googlemap, null);
+
+>>>>>>> 67509c7460dd44d47d743bf907bbaf042dddb235
 		
 		SupportMapFragment mapFragment = (SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map);
 		 
@@ -898,6 +1020,7 @@ public class WallPage extends FragmentActivity implements View.OnClickListener,D
 			String startdate = startcalendar.getText().toString();
 			String enddate = endcalendar.getText().toString();
 
+<<<<<<< HEAD
 			if(!startdate.equals("")&&!enddate.equals("")){
 				String myFormatString = "yyyy-MM-dd HH:mm:ss"; // for
 				// example
@@ -915,6 +1038,17 @@ public class WallPage extends FragmentActivity implements View.OnClickListener,D
 				}
 				
 			}else{
+=======
+			String myFormatString = "yyyy-MM-dd HH:mm:ss"; // for
+															// example
+			SimpleDateFormat df = new SimpleDateFormat(myFormatString);
+			java.util.Date date1 = df.parse(enddate);
+			java.util.Date startingDate = df.parse(startdate);
+
+			if (date1.after(startingDate)) {
+				value = true;
+			} else {
+>>>>>>> 67509c7460dd44d47d743bf907bbaf042dddb235
 				Toast.makeText(
 						v.getContext(),
 						"End date must not less than start date, please check again.",
@@ -1065,6 +1199,98 @@ public class WallPage extends FragmentActivity implements View.OnClickListener,D
 	protected class Createactivitys extends AsyncTask<String, Void, String>{
 		private HttpResponse httpPost;
 
+<<<<<<< HEAD
+=======
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			pDialog = new ProgressDialog(WallPage.this);
+			pDialog.setTitle("Connect to Server..");
+			pDialog.setMessage("Loading ...");
+			pDialog.setIndeterminate(false);
+			pDialog.setCancelable(false);
+			pDialog.show();
+		}
+
+		// send activity create
+		protected String doInBackground(String... args) {
+			// Building Parameters
+			HttpClient httpclient = new DefaultHttpClient();
+			// httpPost.setEntity(new
+			// UrlEncodedFormEntity(params,"UTF-8"));
+
+			HttpPost httppost = new HttpPost(
+					"http://www.checkinphoto.com/android/createactivity/chkCreate.php");
+
+			try {
+
+				activityname = (EditText) showDialogView
+						.findViewById(R.id.activityname_texf);
+				activitydetail = (EditText) showDialogView
+						.findViewById(R.id.activitydetail_texa);
+				location = (EditText) showDialogView
+						.findViewById(R.id.location_texf);
+				startcalendar = (EditText) showDialogView
+						.findViewById(R.id.calendar1_texf);
+				endcalendar = (EditText) showDialogView
+						.findViewById(R.id.calendar2_texf);
+
+				// Add your data
+				List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(
+						2);
+
+				nameValuePairs.add(new BasicNameValuePair(
+						"activityname_texf", activityname.getText()
+								.toString()));
+				nameValuePairs.add(new BasicNameValuePair(
+						"activitydetail_texa", activitydetail.getText()
+								.toString()));
+				nameValuePairs.add(new BasicNameValuePair("location_texf",
+						location.getText().toString()));
+				nameValuePairs.add(new BasicNameValuePair("calendar1_texf",
+						startcalendar.getText().toString()));
+				nameValuePairs.add(new BasicNameValuePair("calendar2_texf",
+						endcalendar.getText().toString()));
+				httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs,
+						"UTF-8"));
+
+				// Execute HTTP Post Request
+				HttpResponse execute = httpclient.execute(httppost);
+				InputStream content = execute.getEntity().getContent();
+				// BufferedReader buffer = new BufferedReader(new
+				// InputStreamReader(content));
+				BufferedReader buffer = new BufferedReader(
+						new InputStreamReader(content, "UTF-8"));
+
+				String s = "";
+				while ((s = buffer.readLine()) != null) {
+					response += s;
+				}
+				Log.d("response", response);
+			} catch (ClientProtocolException e) {
+			} catch (IOException e) {
+			}
+			return null;
+		}
+		
+		
+		@Override
+		protected void onPostExecute(String result) {
+			// TODO Auto-generated method stub
+
+
+			super.onPostExecute(result);
+		}
+
+
+		
+	}
+
+
+
+	// get data
+	protected class GetDataTask extends AsyncTask<String, Void, String> {
+>>>>>>> 67509c7460dd44d47d743bf907bbaf042dddb235
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
@@ -1142,10 +1368,17 @@ public class WallPage extends FragmentActivity implements View.OnClickListener,D
 		@Override
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
+<<<<<<< HEAD
 
 
 			super.onPostExecute(result);
 			pDialog.dismiss();
+=======
+			HttpPhotoCheckIn httpPhotoCheckIn = new HttpPhotoCheckIn();
+			String result = httpPhotoCheckIn
+					.connect("http://www.checkinphoto.com/android/activity/selectActivity.php");
+			return result;
+>>>>>>> 67509c7460dd44d47d743bf907bbaf042dddb235
 		}
 
 
@@ -1162,7 +1395,11 @@ public class WallPage extends FragmentActivity implements View.OnClickListener,D
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
 			try {
+<<<<<<< HEAD
 				jsonArray = new JSONArray(result);
+=======
+				JSONArray jsonArray = new JSONArray(result);
+>>>>>>> 67509c7460dd44d47d743bf907bbaf042dddb235
 				Log.d("JSON Array", jsonArray.toString());
 
 				for (int i = 0; i <= 10; i++) {

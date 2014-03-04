@@ -4,7 +4,6 @@ INDEX VERSION 1.126+D:\PSUPhuket\Ле 4\Project 2\Coding\PhotoCheckin_Android\.met
 3843142830.index
 635297092.index
 848856923.index
-2933444495.index
 3269950773.index
 646320335.index
 1184570867.index

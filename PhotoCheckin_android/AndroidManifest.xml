@@ -111,7 +111,7 @@
 
         <uses-library
             android:name="com.google.android.maps"
-            android:required="false" />
+            android:required="true" />
     </application>
 
 </manifest>

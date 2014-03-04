@@ -61,7 +61,11 @@ import android.widget.Button;
                         startActivity(call_profilebtn);
 	                }
 	                else if (id == R.id.activityroom_btn) {
+<<<<<<< HEAD
 	                	Intent call_activityroombtn = new Intent(this, ActivityRoomla.class);
+=======
+	                	Intent call_activityroombtn = new Intent(this, Profile.class);
+>>>>>>> 67509c7460dd44d47d743bf907bbaf042dddb235
                         startActivity(call_activityroombtn);   
 	                }
     
