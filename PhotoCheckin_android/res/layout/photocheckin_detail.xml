@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blueskywhite"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/Dashboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.60"
+        android:background="@color/white"> 
+       
+
+        <LinearLayout
+            android:id="@+id/Checkin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.02"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/LinearLayout04"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/bg_box_comment"
+                android:orientation="vertical"
+                android:paddingBottom="2dp"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:paddingTop="2dp" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <FrameLayout
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/bg_displayprofile"
+                        android:padding="2dp" >
+
+                        <ImageView
+                            android:id="@+id/ImageView07"
+                          android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:src="@drawable/display" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/TextView16"
+                            android:layout_width="235dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="3dp"
+                            android:maxLength="100"
+                            android:text="Text"
+                            android:textSize="12dp" 
+                            />
+
+                        <TextView
+                            android:id="@+id/TextView15"
+                            android:layout_width="235dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="3dp"
+                            android:maxLength="100"
+                            android:text="image"
+                            android:textSize="12dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" >
+
+                            <FrameLayout
+                                android:layout_width="20dp"
+                                android:layout_height="20dp" >
+
+                                <ImageView
+                                    android:id="@+id/ImageView08"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/likeheart_icon" />
+                            </FrameLayout>
+
+                            <TextView
+                                android:id="@+id/TextView14"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="3dp"
+                                android:text="12"
+                                android:textColor="@color/grey"
+                                android:textSize="11dp" />
+
+                            <TextView
+                                android:id="@+id/ImagePost"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:text="12.30น"
+                                android:textColor="@color/grey"
+                                android:textSize="11dp" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
