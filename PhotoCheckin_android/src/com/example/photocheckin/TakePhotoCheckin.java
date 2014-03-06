@@ -447,13 +447,13 @@ public class TakePhotoCheckin extends FragmentActivity implements View.OnClickLi
 				
 				for (int i = 0; i < jsonarray.length(); i++) {
 					JSONObject jsonObject = new JSONObject(
-							jsonarray.getString(i));
+					jsonarray.getString(i));
 					HashMap<String, String> map = new HashMap<String, String>();
+					
 					map.put("LocationName",jsonObject.getString("name"));
 					String la = jsonObject.getString("latitude"); //la
 					String lo =  jsonObject.getString("longitude"); //long
 					getLocationMap = la+","+lo;
-				//	Log.d(">>>>", getLocationMap);
 					arrayListName.add(map);
 					
 					 
@@ -464,8 +464,6 @@ public class TakePhotoCheckin extends FragmentActivity implements View.OnClickLi
 						new String[] {"LocationName"},
 						new int[]{ R.id.textViewName});
 				listView.setAdapter(adapter);
- 
-				// when clcik
  
 			} catch (JSONException e) {
 				e.printStackTrace();
@@ -510,13 +508,15 @@ public class TakePhotoCheckin extends FragmentActivity implements View.OnClickLi
 	                String sentLocation = tv_latlon.getText().toString();
 	                String[] locationMap = sentLocation.split(",");
 	                for(int i=0; i < locationMap.length; i++){  
+	                	
 	                }
- 
+	                
+	                Log.d(">>>>>>>>>>>>", locationMap[0]+":"+locationMap[1]);
 	                reqEntity.addPart("sentName", new StringBody(nameMap.getText().toString()));
 	                reqEntity.addPart("getImage",bab);//sent image
-	                reqEntity.addPart("sentUsername", new StringBody(Username));
+	                reqEntity.addPart("sentUsername", new StringBody(Username));  //EDIT
 	                reqEntity.addPart("getDetail", new StringBody(Detail.getText().toString()));
-	                reqEntity.addPart("sentlatitude", new StringBody(locationMap[0]));
+	                reqEntity.addPart("sentLatitude", new StringBody(locationMap[0]));
 	                reqEntity.addPart("sentLongitude", new StringBody(locationMap[1]));
 	                postRequest.setEntity(reqEntity);	   
 	                

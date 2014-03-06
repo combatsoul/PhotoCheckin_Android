@@ -18,6 +18,9 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
+import com.example.imgaeloader.ImageLoader;
+
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Dialog;
@@ -63,8 +66,10 @@ public class ActivityRoomla extends Activity implements View.OnClickListener {
 	private String activityenddate;
 	private Dialog createDialog;
 	private Handler handler;
+	@SuppressLint("CutPasteId")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.index_activity);
 		
@@ -74,11 +79,12 @@ public class ActivityRoomla extends Activity implements View.OnClickListener {
         upLoadServerUri = "http://www.checkinphoto.com/android/uploadheaderpicture/uploadHeader.php";
         
         Intent intent = getIntent();
+
 		//hiding default app icon
-		ActionBar actionBar = getActionBar();
-		actionBar.setDisplayShowHomeEnabled(false);
-		actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.topbar));
-		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+//		ActionBar actionBar = getActionBar();
+//		actionBar.setDisplayShowHomeEnabled(false);
+//		actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.topbar));
+//		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 		imageHeader = (ImageView)findViewById(R.id.imageView_pic);
 		
 		activityid = intent.getStringExtra("id");
@@ -101,6 +107,10 @@ public class ActivityRoomla extends Activity implements View.OnClickListener {
 		txtenddate.setText(activityenddate);
 //		new Listactivitys().execute();
 //		selectpicture();
+		ImageView imageViewProfile = (ImageView) findViewById(R.id.imageHeader);
+		String path = "http://www.checkinphoto.com/android/uploadheaderpicture/upload/"+activityid.toString()+"/display.jpg";
+		ImageLoader imageLoader = new ImageLoader(
+				path, imageViewProfile);// ภาพ
 	}
 
 	//show Header Picture popup. It is popup for select activity header.
