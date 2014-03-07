@@ -6,9 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -17,9 +18,6 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-
-import com.example.imgaeloader.ImageLoader;
-
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -66,15 +64,17 @@ public class ActivityRoomla extends Activity implements View.OnClickListener {
 	private String activityenddate;
 	private Dialog createDialog;
 	private Handler handler;
+	private ImageView image;
+	private Bitmap bitheader;
+	
 	@SuppressLint("CutPasteId")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.index_activity);
-		
-		ImageView call_image = (ImageView) findViewById(R.id.imageHeader);
-		call_image.setOnClickListener(this); 
+		image = (ImageView) findViewById(R.id.imageHeader);
+		image.setOnClickListener(this); 
 		
         upLoadServerUri = "http://www.checkinphoto.com/android/uploadheaderpicture/uploadHeader.php";
         
@@ -106,11 +106,12 @@ public class ActivityRoomla extends Activity implements View.OnClickListener {
 		txtstartdate.setText(activitystartdate);
 		txtenddate.setText(activityenddate);
 //		new Listactivitys().execute();
-//		selectpicture();
-		ImageView imageViewProfile = (ImageView) findViewById(R.id.imageHeader);
-		String path = "http://www.checkinphoto.com/android/uploadheaderpicture/upload/"+activityid.toString()+"/display.jpg";
-		ImageLoader imageLoader = new ImageLoader(
-				path, imageViewProfile);// ภาพ
+		selectpicture();
+		
+//		ImageView imageViewProfile = (ImageView) findViewById(R.id.imageHeader);
+//		String path = "http://www.checkinphoto.com/android/uploadheaderpicture/upload/"+activityid.toString()+"/display.jpg";
+//		ImageLoader imageLoader = new ImageLoader(
+//				path, imageViewProfile);// ภาพ
 	}
 
 	//show Header Picture popup. It is popup for select activity header.
@@ -147,16 +148,31 @@ public class ActivityRoomla extends Activity implements View.OnClickListener {
 		// Display the dialog
 		createDialog.show();
 	}
-//	
-//	public void selectpicture(){
-//		String path = "http://www.checkinphoto.com/android/uploadheaderpicture/upload/"+activityid.toString()+"/display.jpg";
-//		InputStream imageStream;
-//		imageStream = new ByteArrayInputStream(path.getBytes(Charset.forName("UTF-8")));
-//		imageStream = getContentResolver().openInputStream(imageStream);
-//        imagepath = path.toString();
-//		imageselected=BitmapFactory.decodeStream(imageStream);
-//		imageHeader.setImageBitmap(imageselected);
-//	}
+
+	public void selectpicture() {
+		//		int loader = R.drawable.image_header;
+//		ImageLoader imgLoader = new ImageLoader(getApplicationContext());
+//		imgLoader.clearCache();
+//		imgLoader.DisplayImage(image_url, loader, image);
+		try {
+//			image = (ImageView) findViewById(R.id.imageHeader);
+			String image_url = "http://www.checkinphoto.com/android/uploadheaderpicture/uploads/"+activityid.toString()+"/display.jpg";
+			InputStream imageStream;
+			imageStream = new URL(image_url).openStream();
+			bitheader=BitmapFactory.decodeStream(imageStream);
+			image.refreshDrawableState();
+			image.setImageBitmap(bitheader);
+		} catch (FileNotFoundException e) {
+			Log.d(e.toString(), response);
+			e.printStackTrace();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	@Override
 	public void onClick(View v) {
@@ -266,7 +282,9 @@ public class ActivityRoomla extends Activity implements View.OnClickListener {
 		protected void onPostExecute(String result) {
 			super.onPostExecute(result);
 			pDialog.dismiss();
+			selectpicture();
 		}
+		
 	}
     	 
 }

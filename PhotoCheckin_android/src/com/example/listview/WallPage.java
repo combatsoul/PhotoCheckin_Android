@@ -152,6 +152,7 @@ public class WallPage extends FragmentActivity implements View.OnClickListener,
 	private ImageView mapSearch;
 	private EditText mapsearchtext;
 	private Dialog createDialog;
+	private ImageAdapter imaAdap;
 
 	JSONObject jsonObject;
 	JSONArray jsonArray;
