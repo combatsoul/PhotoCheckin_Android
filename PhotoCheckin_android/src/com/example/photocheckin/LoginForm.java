@@ -170,9 +170,7 @@ public class LoginForm extends Activity implements View.OnClickListener {
 
 									// login done
 									finish();
-									Intent goMain = new Intent(
-											getApplicationContext(),
-											WallPage.class);
+									Intent goMain = new Intent(getApplicationContext(),WallPage.class);
 									startActivity(goMain);
 								}
 							}

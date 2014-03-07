@@ -152,9 +152,7 @@ public class WallPage extends FragmentActivity implements View.OnClickListener,
 	private ImageView mapSearch;
 	private EditText mapsearchtext;
 	private Dialog createDialog;
-	// public static ArrayList<HashMap<String, String>> arraylist;
-	// JSONObject jsonobject;
-	// JSONArray jsonarray;
+
 	JSONObject jsonObject;
 	JSONArray jsonArray;
 	// Json api
@@ -221,7 +219,7 @@ public class WallPage extends FragmentActivity implements View.OnClickListener,
 				JSONObject jsonObject = new JSONObject(jsonArray.getString(i));
 
 				ImageLoader imageLoader = new ImageLoader(
-						jsonObject.getString("pic"), imageViewProfile);// ภาพ
+				jsonObject.getString("pic"), imageViewProfile);// ภาพ
 				textViewName.setText(jsonObject.getString("name"));// ชื่อ
 				// sent go profile
 				sentImg = jsonObject.getString("pic");// ภาพ
@@ -667,7 +665,6 @@ public class WallPage extends FragmentActivity implements View.OnClickListener,
 		// Getting reference to the Google Map
 		mMap = mapFragment.getMap();
 		mMap.setMyLocationEnabled(true);
-
 		etPlace = (EditText) createDialogView.findViewById(R.id.searchmap_texf);
 		confrimlocation = (Button) createDialogView
 				.findViewById(R.id.btn_ok_popup);
@@ -997,8 +994,7 @@ public class WallPage extends FragmentActivity implements View.OnClickListener,
 				});
 
 		// sent name to profile
-		TextView varName = (TextView) showDialogProfile
-				.findViewById(R.id.profilename_text);
+		TextView varName = (TextView) showDialogProfile.findViewById(R.id.profilename_text);
 		varName.setText(sentName);
 
 		// sent image to profile
