@@ -39,7 +39,7 @@ public class HttpPhotoCheckIn {
 
 		} catch (Exception e) {
 		}
-		Log.d("HTTP RESULT", result);
+		//Log.d("HTTP RESULT", result);
 		return result;
 	}
 

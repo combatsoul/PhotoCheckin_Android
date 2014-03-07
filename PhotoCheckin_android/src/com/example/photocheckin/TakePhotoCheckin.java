@@ -1,4 +1,4 @@
-package com.example.photocheckin;
+	package com.example.photocheckin;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -206,6 +207,9 @@ public class TakePhotoCheckin extends FragmentActivity implements View.OnClickLi
 					Toast.makeText(TakePhotoCheckin.this,"Error2", Toast.LENGTH_SHORT).show();
 					new ImageUploadTask().execute(bitmap); // load
 				}
+			}
+			else if(v.getId() == R.id.closewindows_btn){
+				finish();
 			}
 
 		else {
@@ -500,8 +504,11 @@ public class TakePhotoCheckin extends FragmentActivity implements View.OnClickLi
 	                byte[] data = bos.toByteArray();
 	                HttpClient httpClient = new DefaultHttpClient();                
 	                HttpPost postRequest = new HttpPost(PHP_URL);               
-	                ByteArrayBody bab = new ByteArrayBody(data,up_name);                
+	                ByteArrayBody bab = new ByteArrayBody(data,up_name);     
+	                
 	                MultipartEntity reqEntity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
+	                
+	                
 	                //sent value
 	               
 	                //แยกออก
@@ -510,19 +517,25 @@ public class TakePhotoCheckin extends FragmentActivity implements View.OnClickLi
 	                for(int i=0; i < locationMap.length; i++){  
 	                	
 	                }
-	                
-	                Log.d(">>>>>>>>>>>>", locationMap[0]+":"+locationMap[1]);
-	                reqEntity.addPart("sentName", new StringBody(nameMap.getText().toString()));
+	                	                
+	                //reqEntity.addPart("sentName", new StringBody(nameMap.getText().toString()));
+	                reqEntity.addPart("sentName", new StringBody(nameMap.getText().toString(),"text/plain", Charset.forName("UTF-8")));
 	                reqEntity.addPart("getImage",bab);//sent image
 	                reqEntity.addPart("sentUsername", new StringBody(Username));  //EDIT
-	                reqEntity.addPart("getDetail", new StringBody(Detail.getText().toString()));
+	               // reqEntity.addPart("getDetail", new StringBody(Detail.getText().toString()));
+	                reqEntity.addPart("getDetail", new StringBody(Detail.getText().toString(),"text/plain", Charset.forName("UTF-8")));
+	                
 	                reqEntity.addPart("sentLatitude", new StringBody(locationMap[0]));
-	                reqEntity.addPart("sentLongitude", new StringBody(locationMap[1]));
+	                reqEntity.addPart("sentLatitude", new StringBody(locationMap[1]));
+	                //reqEntity.addPart("sentLongitude", new StringBody("ทดสอบ","text/plain", Charset.forName("UTF-8")));
 	                postRequest.setEntity(reqEntity);	   
+	              
+	      
+	                
 	                
 	                
 	                HttpResponse response = httpClient.execute(postRequest);
-	                BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(),"UTF-8"));
+	                BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
 	                String sResponse;
 	                StringBuilder s = new StringBuilder();
 	 

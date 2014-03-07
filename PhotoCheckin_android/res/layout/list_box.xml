@@ -90,6 +90,7 @@
 
                     <ImageView
                         android:id="@+id/heartlike"
+                        android:visibility="invisible"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/likeheart_icon" />
@@ -110,6 +111,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:text="เข้าร่วม"
+                    android:visibility="invisible"
                     android:textColor="@color/grey"
                     android:textSize="11dp" />
 
